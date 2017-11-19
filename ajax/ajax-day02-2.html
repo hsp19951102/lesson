@@ -1,0 +1,79 @@
+<!--  
+xml解析
+	在js中，我们可以先获取xml对应的DOM对象，然后再使用DOM相关的方法进行获取
+	获取xml的DOM对象
+	IE
+	new ActiveXObject('Microsoft.XMLDOM')
+	其他浏览器
+	new DOMParser()
+
+	获取到dom对象后，会发现DOM把xml文档作为树状结构来看，与html的格式一致；所以，我们能够使用任何dom的方法去获取指定的元素或内容
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var xmlStr = "<student><name>张三</name><age>20</age></student>";
+		//解析xml的方法
+		//首先获取xml的dom对象
+		function getXMLDOM(xml){
+			//声明变量，用于表示DOM对象
+			var xmlDOM = null;
+			if (window.DOMParser) {
+				var parser = new DOMParser();
+				xmlDOM = parser.parseFromString(xml,'application/xml');
+			}else{
+				xmlDOM = new ActiveXObject('Microsoft.XMLDOM');
+				xmlDOM.load(xml);//加载需要解析的xml字符串
+			}
+
+			return xmlDOM;
+		}
+		var xmlInfo = getXMLDOM(xmlStr);
+		var names = xmlInfo.getElementsByTagName('name');
+		console.log(names[0])
+		var stuName = names[0].textContent;
+		console.log(stuName);
+
+		var xmlStr1 = "<province><city><name>扬州</name><location>苏中</location></city><city><name id='c1'>徐州</name><location>苏北</location></city><city><name>苏州</name><location>苏南</location></city></province>";
+		var proDom = getXMLDOM(xmlStr1);
+		var names1 = proDom.getElementsByTagName('name');
+		var cityName = names1[1].textContent
+		console.log(cityName)
+
+		var name1 = proDom.getElementById('c1');
+		console.log(name1.textContent)
+	</script>
+	用户名：<input type="text" placeholder="请输入用户名" id="userName">
+	<br>
+	密码：<input type="text" placeholder="请输入密码" id="password">
+	<button type="button" onclick="login()">登录</button>
+	<script>
+		function login(){
+			var xhr = new XMLHttpRequest();
+
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == 4) {
+					console.log(xhr.responseText);
+					var infoDom = getXMLDOM(xhr.responseText);
+					var stateNo = infoDom.getElementsByTagName('state')[0].textContent;
+					console.log(stateNo);
+					if (stateNo == -1) {
+						alert(infoDom.getElementsByTagName('info')[0].textContent)
+					}
+
+				}
+			}
+
+			var uname = document.getElementById('userName').value;
+			var pwd = document.getElementById('password').value;
+			xhr.open("get","http://192.168.1.111/ajax/php01.php?name="+uname+"&pwd="+pwd);
+			xhr.send(null);
+		}
+	</script>
+</body>
+</html>

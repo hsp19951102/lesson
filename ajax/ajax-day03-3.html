@@ -1,0 +1,60 @@
+<!--  
+1、传统上传方式
+	使用form表单直接上传，需要注意，form的enctype需要设置为：multipart/form-data，否则后台将无法获取，需要使用post请求
+2、FormData
+	var 变量 = new FormData(表单的DOM对象);
+3、ajax跨域请求
+	1）同源策略
+	所谓的同源。是浏览器的核心功能，主要是为了保护数据，同源指的就是域名、协议、端口号完全一致
+	2）域名
+	域名是由一串用点分隔符链接的名字组合，可以通过域名找到因特网上指定某一台计算机或计算机组，一个域名需要先绑定一个外网IP，才能进行访问
+	域名分为顶级域名、二级域名和三级域名
+	3）不同的域
+	非同源就 是不同的域 
+	www.aa.com/b.html和www.bb.com/a.html  不同的域
+	http://www.aa.com/a.html和http://www.aa.com/html/b.html    同域
+	http://www.aa.com:8080/a.html和http://www.aa.com:8081/html/b.html 不同的域
+	4）跨域
+	跨域指的就是在a网站获取b网站上的内容，由于域名、端口号或协议有所不同，导致数据无法获取，这就叫跨域
+	正常来讲，前端项目是不允许跨域的，目的是为了保护数据的安全性
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<form action="php02.php" enctype="multipart/form-data" method="post">
+		<input type="file" name="file">
+		<input type="submit">
+	</form>
+
+	<form id="uploadForm">
+		<input type="text" name="name">
+		<input type="file" name="file">
+		<input type="button" value="上传" id="loadBtn">
+	</form>
+	<script>
+		$('#loadBtn').on('click',function(){
+			//先获取form元素
+			var form = $('#uploadForm');
+
+			//将form对象转换成formData对象
+			var fData = new FormData(form[0]);
+			console.log(fData);
+			$.ajax({
+				url:"192.168.43.52/ajax/php02.php",
+				type:"post",
+				data:fData,
+				processData:false,
+				contentType:false,
+				success:function(data){
+					console.log(data);
+				}
+			})
+		})
+	</script>
+</body>
+</html>

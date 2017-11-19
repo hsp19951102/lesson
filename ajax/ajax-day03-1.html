@@ -1,0 +1,76 @@
+<!--  
+jQuery对ajax的支持
+	在jQuery中封装了一些ajax的操作，相比DOM的操作要简洁
+	1、get()方法
+	作用：发送get类型请求
+	语法：$.get(请求地址,请求参数,回调函数,服务器返回类型)l
+	-回调函数：该函数用于接收服务器返回的数据
+	-返回类型：html、xml、json、text等
+	-只有url是必须的，其他参数可根据实际情况使用
+	当url与参数分离时，url的最后不需要问好
+
+	2、post方法
+	作用：发送post请求
+	语法:$.post(请求地址,参数,回调函数,返回类型);
+	3、ajax()方法
+	作用：发送请求
+	语法：
+	$.ajax({
+		url:请求地址,
+		data:请求参数,
+		type:请求方式（get/post）,
+		datatype:服务端返回类型(json/xml等),
+		async:是否异步（默认true，表示异步）,
+		timeout:超时时间,
+		success:访问成功后的回调函数,
+		error:访问失败后的回调函数
+	})
+	只有url是必须的
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<button type="button" onclick="fun1()">get()方式一（不单独设置参数）</button>
+	<button type="button" onclick="fun2()">get()方式二（单独设置参数）</button>
+	<button type="button" onclick="fun3()">post()方式一</button>
+	<button type="button" onclick="fun4()">post()方式二</button>
+	<button type="button" onclick="fun5()">$.ajax()</button>
+	<script>
+		function fun1(){
+			$.get("http://route.showapi.com/119-42?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55",function(data){
+				console.log(data);
+			});
+		}
+		function fun2(){
+			$.get("http://route.showapi.com/119-42","showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55",function(data){
+				console.log(data);
+			});
+		}
+		function fun3(){
+			$.post("http://route.showapi.com/119-42?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55",function(data){
+				console.log(data);
+			});
+		}
+		function fun4(){
+			$.post("http://route.showapi.com/119-42","showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55",function(data){
+				console.log(data);
+			});
+		}
+		function fun5(){
+			$.ajax({
+				url:"http://route.showapi.com/119-42",
+				data:"showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55",
+				type:'get',
+				success:function(data){
+					console.log(data)
+				}
+			});
+		}
+	</script>
+</body>
+</html>

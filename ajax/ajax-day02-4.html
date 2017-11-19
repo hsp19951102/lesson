@@ -1,0 +1,79 @@
+<!--  
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<style>
+		ul{
+			list-style: none;
+		}
+		li{
+			padding: 10px;
+			border-bottom: 2px solid red;
+		}
+		li>img{
+			width: 40px;
+			border-radius: 20px;
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+	</style>
+</head>
+<body>
+	<ul id="list"></ul>
+	<button class="prev" type="button" onclick="getInfo(1)">上一页</button>
+	<button type="button" onclick="getPageInfo(1)">1</button>
+	<button type="button" onclick="getPageInfo(2)">2</button>
+	<button type="button" onclick="getPageInfo(3)">3</button>
+	<button type="button" onclick="getPageInfo(4)">4</button>
+	<button type="button" onclick="getPageInfo(5)">5</button>
+	<button class="next" type="button" onclick="getInfo(2)">下一页</button>
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState == 4) {
+				//将json字符串转换为js对象
+				var data = JSON.parse(xhr.responseText);
+				console.log(data);
+				var infoList = data.showapi_res_body.pagebean.contentlist;
+				console.log(infoList);
+				for (var i = 0; i < infoList.length; i++) {
+					var info = infoList[i];
+					console.log(info)
+					var $li = $('<li><img src="'+info.profile_image+'" alt="" /><span>'+info.name+'</span><div>'+info.text+'</div></li>');
+					$("#list").append($li);
+				}
+			}
+		}
+		var pageNum = 1
+		function getInfo(tag){
+			if (tag == 1) {
+				//上一页
+				//如果当前页数大于1，才会有上一页
+				if (pageNum >1) {
+					pageNum--;
+				}
+			}else{
+				pageNum++;
+			}
+			//先清空ul的内容
+			$('#list').html('');
+			xhr.open('get','http://route.showapi.com/255-1?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55&type=29&page='+pageNum);
+			xhr.send(null);
+		}
+		getInfo(1);
+
+		function getPageInfo(pageIndex){
+			pageNum = pageIndex;
+			//先清空ul的内容
+			$('#list').html('');
+			xhr.open('get','http://route.showapi.com/255-1?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55&type=29&page='+pageNum);
+			xhr.send(null);
+		}
+	</script>
+</body>
+</html>

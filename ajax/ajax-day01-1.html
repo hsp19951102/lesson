@@ -1,0 +1,67 @@
+<!--  
+ajax
+	1、概念
+	ajax是用于处理前端可服务器数据交互的一门技术，它能够向服务器发送和请求数据，并将这些数据展示在网页；
+	ajax的语言载体是js
+	最大的特点，是在页面不刷新的情况下改变页面中的内容，实现局部动态的效果
+	2、本质
+	ajax的本质是XMLHttpRequest对象
+	3、获取ajax对象
+	略，参照下方代码
+	4、创建请求
+	语法：ajax对象.open("请求方式","请求的url",布尔值);
+	请求方式：
+	get：参数与url在一起显示在地址栏，不安全，且传参的字符串大小有限制，不能超过2kb
+	post：参数与url分开，参数会以表单的形式进行传递，比较安全，且大小没有限制
+	请求的URL：一般是页面所对应的接口地址，由后台提供
+	布尔值：表示是否异步，默认是异步，如果设置false则表示同步
+	异步：同时并发执行多个操作，充分利用cpu的多核，提高效率
+	同步：某一时刻，只能执行一个任务，只有当该任务执行结束后，才能进行下一个任务
+	5、发送请求
+	语法：
+	ajax对象.send(参数);
+	如果open里设置的是get请求，则该处设置为null，如果是post请求，则是参数组成字符串
+	6、接收数据
+	接收数据，通过监听ajax对象的onreadystatechange状态景处理，当ajax对象的readyState属性为4时，表示数据接收完毕
+	readyState取值:
+	0、未初始化
+	1、对象已初始化，但是未调用send方法
+	2、已发送send方法，但尚未接收到服务器的返回消息
+	3、已接收到部分数据，但是数据不完全
+	4、数据接收完毕
+	接收到数据后，可以通过responseText获取返回的内容
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//1、获取ajax对象
+		var xhr = null;
+		//考虑浏览器兼容
+		if (window.XMLHttpRequest) {
+			//主流浏览器(火狐、谷歌、safari、搜狗等等)
+			xhr = new XMLHttpRequest();
+		}else{
+			//兼容IE
+			xhr = new ActiveXObject('Microsoft.XMLHttp');
+		}
+		//4、监听onreadystatechange事件
+		xhr.onreadystatechange = function(){
+			var d1=document.getElementById('d1')
+			if (xhr.readyState == 4) {
+				console.log(xhr.responseText)
+				d1.innerHTML=xhr.responseText;
+			}
+		}
+		//2、 创建请求
+		xhr.open("get","http://192.168.1.111/ajax/php01.php");
+		//3、发送请求
+		xhr.send(null);
+	</script>
+</head>
+<body>
+	<div id="d1"></div>
+</body>
+</html>

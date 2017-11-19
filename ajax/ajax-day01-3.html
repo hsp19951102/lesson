@@ -1,0 +1,40 @@
+<!--  
+ajax 中的同步和异步
+当设置为同步时，ajax之后的操作，需要等到请求结束，并得到返回数据且对这些数据处理完毕后，才会执行后续的操作，如果设置为异步，则不需要等待，也就是ajax发出请求后，会立马执行后续的操作
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="d1"></div>
+	<button type="button" onclick="getMethod()">get</button>
+	<button type="button" onclick="postMethod()">post</button>
+	<button type="button" onclick="getHistoryOfToday()">历史上的今天</button>
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if (xhr.readyState == 4) {
+				console.log('++++++')
+				document.getElementById('d1').innerHTML = xhr.responseText;
+			}
+		}
+		function getMethod(){
+			xhr.open('get','http://route.showapi.com/9-2?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55&area=扬州');
+			xhr.send(null);
+		}
+		function postMethod(){
+			xhr.open('post',"http://route.showapi.com/9-2",false);
+			xhr.setRequestHeader('content-type',"application/x-www-form-urlencoded");
+			xhr.send('showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55&area=扬州');
+			console.log("-------")
+		}
+		function getHistoryOfToday(){
+				xhr.open('get','http://route.showapi.com/119-42?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55');
+			xhr.send(null);
+		}
+	</script>
+</body>
+</html>

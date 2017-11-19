@@ -1,0 +1,41 @@
+<!--  
+一、XML语法
+	1、概念
+	xml是可扩展标记语言，其主要作用是为了传输数据，xml的语法结构与html类似，只是xml的标记没有被预定义，需要使用者自己定义
+	2、作用
+	xml应用于开发过程中前后端的数据传输，用于实现数据的存储和共享
+	3、基本语法
+		1）声明
+		xml的声明必须以<?xml开头，以?>结尾，声明方式为
+		<?xml version="1.0" encoding="UTF-8"?>
+		其中，version表示版本号，一般使用1.0；encoding表示编码格式，一般是UTF-8
+		注意：xml格式的声明，必须位于文档的第一行
+		2）语法
+		xml都是由标签组成，所有的标签都是封闭型标记，且大小写敏感,也就是必须使用形同的大小写来编写起始和结束标记；必须正确嵌套；xml元素的属性值必须加引号;
+		3）元素
+		xml元素的概念与html元素的概念一样
+		4）标记
+		xml中所有的标记，均是由开发者自己定义，不能使用中文，不能以数字开头，且不能是纯数字；一般标记的名称都会是有意义的英文单词或组合，做到见名知意
+		5）属性
+		xml的属性与html的属性类似
+
+		练习：实现xml数据，数据内容为一个饭店的菜单信息
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.c1{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class=c1>123</div>
+	<script>
+		var str = "<people><name>张三</name></people>";
+	</script>
+</body>
+</html>
