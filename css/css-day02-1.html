@@ -1,0 +1,109 @@
+<!-- 
+一、样式表的优先级
+	内联样式表的优先级最高，内部和外部的优先级取决于谁离body近
+	样式表的特征：
+	-继承性：大多数css样式可以被继承，也就是子元素会继承父元素的样式，当子元素样式与父元素样式冲突时，则子元素会采用自己的样式规则
+	-层叠性：可以对一个元素定义多个样式规则，当样式不冲突时，多个样式可层叠为一个;当样式冲突时，则选择权值较高者
+
+二、选择器
+	选择器用于样式指定使用该样式的html元素，也就是通过选择器可以找到html文档中的一个或多个html元素，选择器决定了哪些元素使用选择器对应的样式
+	1）通用选择器
+	名称 * ，可以匹配所有元素，常用于设置一些默认的样式
+	语法：
+	*{
+		样式规则;
+		...
+	}
+	2）元素选择器
+	选择器名称为html元素的名字，可以匹配所有元素名一致的html标记
+	语法：
+	元素名{
+		样式规则;
+		...
+	}
+	3）类选择器
+	根据元素的class属性进行选择（注意class的值是以字母或下划线开头）
+	语法：
+	.类名{
+		样式规则;
+		...
+	}
+	注意：上文的类名指的是元素的class值，一个类名可以对应多个元素，类选择器会忽略元素的名字，只关心类名
+	可以将多个类选择器应用于同一个元素，也就是一个元素可以有多个类名
+	多个类名的格式：class="c1 c2 c3";类名之间用空格隔开，每个类名都是一个选择器
+	可以将类选择器与元素选择器结合起来使用
+	语法：元素名.类名
+	会找到指定元素中class值相符合的
+	4)id选择器
+	通过元素id属性的值进行定义
+	语法：
+	#id值{
+		样式规则;
+		...
+	}
+	注意：一个id只能对应一个元素，它具有唯一性
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	<style>
+		p{
+			color:blue;
+		}
+		div{
+			color:orange;
+		}
+		span{
+			color:brown;
+		}
+		h1{
+			color:blue;
+		}
+		.title{
+			background-color: orange;
+			color:red;
+		}
+		*{
+			font-size: 16px;
+			font-family: "微软雅黑";
+		}
+		.c1{
+			color:red;
+		}
+		.c2{
+			background-color:yellow;
+		}
+		.c3{
+			font-size: 30px;
+		}
+		p.c3{
+			border:5px solid black;
+		}
+		#hhh{
+			background-color: pink;
+		}
+	</style>
+	<link rel="stylesheet" href="css-day02-1.css">
+</head>
+<body>
+	<p>这是内容</p>
+
+	<div>
+		这是div
+		<span>这是p</span>
+	</div>
+
+	<h1 class="title">这是h1</h1>
+
+	<p>这是第二段文本</p>
+	<p class="title c3">这是第三段文本</p>
+	<h2 class="c1 c2 c3">这是小标题</h2>
+
+	<h4 id="hhh">这是小小小标题</h4>
+	<h4>asfjafd;alkjsdf;a</h4>
+</body>
+</html>

@@ -1,0 +1,17 @@
+// 无参数混合器
+@import 'sass02.sass'
+@import '1.css'
+@mixin myMix
+	width: 100px
+	height: 100px
+div
+	@include myMix
+@mixin myMixs($value)
+	width: $value
+p
+	@include myMixs(20px)
+
+@mixin myMixs1($value:20px)
+	height: $value
+.c1
+	@include myMixs1(30px)

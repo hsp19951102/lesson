@@ -1,0 +1,117 @@
+<!-- 
+框模型
+	1.概念
+	框模型就是定义元素的外边距、内边距、边框和内容区域，width和height属性只是定义了元素的内容区域大小，增加内外边距或边框会改变元素所占空间大小，不会改变内容区域大小
+	一切皆为框
+	2.外边距
+	围绕在元素边框周围的空白区域叫做外边距，可以理解为一个元素距离父元素的边框或下一个元素的距离
+	语法：
+	margin:尺寸单位;多为px或百分比
+	注意：外边距的取值可以为auto，当水平方向的外边距设置为auto时，元素会被居中（只对块级元素起作用）,行内元素只能设置左右外边距，不能设置上下外边距
+	单边设置：
+	margin-left：距离左侧的外边距
+	margin-right:右侧 
+	margin-top:上面
+	margin-bottom:下面
+	margin:value;表示上下左右会同时应用设置
+	margin:value(上下) value(左右);
+	margin:value(上) value(左右) value(下);
+	margin:value(上) value(右) value(下) value(左);
+	外边距合并：
+	当两个垂直外边距相遇时，他们会形成一个外边距，称为外边距合并，二者之间的间距以较大值为准。
+	水平方向会叠加
+	3.内边距
+	内边距指的是内容与边框之间的距离，一般浏览器默认为0
+	设置内边距会扩大元素所占的空间
+	语法：
+	padding:value(尺寸单位);
+	单边设置：
+	padding-left/padding-right/padding-top/padding-bottom
+	注意：内外边距的取值均可以为负数
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			/*height:500px;*/
+			border:5px solid red;
+		}
+		.d1{
+			width:200px;
+			height:200px;
+			border:5px solid blue;
+			/*margin:20px;*/
+			margin:auto;
+		}
+		span{
+			border:4px solid orange;
+			/*margin:40px;*/
+		}
+		.d2{
+			width:200px;
+			height:100px;
+			border:5px solid green;
+			margin-top:50px;
+			margin-left: 20px;
+		}
+		.d3{
+			width:300px;
+			height:100px;
+			background-color: orange;
+			margin:20px 50px;
+		}
+		.d4{
+			width:200px;
+			height:200px;
+			background-color: blue;
+			margin:10px 20px 30px;
+		}
+		.d5{
+			width:200px;
+			height:200px;
+			background-color: green;
+			margin:50px 20px 30px 40px;
+		}
+		.ss{
+			border:5px solid red;
+		}
+		.s1{
+			margin:30px;
+		}
+		.s2{
+			margin:50px;
+			padding:20px;
+		}
+		.d6{
+			width:200px;
+			height:200px;
+			border:5px solid blue;
+			margin-top:-20px;
+			margin-left:-50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="d1"></div>
+	<span>这是span</span>
+	<div class="d2"></div>
+	<div class="d3"></div>
+	<div class="d4"></div>
+	<div class="d5"></div>
+	<br>
+	<span class="s1 ss">这是第一个span</span><span class="s2 ss">这是第二个span</span>
+	<br>
+	<div class="d6"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

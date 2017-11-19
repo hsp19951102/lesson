@@ -1,0 +1,104 @@
+<!-- 
+一、定时器
+	一般定时器多用于循环调用某个操作或者延迟调用某个操作，比如时钟、轮播图、跑马灯效果
+	在js中，定时器分为周期性定时器和一次性定时器
+	1、周期性定时器
+	语法：setInterval(function,time);第一个参数表示定时器触发的函数，第二个参数表示定时器循环的时间，时间以毫秒为单位;会在设定时间间隔后调用函数
+	执行完 该语句后会返回一个定时器对象，该对象多用于清空定时器时使用
+
+	使用clearInterval(定时器对象)进行定时器的停止与清除
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="停止" onclick="stop()">
+	<script>
+		// setInterval(function(){
+		// 	console.log(1);
+		// },3000);
+
+		// var timer = setInterval(fun,1000);
+		function fun(){
+			console.log("12312")
+		}
+
+		function stop(){
+			clearInterval(timer);
+		}
+	</script>
+	<!-- 实现秒表效果 -->
+	<!-- 需要一个启动按钮，和一个停止按钮，以及一个显示时间的元素 -->
+
+	<input type="button" value="启动" onclick="start()">
+	<input type="button" value="停止" onclick="over()">
+	<div id="time"></div>
+	<script>
+		//首先定义一个定时器对象
+		var secondTime = null;
+
+		var ele = document.getElementById('time');
+		var i = 0;
+		function start(){
+			//定义定时器。注意，为避免重复创建定时器，所以需要在创建之前先判断定时器是否已经存在
+			if (!secondTime) {
+				secondTime = setInterval(function(){
+					ele.textContent = i;
+					i++
+				},1000);
+			}
+		}
+
+		function over(){
+			// 注意当我们去停止定时器时，需要先判断其是否存在
+			if (secondTime) {
+				clearInterval(secondTime);//注意，只停止定时器，并不会立即释放原有的对象，也就是其对象不为null
+				secondTime = null;//手动释放掉内存
+			}
+		}
+	</script>
+	<!-- 假设放学时间为每天的18点，计算当前时间距离放学还有多久 -->
+	<div id="goHome"></div>
+	<script>
+		var goDiv = document.getElementById('goHome');
+		var timer1 = setInterval(getDaoTime,1000);
+		function getDaoTime(){
+			//首先获取当前时间
+			var now = new Date();
+			//获取当前时间的时间戳
+			var nowSeconds = now.getTime();
+			//获取放学时间中对应的年月日
+			var year = now.getFullYear();
+			var month = now.getMonth();
+			var day = now.getDate();
+			console.log(year,month,day);
+			// 获取放学时间
+			var overDate = new Date(year,month,day,18,0,0);
+			console.log(overDate);
+			var overSeconds = overDate.getTime();
+			// 计算时间差
+			var timeSub = overSeconds - nowSeconds;
+			if (timeSub<=0) {
+				clearInterval(timer1);
+				timer1 = null;
+			}
+			//得到小时
+			var hour = parseInt(timeSub/1000/3600);
+			console.log(hour);
+			//得到分钟
+			var minutes = parseInt(timeSub/1000%3600/60);
+			console.log(minutes);
+			//得到描述
+			var second =  parseInt(timeSub/1000%3600%60);
+			console.log(second);
+
+			goDiv.innerHTML = hour+"小时"+minutes+"分钟"+second+"秒";
+		}
+		
+	</script>
+</body>
+</html>

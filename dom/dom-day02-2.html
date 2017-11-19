@@ -1,0 +1,144 @@
+<!-- 
+元素样式
+	1、style属性
+	该属性主要用于修改或设置内联的样式
+	语法：
+	元素对象名.style.样式属性名 = 值;
+	注意，在获取尺寸单位样式时，会得到一个包括单位在内的字符串，所以在给尺寸属性设置值时，也必须是包含了单位的字符串；当样式属性名中包含分割线(-)时，需要将该线省略，将线后的第一个字母大写
+	
+	由于.style属性设置的是内联样式，所以会将内部和外部样式覆盖
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#d1{
+			width: 100px;
+			height: 100px;
+			color: red;
+			border: 1px solid red;
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1" style="width: 100px;">1111</div>
+	<script>
+		var d = document.getElementById('d1');
+		console.log(d.style.width);
+		d.style.height = '200px';
+
+		d.style.backgroundColor = "red";
+		d.style.color = "blue";
+	</script>
+
+	<style>
+		.container>div{
+			height: 150px;
+			float: left;
+		}
+		.door{
+			width: 100px;
+			background-color: orange;
+		}
+		.lock{
+			border:1px solid red;
+			width: 40px;
+			line-height: 150px;
+			text-align: center;
+		}
+		.door_kuang{
+			border: 1px solid blue;
+			width: 100px;
+		}
+		#open{
+			display: none;
+		}
+		/*div.container:after,.container :before{
+			
+			
+			clear: both;
+		}*/
+	</style>
+	<div  class="container" style="overflow: hidden;">
+		<div class="door"></div>
+		<div class="lock" onclick="open1()">&lt;&lt;</div>
+		<div class="door_kuang"></div>
+	</div>
+	<script>
+		var door = document.querySelector('.door');
+		var lock = document.querySelector('.lock');
+
+		var isOpen = true;
+		function open1(){
+			if (isOpen) {
+				door.style.display = "none";
+				lock.innerHTML = "&gt;&gt";
+				isOpen = false;
+			}else{
+				door.style.display = "block";
+				lock.innerHTML = "&lt;&lt";
+				isOpen = true;
+			}
+			
+		}
+	</script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.shareTo{
+			background-color: orange;
+			width: 200px;
+			height: 300px;
+			display: none;
+			float: left;
+		}
+		.shareBtn{
+			background-color: gray;
+			width: 80px;
+			height: 100px;
+			line-height: 100px;
+			float: left;
+			margin-top: 100px;
+		}
+		.shareTo>div{
+			height: 50%;
+			line-height: 150px;
+		}
+		div{
+			text-align: center;
+		}
+		#show{
+			display: block;
+		}
+		#box{
+
+		}
+	</style>
+	<div id="box" style="overflow: hidden;">
+		<div class = "shareTo">
+				<div>分享到qq</div>
+				<div>分享到微信</div>
+		</div>
+		<div class="shareBtn" onclick="show()">分享</div>
+	</div>
+	<script>
+		var isShow = false;
+		var showDiv = document.querySelector('.shareTo');
+
+		function show(){
+			if (isShow) {
+				showDiv.style.display = "none";
+				isShow = false;
+			}else{
+				showDiv.style.display = "block";
+				isShow = true;
+			}
+		}
+	</script>
+</body>
+</html>

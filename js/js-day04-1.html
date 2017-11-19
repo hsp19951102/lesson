@@ -1,0 +1,90 @@
+<!-- 
+一、函数
+	1.概念
+	函数（function），有时也叫方法或过程，是一段预定义好的，可以被反复执行的代码块，其中可以包括多条可执行语句，函数本质上是功能完善的对象。
+	2.定义函数
+	使用关键字function进行定义，语法格式：
+	function 函数名(形参列表){
+		函数体;
+	}
+	注意：函数名由开发者自己决定，但是需要注意，函数名的规范与变量的规范一致，括号中的形参是可选的
+	3.函数的调用
+	格式：函数名(实参列表);
+	注意：如果没有实参，则可以省略
+	如果一个函数被定义而未使用，则这个函数是无用的
+	4.带参数的函数
+	1）形参：形式参数，用于函数声明或定义时，设置函数所需要接收的变量，主要用于传递数据到函数中
+	2）实参：实际参数，作为数据的载体，调用函数时用于将数据传递给函数的形参
+	实参将本身的值传递给形参，传递时会复制一份，然后再交给形参，函数内操作形参的值，不会影响实参
+
+	定义多个形参，形参之间用逗号隔开
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//定义一个函数，用于自我介绍
+		function introduce(){
+			console.log("我是大帅哥");
+		}
+		introduce();
+		//定义一个函数，用于打印1-100所有的数
+		function logNum(){
+			for(var i = 1;i <= 100;i++){
+				console.log(i);
+			}
+		}
+		logNum();
+		//定义一个函数，输出1-20之间能被3整除的数
+		function fun1(){
+			for(var j = 1;j <= 20;j++){
+				if(j % 3 == 0){
+					console.log(j);
+				}
+			}
+		}
+		fun1();
+		//定义一个函数，判断是否成年
+		function isOld(age){
+			if(age>=18){
+				console.log("成年");
+			}else{
+				console.log("未成年");
+			}
+			age = 30;
+		}
+		var myAge = 15;
+		isOld(myAge);
+		console.log(myAge);
+		isOld(30);
+
+		//定义一个函数，60分以下不及格，60分以上及格
+		function score(s){
+			if(s >= 60){
+				console.log("及格");
+			}else{
+				console.log("不及格");
+			}
+		}
+		score(90);
+		//用户输入两个数，求和
+		function sum(num1,num2){
+			console.log(num1+num2);
+		}
+		var number1 = 20;
+		var number2 = 22;
+		sum(number1,number2);
+		sum(number1,10);
+		sum(22,998);
+		//比较两个数的大小
+		function compare(num1,num2){
+			console.log(num1>num2?num1:num2);
+		}
+		compare(22,33);
+	</script>
+</body>
+</html>

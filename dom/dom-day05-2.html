@@ -1,0 +1,135 @@
+<!-- 
+1、事件的周期
+	解释器创建一个event对象后，会按照一定的顺序在html元素之间进行传递
+	-第一阶段：事件捕获阶段，事件会沿着dom树向下传播，指导找到事件源对象
+	-第二阶段：目标触发，找到事件源对象后，触发事件函数
+	-第三阶段：事件冒泡，事件从目标元素沿DOM树向上传播
+2、event对象
+	任何一个事件触发，都会产生一个event对象，该对象保存了事件发生时的一些信息，比如事件源对象、事件发生时鼠标的位置等等
+	1）获取事件对象
+	不同的浏览器获取事件对象的方式有所不同
+	大部分的浏览器可以在js中直接识别event关键字,部分浏览器（火狐）只能在html中使用event，所以在使用时，可以将event传递过去.
+
+	2）目标对象(事件源对象)
+	目标对象就是实际触发了事件的元素，目标对象可以通过event.srcElement || event.target 获取
+	事件源对象与this的区别：事件源对象不会随着事件的冒泡而发生改变，this会随着冒泡而改变
+
+	3）取消冒泡
+	事件冒泡：当某个元素触发了事件后，会向其父元素传递，如果父元素也绑定了该事件，则会触发父元素的事件函数，直到找到document
+
+	当我们不想去使用冒泡特性时，可以取消事件冒泡
+	语法：
+	事件对象.stopPropagation()或事件对象.cancelBubble = true;
+
+	如果多个子元素都绑定了相同的事件处理函数，则可以仅在父元素绑定一次即可
+
+	4）取消事件的默认行为
+	有时浏览在处理事件时会执行与该事件相关联的默认行为，比如input type为submit，当我们不想执行这些操作时，可以将默认行为关掉
+	语法
+	事件对象.preventDefault()
+	或
+	事件对象.returnValue = fasle;
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background: gray;
+			margin: 10px;
+		}
+		#d1{
+			width: 400px;
+			height: 400px;
+			background: orange;
+			border: 1px solid transparent;
+		}
+		#d2{
+			width: 200px;
+			height: 200px;
+			background: brown;
+			margin:100px;
+			border: 1px solid transparent;
+		}
+		#d3{
+			width: 100px;
+			height: 100px;
+			background: gray;
+			margin: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1" class="c1">
+		<div id="d2" class="c1">
+			<div id="d3" class="c1"></div>
+		</div>
+	</div>
+	<script>
+		// 事件冒泡
+		var divs = document.getElementsByClassName('c1');
+		for (var i = 0; i < divs.length; i++) {
+			divs[i].addEventListener("click",function(){
+				//获取event
+				var e = window.event || arguments[0];
+				alert(this.id+"-"+e.target.id);
+				
+				// 阻止冒泡
+				if (e.stopPropagation) {
+					e.stopPropagation();
+				}else{
+					e.cancelBubble = true;
+				}
+			},false)
+		}
+	</script>
+	<div id="div1" onclick="fun(event)"></div>
+	<script>
+		function fun(){
+			console.log(event);
+			console.log(arguments[0]);
+		}
+		// 标准的获取event对象的方式
+		function getEvent(){
+			var event = window.event || arguments[0];
+		}
+
+	</script>
+	<form action="">
+		<input type="submit" onclick="submitFun(event)">
+	</form>
+	
+	<script>
+		function submitFun(event){
+			console.log("-----");
+			// 阻止默认行为
+			if (event.preventDefault) {
+				event.preventDefault();
+			} else{
+				event.returnValue = fasle;
+			}
+		}
+	</script>
+	<!-- 编码实现，输入框中只能上输入数字 -->
+	<input type="text" placeholder="请输入数字" onkeypress="checkStr(event)">
+	<script>
+		function checkStr(event){
+			//首先需要获取按键的内容,通过keyCode获取
+			var code = event.keyCode;
+			console.log(code);
+			if (code < 48 || code > 57) {
+				// 表示不是数字
+				if (event.preventDefault) {
+					event.preventDefault();
+				} else{
+					event.returnValue = fasle;
+				}
+			}
+		}
+	</script>
+</body>
+</html>

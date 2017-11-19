@@ -1,0 +1,132 @@
+<!-- 
+元素分类
+	元素根据其特点可以分类块级元素、行内元素和行内块级元素
+	块级元素：块级元素单独占一行，可以设置宽和高
+	行内元素：行内元素不会换行，只有当一行空间被占满后，才会换到下一行，不可以设置宽和高
+	行内块级元素：它不会换行，可以设置宽和高
+标题元素
+	标题元素让文字以加粗的形式显示，一般用于文章的标题。标题元素分为h1-h6，是封闭型标记，h1-h6的字号逐渐减小，会自动换行，是块级元素
+	注意：h1-h6是对同一种样式的不同设置，所有当其相互嵌套时，以靠近内容的为主
+段落元素
+	p元素用来表示一段文本，该元素是封闭型的块级元素，在段前段后会留有空白，也就是段间距，常用属性：align(水平对齐方式，取值有：center,left,right)
+分区元素
+	-span,它是封闭型行内元素	
+	-div,封闭型块级元素，与p元素类似，段前段后没有空白，常用属性align(与p元素align属性相同)
+	注意：p元素不能嵌套块级元素
+分割线元素
+	hr元素表示一个分割线，是一个空标记，块级元素，常用属性：
+	-size:表示分割线的粗细，可以取值为长度单位：px(像素),百分比，pt(磅)
+	-width:表示宽度，取值长度单位：px,百分比
+	-color:表示颜色，取值为颜色单词
+	-align:表示水平对齐方式，取值：center,left,right
+	默认样式：size为1px,width为100%,align为center,color为黑色 
+预格式化
+	pre元素可以保留文档中的格式，可以保留换行，空格等样式，它是一个封闭型块级元素
+URL
+	1.目录结构
+		目录结构就是web站点中文件夹的名称，它包含多个目录，每个目录包含站点的不同部分，web站点的主目录称为web的根目录，位于目录下的其他子文件夹称为子目录，每个目录包含具体功能的下一级子目录
+	2.url
+		url:统一资源定位器，用来标识网络中的任何资源，包括文本，图片，视频等
+		url也可以称为路径，指从当前位置开始，到目标文件位置的路线，路径分为三种形式：绝对路径，相对路径，根相对路径
+		-绝对路径：指的是文件从最高级目录开始的完整路线，包含协议，主机名，目录路径，文件名
+		-相对路径：指文件位置相对于当前文件夹的路线，它包括目录名，或者指向一个可以从当前位置出发，找到某文件的路线，相对路径有几种情况：
+		a.文件位于同一个文件夹下，直接通过文件名.扩展名的方式访问
+		b.目标文件位于当前文件夹的子文件夹，通过:子文件夹名/文件名.扩展名
+		c.目标文件位于当前文件夹的上级目，通过:../文件名.扩展名
+		-根相对路径：相对于根目录的路径
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			/*width:100px;
+			height:100px;*/
+			background-color: gray;
+		}
+		span{
+			width:400px;
+			height:100px;
+			background-color: blue;
+		}
+		img{
+			width:200px;
+			height:200px;
+		}
+		p{
+			background-color: pink;
+		}
+		#div1{
+			background-color: orange;
+		}
+	</style>
+</head>
+<body>
+	块级前面
+	<div>
+		这是一个块级元素
+	</div>
+	块级后面
+	<br>
+	行内前面
+	<span>这是一个行内元素</span>
+	<span>这是一个行内元素</span>
+	<span>这是一个行内元素</span>
+	<span>这是一个行内元素</span>
+	<span>这是一个行内元素</span>
+	<span>这是一个行内元素</span>
+	行内后面	<br>
+	行内块前面
+	<img src="images/3.jpg" alt="">
+	<img src="1.jpg" alt=""><br>
+	<img src="../1.jpg" alt="">
+	行内块后面
+	<h1>这是h1 <h3>这是h1中的h3</h3></h1>
+	<h2>这是h2</h2>
+	<h3>这是h3</h3>
+	<h4>这是h4</h4>
+	<h5>这是h5</h5>
+	<h6>这是h6</h6>
+	劳而无功afafafs
+	afaf <br>
+	p元素前
+	<p align="center">这是第一段内容</p>
+	<p align="right">这是第二段内容</p>
+	p元素后
+	<div id="div1" align="center">这是div</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	hr前
+	<hr size="10px" width="60%" color="orange" align="right">
+	hr后
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	测试pre   adffadfaf
+	    adfafafa
+	<br>
+	<pre>
+		测试pre   鞢afasfaf
+		  a  asf a afd
+	</pre>
+	<pre>
+		&lt;div>这是div&lt;/div>
+		&lt;div>
+			这是div2
+		&lt;/div>
+		&lt;p>这是p&lt;/p>
+	</pre>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

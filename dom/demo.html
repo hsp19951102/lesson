@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	选择类型：
+	<select name="" id="sel">
+		<option value="0">不限</option>
+	</select>
+	<div id="text" style="margin: 20px 0;"></div>
+	答案：<input type="text" id="anwser" style="margin-bottom: 20px;" placeholder="请填入答案">
+	<br>
+	<input type="button" value="提交答案" id="submit" >
+	<input type="button" value="过，下一题" id="next" style="margin-left: 20px;">
+	<script>
+		var typeList = [];
+		var i = 0;
+		var page = 1;
+		$.ajax({
+			url:"http://route.showapi.com/151-3?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55",
+			success:function(data){
+				console.log(data)
+				typeList = data.showapi_res_body.typeList;
+				console.log(typeList);
+				for (var j = 0; j < typeList.length; j++) {
+					var li = $('<option>'+typeList[j].name+'</option>');
+					$('#sel').append(li);
+				}
+				getRandomRiddle();
+			}
+		});
+		
+		$('#sel').on('change',function(){
+			i = 0;
+			page = 1;
+			var index = this.selectedIndex;
+			if (index == 0) {
+				getRandomRiddle()
+			}else{
+				var type = typeList[index].id
+				getTypeRiddle(type);
+			}
+		});
+		var listArray = [];
+		function getRandomRiddle(){
+			$.ajax({
+				url:"http://route.showapi.com/151-2?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55",
+				success:function(data){
+					console.log(data);
+					listArray = data.showapi_res_body.pagebean.contentlist;
+					showRiddle(i);
+				}
+			})
+		}
+
+		function getTypeRiddle(type){
+			$.ajax({
+				url:"http://route.showapi.com/151-4?showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55&typeId="+type+"&page="+page,
+				success:function(data){
+					console.log(data);
+					listArray = data.showapi_res_body.pb.contentlist;
+					showRiddle(i);
+				}
+			})
+		}
+		var answer = null;
+		function showRiddle(num){
+			console.log(num,listArray.length)
+			if (num>listArray.length-1) {
+				i = 0;
+				page++;
+				var index = this.selectedIndex;
+				if (index == 0) {
+					getRandomRiddle()
+				}else{
+					var type = typeList[index].id
+					getTypeRiddle(type);
+				}
+				$('#next').attr('disabled','');
+				return;
+			}
+			$('#next').removeAttr('disabled');
+			var riddle = listArray[num];
+			$('#text').html(riddle.typeName+"<br>"+riddle.title);
+			answer = riddle.answer;
+			console.log(answer.split("：")[1])
+		}	
+
+		$('#submit').on('click',function(){
+			console.log($('#anwser').val(),answer)
+			if ($('#anwser').val() == answer.split("：")[1]) {
+				alert('恭喜回答正确！');
+				i++;
+				showRiddle(i);
+			}else{
+				alert('好可惜，答错了~')
+			}
+			$('#anwser').val('');
+		});
+		$('#next').on('click',function(){
+			i++;
+			showRiddle(i);
+		})
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!--  
+一、Geolocation
+	该api用于获取用户当前的位置信息，也就是定位，geolocation对象存在于navigator对象中，包含了用户位置的经纬度，注意，该信息属于用户隐私信息，所以会有提示，是否允许获取；如果要获取用户的位置，需要得到用户的允许
+	使用方法:
+	navigator.geolocation.getCurrentPosition(访问成功后的函数,访问失败的函数,配置信息);
+	访问成功后，返回一个位置信息
+	包含的内容有：
+	coords.latitude  纬度
+	coords.longitude 经度
+	coords.speed     速度
+	coords.heading   方向
+二、百度地图api
+	1、初始化地图
+	new BMap('id属性值');
+	2、设置中心点
+	map.centerAndZoom(中心点坐标,缩放级别)；
+	缩放级别取值为数值，最大为19
+
+	3、控件
+	-control:控件的抽象类，是所有控件的父类
+	-navigationControl：地图评议缩放控件
+	-scaleControl()：比例尺控件
+	-MapTypeControl：地图类型
+	-GeolocationControl:定位控件
+
+	4、获取位置
+	通过百度地图的Geolocation对象获取位置
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=jeMGCzjQG5VXbW2oK3DYfbnXSMtkSvpv"></script>
+	<style>
+		#container{
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div> 
+	<input type="button" value="获取位置" onclick="getlocation()">
+	<script>
+		// 首先判断是否可用
+		// if (navigator.geolocation) {
+		// 	navigator.geolocation.getCurrentPosition(successFun,errInfo,{
+		// 		timeout:1000,//超时时间
+		// 		// enableHighAccuracy:true,
+		// 		maximumAge:1
+		// 	})
+		// }else{
+		// 	console.log("定位不可用")
+		// }
+		function successFun(data){
+			console.log("----"+data.coords.latitude,data.coords.longitude);
+		}
+		function errInfo(err){
+			console.log(">>>>>"+err);
+		}
+
+		var map = new BMap.Map("container");          // 创建地图实例  
+		var point = new BMap.Point(119.431437,32.383157);  // 创建点坐标  
+		map.centerAndZoom(point, 19);                 // 初始化地图，设置中心点坐标和地图级别  
+		map.addControl(new BMap.NavigationControl());
+		map.addControl(new BMap.ScaleControl());
+		map.addControl(new BMap.MapTypeControl());
+		map.addControl(new BMap.GeolocationControl());
+		function getlocation(){
+			// 首先获取百度地图的geolocation对象
+			var geolocation = new BMap.Geolocation();
+			// 调用该对象的getCurrentPosition方法，获取相关信息
+			geolocation.getCurrentPosition(function(position){
+				console.log(position);//包含了用户的位置信息
+			})
+		}
+	</script>
+</body>
+</html>

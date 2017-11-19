@@ -1,0 +1,54 @@
+<!-- 
+一、表单控件
+	1.input元素
+	该元素主要用于收集用户信息，它是一个空标记、
+	语法：<input type="">
+	通过type属性来创建不同形式的控件，value(设置控件的数据)、name(控件的名字)、disabled(禁用控件)、checked(选中控件)、placeholder(输入提示信息)、readonly(只读)
+	1）文本框与密码框
+	-文本框：<input type="text">或<input>
+	-密码框：<input type="password">,文本内容会以密文的形式显示
+	常用属性：
+	-value:设置文本框的文字信息
+	-maxlength:文本框可输入的字符数
+	-minlength:文本框最小字符数
+	-readonly:文本框只读，不可以编辑，但可以复制，不需要设置属性值
+	-disabled:禁用控件，文本框不可编辑
+	2）单选框和复选框
+	单选框：<input type="radio">
+	复选框：<input type="checkbox">
+	常用属性：
+	-name:控件名称,可以用于分组，当单选框name属性值一致时表示一组，组中的单选框只能选中一个
+	-checked:设置单选/多选框的默认选中项，不需要属性值
+	3)按钮
+	-普通按钮：<input type="button">
+	-提交按钮：<input type="submit">，当点击此按钮时，会提交表单信息，会刷新页面
+	-重置按钮：<input type="reset">，点击按钮时，会使表单控件恢复到初始状态
+	常用属性：
+	-value:设置按钮标题
+	按钮的另一种写法
+	<button>按钮标题</button>，这种写法与type="submit"功能一致
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form>
+		用户名：<input type="text" value="" name="name" maxlength="6" minlength="3" placeholder="请输入用户名" readonly><br>
+		密码框：<input type="password" maxlength="5"><br>
+		单选框：<input type="radio"><br>
+		复选框：<input type="checkbox"><br>
+		性别：<input type="radio" name="sex" checked>男<input type="radio" name="sex">女<br>
+		爱好：<input type="checkbox" checked>吃
+		<input type="checkbox">喝
+		<input type="checkbox">玩<br>
+		<input type="button" value="普通按钮">
+		<input type="submit" value="登录">
+		<input type="reset">
+		<button>注册</button>
+	</form>
+	
+</body>
+</html>

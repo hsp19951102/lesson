@@ -1,0 +1,85 @@
+<!--  
+一、像素
+	css像素：浏览器使用的抽象的单位
+	物理像素：设备屏幕上的一个抽象单位
+	一般来讲，pc端css和dpi的比例为一比一
+	在手机端，基本为1:2或1:3
+二、文字大小的控制
+	px、em、rem
+	在移动端，可以使用rem来适配多种屏幕，
+	rem，是相对于根元素（html元素）的fontsize来进行计算
+	可以完全适应不同的屏幕大小，保证元素跟随字体一起变化
+三、viewport
+	视口，用于移动端，可以保证网页适配移动端浏览
+四、响应式布局
+	1）原则
+	页面可以根据浏览尺寸完美的进行调整
+	移动优先
+	渐进增强：开始时针对低版本浏览器进行页面的构建，以保证实现基本的功能，然后再针对高版本浏览器进行动画效果、交互等方面进行功能的追加
+	2）实现方式
+	媒体查询（media query）、百分比布局、rem、flex（弹性布局）、第三方框架（bootstrap）、js动态调整
+
+五、弹性布局
+	1、使用rem代替px
+	首先根据屏幕的最大宽度，设置基础字体尺寸，可以通过media query进行不同尺寸的设置;
+	我们同时可以使用js去获取屏幕尺寸，然后进行动态设置font-size
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		html{
+			font-size: 20px;
+		}
+		div{
+			display: inline-block;
+			border: 1px solid red;
+			width: 5rem;
+			height: 2rem;
+			font-size: 1rem;
+		}
+		/*@media screen and (max-width: 640px) {
+			html{
+				font-size: 17px;
+			}
+		}
+		@media screen and (max-width: 600px) {
+			html{
+				font-size: 15px;
+			}
+		}
+		@media screen and (max-width: 414px) {
+			html{
+				font-size: 13px;
+			}
+		}*/
+	</style>
+</head>
+<body>
+	<div>这是按钮</div>
+	<script>
+		// 动态计算屏幕宽，从而去设置网页的字体尺寸
+		(function(doc,win){
+			var docEl = doc.documentElement;//获取document的元素
+			// console.log(docEl);
+			var resizeE = 'orientationchange' in window ? 'orientationchange':'resize';//获取浏览器窗口改变时的事件名称
+			//定义窗口改变时触发的函数
+			var resizeFun = function(){
+				var clientWidth = docEl.clientWidth;//获取窗口宽度
+				if (!clientWidth) {
+					return;
+				}
+				// 设置元素字体，根据基础字体尺寸，及当前屏幕与基础屏幕的比例进行计算，以750px、20px为例
+				docEl.style.fontSize = 20*(clientWidth/750)+'px';
+			}
+			// 为窗口绑定尺寸方式改变时的事件
+			win.addEventListener(resizeE,resizeFun,false);
+			// 为窗口绑定初次加载时的事件
+			win.addEventListener('DOMContentLoaded',resizeFun,false);
+		})(document,window)
+	</script>
+</body>
+</html>

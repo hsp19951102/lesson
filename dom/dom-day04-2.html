@@ -1,0 +1,175 @@
+<!-- 
+1、窗口的大小
+	-screen.width/height 显示器的完整分辨率
+	-screen.availWidth/availHeight 显示器去除任务栏部分的宽和高
+	-resizeTo(宽,高); 重新设置窗口的宽和高
+	-resizeBy(改变的宽,改变的高);其中的值表示增加或减少的尺寸，负数表示缩小
+2、对话框
+	-alert
+	-prompt
+	-confirm：带确定和取消按钮的弹出框
+	语法：
+	var 变量 = confirm("文本");其中变量表示用户选择的哪个按钮，如果选确定，则其值为true，否则为false
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="重设宽高" onclick="resize()">
+	<input type="button" value="弹框" onclick="pop()">
+	
+	<script>
+		console.log(screen.width);
+		console.log(screen.height);
+		console.log(screen.availWidth)
+		console.log(screen.availHeight)
+
+		function resize(){
+			window.resizeTo(400,400);
+		}
+		function pop(){
+			var a = confirm("你好");
+			console.log(a);
+		}
+	</script>
+
+	<!-- 利用随机数生成0~9之间的整数，然后提示用户输入猜测的数字，根据输入的内容，提示是大了还是小了，如果输入正确则提示：“你真棒！”，如果用户输入"exit",则弹出提示框，询问是否退出，如果选择确定则结束游戏，否则继续输入 -->
+
+	<script>
+		var num = Math.floor(Math.random()*10);
+
+		do{
+			var str = prompt("请输入");
+			if (str > num) {
+				alert("大了！");
+			}else if(str < num){
+				alert("小了");
+			}else if(str == num){
+				alert("你真棒！");
+				break;
+			}else if(str == 'exit'){
+				var flag = confirm("确定退出？");
+				if (flag) {
+					alert("滚犊子吧！");
+					break;
+				}
+			}
+
+		}while(1)
+	</script>
+
+	<input type="button" value="滚动" onclick="fun()">
+	<!-- <div>	
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	</div> -->
+
+	<script>
+		function fun(){
+			window.scrollTo(100,100);
+			console.log(window.pageYOffset)
+		}
+	</script>
+</body>
+</html>

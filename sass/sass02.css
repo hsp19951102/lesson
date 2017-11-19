@@ -1,0 +1,30 @@
+div {
+  color: black; }
+
+.d1 {
+  background-color: black; }
+
+p {
+  border: 1px solid black; }
+
+#d1, .c1 {
+  width: 100px;
+  height: 200px;
+  line-height: 20px; }
+  #d1 p, .c1 p {
+    color: red; }
+
+a {
+  font-size: 10px; }
+  a:hover {
+    font-size: 40px; }
+
+b {
+  border-style: solid;
+  border-width: 1px;
+  border-color: red; }
+
+.c1 {
+  font-size: 20px; }
+
+/*# sourceMappingURL=sass02.css.map */

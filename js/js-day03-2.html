@@ -1,0 +1,86 @@
+<!-- 
+一、for循环
+	语法：
+	for(表达式1;表达式2;表达式3){
+		循环体;
+	}
+	首先执行表达式1，初始化循环变量，得到表达式1的初始值；然后再判断表达式2的值是否为true,如果为true,则执行循环体，接着执行表达式3，表达式3主要用于改变表达式1中的循环变量；再接着执行表达式2->循环体->表达式3->表达式2，表达2为false时退出循环
+
+	注意：在for循环中，表达式1和表达式3在特定情况下可以省略，但是表达式2不可以省略,分号不可以省略
+	表达式1、2、3均可以设置多个表达式，表达式之间用逗号隔开
+二、break与continue
+	1.break语句
+	在循环语句中，可以直接终止循环语句块，而执行后续的代码 
+	2.continue语句
+	在循环语句中，可以跳出本次循环，继续执行下一次循环
+
+循环嵌套
+	for循环中嵌套for循环
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//输出1-10之间的数
+		for(var i = 1;i <= 10;i++){
+			console.log(i);
+		}
+		var n = 1;
+		for(;n <= 10;n++){
+			console.log(n);
+		}
+		var m = 1;
+		for(;m <= 10;){
+			console.log(m);
+			m++;
+		}
+		//输出1-10之间的偶数
+		for(var j = 2;j <= 10;j+=2){
+			console.log(j);
+		}
+
+		//多个表达式
+		for(var x = 1,y = 2;x < 5,y < 8;x++,y+=2){
+			console.log(x,y);
+		}
+		//输出1-10所有奇数的和
+		var sum = 0;
+		for(var a = 1;a <= 10;a++){
+			if(a % 2 != 0){
+				sum += a;
+			}
+		}
+		console.log(sum);
+		//打印1-50中所有能被7整除的数
+		for(var b = 1;b <= 50;b++){
+			if(b % 7 == 0){
+				console.log(b);
+			}
+		}
+		//打印1-10之间的数，如果遇到8的倍数，则退出循环
+		for(var c = 1;c <= 10;c++){
+			if(c % 8 == 0){
+				break;
+			}
+			console.log(c);
+		}
+		//输出1-20之间不能被3整除的数
+		for(var d = 1;d <= 20;d++){
+			if(d % 3 == 0){
+				continue;
+			}
+			console.log(d);
+		}
+		//for循环嵌套
+		for(var e = 1;e < 5;e++){
+			for(var f = 1;f < 3;f++){
+				console.log("e:"+e+"--"+"f:"+f);
+			}
+		}
+	</script>
+</body>
+</html>

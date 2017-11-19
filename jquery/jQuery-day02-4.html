@@ -1,0 +1,69 @@
+<!-- 
+1、事件绑定
+    jQuery中绑定事件有四种方式
+    -bind()  版本小于3.0使用，在3.0之后逐渐淘汰
+    语法：
+    jq对象.bind(事件类型,触发函数);
+    可简写为
+    jq对象.事件名(触发函数)
+    -live()  适用于1.7以下
+    -delegate() 适用于1.7以下
+    -on()    适用于1.7以上，现阶段，比较推荐用on
+    语法：
+    jq对象1.on(事件类型,jq对象2,触犯函数)
+    需要注意的是，jq对象2是jq对象1的子元素，实际绑定事件的是jq对象2
+2、事件对象
+    
+3、模拟操作
+    jq对象.事件名();
+    jq对象.trigger('事件名')
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <input type="button" value="bind" id="btn1">
+    <input type="button" value="delegate" id="btn2">
+    <input type="button" value="on" id="btn3">
+    <input type="button" value="多个事件" id="btn4">
+    <div id="d1">12312</div>
+    <script>
+        $('#btn1').bind('click',function(){
+            alert(this);//此处的this指的是触发该函数的dom对象
+            $(this);//表示触发该函数的jq对象
+        });
+        // $('#btn1').mouseover(function(){
+        //     alert(2)
+        // });
+        $('#btn1').mouseover(fun)
+        function fun(){
+            alert(2)
+        }
+
+        $('body').delegate('#btn2','click',function(){
+            alert(3);
+        });
+
+        $('body').on('click','#btn3',function(){
+            alert(4)
+        })
+        //或
+        $('#d1').on('mousedown',function(){
+            alert(4)
+        })
+
+        // 多个事件
+        $('#btn4').on('click mouseout',function(){
+            alert(5);
+            // var e = window.event || arguments[0];
+        })
+        // $('#btn4').click();//模拟按钮被点击
+        $('#btn4').trigger('click')//模拟事件
+    </script>
+</body>
+</html>

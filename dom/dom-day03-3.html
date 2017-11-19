@@ -1,0 +1,133 @@
+<!-- 
+1、Select对象
+	该对象表示一个下拉框，也就是select标记
+	常用属性
+	-options        select中所包含的option标记组成的数组
+	-selectedIndex  被选中选项的下标
+	-size           设置尺寸，大于1的时候，是滚动框
+
+	常用方法
+	-add(option对象) 添加一个选项
+	-remove(index)   移除一个选项
+
+	常用事件属性
+	onchange   当选择的选项发生改变时触发该事件 
+
+	Option对象
+	该对象对应一个option标记
+	创建对象语法
+	var 对象名 = new Option(文本);其中文本是可选
+	常用属性：
+	index（所在的下标）,text(文本内容)，selected（获取或设置是否被选中，其值为布尔类型）
+2、form对象
+	表示一个form表单
+	可以通过document.forms获取所有的表单元素
+	常用属性
+	action、method、enctype、length
+	常用方法
+	submit()   reset()
+
+3、input对象
+		表单控件                 属性和方法
+	type=text/password     value、blur()、focus()、select()
+	type=checkbox          value/checked/blur()/focus()
+	type=radio             value/checked/blur()/focus()
+	textarea                参照type=text
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<select name="" id="s1" onchange="fun(this)">
+		<option value="">1</option>
+		<option value="">2</option>
+		<option value="">3</option>
+		<option value="" id="o1">4</option>
+	</select>
+	<input type="button" value="删除" onclick="deleteOp()">
+	<input type="button" value="增加" onclick="addOp()">
+	<script>
+		function fun(s){
+			console.log(s.selectedIndex);
+			console.log(s.options);
+		}
+		var s = document.getElementById('s1');
+		function deleteOp(){
+			
+			s.remove(1);
+			var op = document.getElementById('o1');
+			console.log(op.index);
+		}
+		function addOp(){
+			var op1  = new Option();
+			op1.text = "新增";
+			op1.index=1;//注意，这句无效，只能获取，不能设置
+			op1.selected = true;
+			s.add(op1);
+		}
+	</script>
+	<br><br>
+	<!-- 省市二级联动 -->
+	<select name="" id="province" onchange="changePro(this)">
+	</select>
+	<select name="" id="city"></select>
+	<script>
+		var provinces = ["江苏省","安徽省","山东省"];
+		var proSel = document.getElementById('province');
+		for (var i = 0; i < provinces.length; i++) {
+			var option = new Option(provinces[i]);
+			proSel.add(option);
+		}
+
+		var citys = [
+			["南京市","苏州市","徐州市","无锡市","南通市"],
+			["合肥市","淮北市","宿州市","蚌埠市"],
+			["济南市","青岛市","烟台市","日照市"]
+		]
+
+		var citySel = document.getElementById('city');
+		for (var i = 0; i < citys[0].length; i++) {
+			var cityOption = new Option(citys[0][i]);
+			citySel.add(cityOption);
+		}
+
+		function changePro(sel){
+			// 注意，在重新显示对应的城市时，需要先清空原有的数据
+			citySel.innerHTML = "";
+
+			var index = sel.selectedIndex;
+			for (var i = 0; i < citys[index].length; i++) {
+				var cityOption = new Option(citys[index][i]);
+				citySel.add(cityOption);
+			}
+		}
+	</script>
+	<input type="text" id="text1" value="1238123">
+	<input type="button" value="失去焦点" onclick="fun3()">
+	<br>
+	<input type="checkbox" id="ch1">
+	<input type="button" value="切换" onclick="fun4()">
+	<script>
+		var t = document.getElementById('text1');
+		var ch = document.getElementById('ch1');
+		t.focus();//获取焦点
+		function fun3(){
+			t.blur();//失去焦点
+			t.select();//选中t中的内容
+
+			ch.checked = true;//设置选中
+		}
+		function fun4(){
+			// if (ch.checked) {
+			// 	ch.checked = false;
+			// }else{
+			// 	ch.checked = true;
+			// }
+			ch.checked = !ch.checked;
+		}
+	</script>
+</body>
+</html>

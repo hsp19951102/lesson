@@ -1,0 +1,102 @@
+<!--  
+动画效果
+	1、隐藏和显示
+	1)基本显示、隐藏效果
+	-show(); 显示
+	-hide(); 隐藏
+	作用，通过同时改变元素的宽度和高度实现显示和隐藏
+	语法：
+	jq对象.show(执行时间,回调函数);
+	执行时间：可以为毫秒数，也可以是slow/normal/fast关键字
+	回调函数：动画执行完毕时调用的函数
+	两个参数都可以省略
+	2）滑动式显示和隐藏
+	-slideDown()    显示
+	-slideUp()       隐藏
+	作用：通过改变元素的高度实现显示和隐藏
+	语法同show/hide
+	3）淡入淡出效果
+	-fadeIn()  显示
+	-fadeOut() 隐藏
+	作用：改变元素的透明度
+	语法同上
+
+	2、自定义动画
+	我们可以通过animate()方法实现动画的自定义
+	语法：
+	jq对象.animate(样式,执行时间,回调函数)
+	样式：使用{}将样式规则包装起来;
+	注意，并不是所有的样式都可以使用animate，一般来讲，只有单位为尺寸的，才可以使用，比如width/height/margin/padding/border-width等
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<style>
+		#d1{
+			width: 200px;
+			height: 200px;
+			background: gray;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1">123123809</div>
+	<input type="button" onclick="fun()" value="点击">
+	<input type="button" onclick="fun1()" value="slideUp">
+	<input type="button" onclick="fun2()" value="slideDown">
+	<input type="button" onclick="fun3()" value="fadeIn">
+	<input type="button" onclick="fun4()" value="fadeOut">
+	<input type="button" onclick="fun5()" value="animate">
+	<input type="button" onclick="fun6()" value="animate2">
+	<script>
+		// $('#d1').hide(1000,function(){
+		// 	// alert(1)
+		// });
+		function fun(){
+			$('#d1').show('slow');
+		}
+		function fun1(){
+			$('#d1').slideUp('slow');
+		}
+		function fun2(){
+			$('#d1').slideDown('slow');
+		}
+		function fun3(){
+			$('#d1').fadeIn(1000);
+		}
+		function fun4(){
+			$('#d1').fadeOut(500);
+		}
+		function fun5(){
+			$('#d1').animate({'margin-left':'200px'},800);
+		}
+		function fun6(){
+			console.log("-----")
+			$('#d1').animate({"padding":"100px"},800);
+		}
+	</script>
+	<!-- 使用animate实现心跳效果 -->
+	<style>
+		#d2{
+			background-image: url("heart.jpg");
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+	<div id="d2"></div>
+	<script>
+
+		setInterval(function(){
+			$('#d2').animate({"width":"100px","height":"100px"},1000,function(){
+				$('#d2').animate({"width":"200px","height":"200px"},1000)
+			})
+		},2000)
+		
+	</script>
+</body>
+</html>

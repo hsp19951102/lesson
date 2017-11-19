@@ -1,0 +1,59 @@
+<!-- 
+一、Math(数学)对象
+	1.概述
+	Math对象是一个全局对象，主要是封装了一些常用的数学函数和常数，Math对象没有构造函数，无法通过new关键字去创建，调用属性和方法时，直接用Math对象名即可
+	2.Math属性
+	-E：自然数对数（约等于2.718）
+	-PI: 圆周率
+	3.Math常用方法
+	-abs(x);返回x的绝对值
+	-ceil(x);对x进行上舍入（只要小数点后大于0，就会加1）
+	-exp(x);返回e的指数，返回e的x次幂
+	-floor(x);对x进行下舍入（舍去所有小数部分）
+	-max(x,y);返回x,y中较大的值
+	-min(x,y);返回x,y中较小的值
+	-pow(x,y);返回x的y次幂
+	-round(x);四舍五入
+	-sqrt(x);返回x的平方根
+	4.随机数
+	-random();返回0-1之间的随机数（0<=num<1）
+	语法：Math.random();
+	求min<=num<max之间的随机数：Math.random()*(max-min)+min
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var str = "abcde";
+		// console.log(str[2]);
+
+		// console.log(Math.E);
+		// console.log(Math.PI);
+		// console.log(Math.abs(-5.5));
+		// console.log(Math.ceil(3.0));
+		// console.log(Math.exp(3));
+		// console.log(Math.floor(2.9));
+		// console.log(Math.max(3,5));
+		// console.log(Math.pow(2,3));
+		// console.log(Math.round(2.6));
+		// var num = 3.35;
+		// console.log(num.toFixed(1));
+		// console.log(Math.sqrt(16999));
+		// console.log(Math.random());
+		// //0-10之间的随机整数
+		// var num1 = Math.floor(Math.random()*11);
+		// //50-100之间的随机整数(50<=num2<100)
+		// var num2 = Math.floor(Math.random()*50+50);
+		for(var i=0;i<21;i++){
+			var num3=Math.floor(Math.random()*11+90);
+			console.log(num3);
+		}
+		
+		
+	</script>
+</body>
+</html>

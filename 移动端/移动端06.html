@@ -1,0 +1,83 @@
+<!-- 
+1、媒体查询：按需引入css文件
+	可以通过link标记的media属性为样式表指定设备类型
+	<link rel="stylesheet" href="css文件路径" media="screen and (max-width:300px)">
+2、手势事件
+	touch手势
+	该事件包含四个状态、
+	touchstart：当手指触摸屏幕时触发
+	touchmove：当已经接触屏幕的手指开始移动时触发
+	touchend：当手指离开屏幕时触发
+	touchcancel：取消触摸
+
+	touch事件的常用属性
+	-touches：类数组，保存了首次触摸的元素信息,touchs[0]包含了touch事件的所有相关属性
+	-changeTouches：结束时，手指所在的位置信息
+3、常用框架
+	1）移动端基础框架
+	-zepto.js  与jq几乎一样，只不过是针对移动端
+	-scroll.js  实现移动端的弹性滑动
+	-animate.css css3的动画库
+	2）滑屏框架
+	swiper.js
+	slip.js
+	iSlider.js
+	
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		div{
+			background: gray;
+			width: 200px;
+			height: 200px;
+		}
+		#d1{
+			background: orange;
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div id="d1"></div>
+	</div>
+	<script>
+		var d = document.querySelector('div');
+		d.addEventListener('touchstart',fun,false);
+		d.addEventListener('touchmove',fun1,false);
+		d.addEventListener('touchend',fun2,false);
+		d.addEventListener('touchcancel',fun3,false);
+
+		var d1 = document.getElementById('d1');
+		d1.addEventListener('touchstart',fun,false);
+		d1.addEventListener('touchmove',fun1,false);
+		d1.addEventListener('touchend',fun2,false);
+		d1.addEventListener('touchcancel',fun3,false);
+		function fun(){
+			// console.log('触摸开始');
+			var e = arguments[0] || window.event;
+			// console.log(event.touches[0])
+
+		}
+		function fun1(){
+			// console.log('手指移动')
+			// console.log(event.touches)
+			
+		}
+		function fun2(){
+			// console.log('触摸结束')
+			// console.log(event.touches)
+			console.log(event.changedTouches)
+		}
+		function fun3(){
+			// consolee.log("取消")
+		}
+	</script>
+</body>
+</html>

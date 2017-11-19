@@ -1,0 +1,76 @@
+<!--  
+表单验证
+	1、validity
+	在h5表单验证的特性中，提供了一个validity属性，该属性是通过validityState对象描述指定元素的验证状态，validityState对象代表了有效状态，可以实现对指定元素进行约束验证等
+	语法：元素对象.validity可以得到validityState对象
+	验证状态
+	1）valid属性
+	执行完毕，会返回一个bool值，表示验证是否通过，为true则表示验证通过
+	2）valueMissing属性
+	如果元素设置的required属性，表示必填，在用户填写或设置value之前，元素会一直处于无效状态，此时valueMissing属性为true，有值时为false
+	3）typeMismatch
+	如果输入的内容不符合指定的类型，则该属性返回true
+	比如email、url
+	4）patternMismatch属性
+	如果输入的内容与所设置pattern的格式不匹配，则返回true
+	5)checkValidity()
+	显式的验证方法，每个表单元素都可以调用该方法，他会返回一个bool值，用于表示是否通过了验证，返回true则表示通过了验证，可以验证所有的情况，包括自带属性及pattern正则
+	6）setCustomValidity()
+	自定义错误提示信息
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="" id="form1">
+		<input type="text" id="uname" required="" minlength="20">
+		<input type="email" id="email">
+		<br>
+		<input type="text" id="tel" pattern="^1[34578]\d{9}$">
+		<input type="button" value='提交' onclick="fun()">
+	</form>
+	<form action="" id="form2">
+		<input type="text" id="text" required="" pattern="^1[34578]\d{9}$">
+	</form>
+	<form action="" id="form3">
+		<input type="text" id="uname1" required="">
+		<input type="submit" value='提交' onclick="fun1()">
+	</form>
+	<script>
+		function fun(){
+			var ele = document.getElementById('uname');
+			var state = ele.validity;//得到validityState对象
+			console.log(state.valid);
+			console.log(state.valueMissing)
+			// if (state.valid) {
+			// 	alert('验证通过');
+			// }else{
+			// 	alert('似乎有点不太对')
+			// }
+			var email = document.getElementById('email');
+			var state1 = email.validity;
+			console.log(state1.typeMismatch);
+
+			var tel = document.getElementById('tel');
+			console.log(tel.validity.patternMismatch);
+		}
+
+		var text = document.getElementById('text');
+		text.addEventListener('blur',function(){
+			console.log(this.checkValidity());
+		});
+		function fun1(){
+			var input = document.getElementById('uname1');
+			if (input.validity.valueMissing) {
+				input.setCustomValidity('请填写用户名');
+			}else{
+				input.setCustomValidity('');
+			}
+		}
+	</script>
+</body>
+</html>

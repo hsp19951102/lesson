@@ -1,0 +1,31 @@
+/*
+语法: 注意，在sass中，不允许出现大括号和分号，冒号后需要有一个空格
+1、变量
+ 	sass中变量使用$符号来定义一个变量
+
+ 	在sass中变量值可以引用其他变量，如：$myBorder: 1px solid $bgColor
+2、嵌套
+	sass支持选择器及属性嵌套
+	1）选择器嵌套
+	选择器1
+		样式...
+		选择器2
+			样式...
+	2）伪类嵌套
+	a
+		color: red
+		&:hover
+			color: black
+	2）属性嵌套
+	针对css的样式属性进行嵌套
+	选择1
+		border: 
+			style: solid
+			width: 10px
+			color: red
+3、继承
+	在sass中，选择器可以从另一个选择器中继承样式，使用extend关键字进行继承
+	选择器1
+		样式..
+		@extend 选择器2
+ */

@@ -1,0 +1,112 @@
+<!--  
+web存储API
+	在html5中，提供了单独的本地存储工具，是在cookie的基础上做了增强，允许开发者在用户的硬盘上做操作，实现数据的长期存储
+	web存储分为两种类型
+	-sessionStorage:临时性存储，只要窗口关闭，则数据丢失
+	-localStorage：长期性存储，只要用户不删除，就一直存在
+	1）sessionStorage
+	该工具只能在单个窗口引用，一旦关闭，数据将丢失
+	-创建数据
+	使用键值对的方式进行数据的存储
+	语法:setItem(键,值)；
+	-获取数据
+	根据键的名字进行获取
+	语法:getItem(键)
+	2）localStorage
+	用于长期存储，允许跨域
+	-数据的存取与session一致
+
+	-存储API的相关属性
+	-length：存储数据的条数
+	-key(index)：获取指定索引所对应的键
+
+	-删除数据
+	-removeItem(键)：删除指定键对应的信息
+	-clear() ：清空所有存储的数据
+
+	注意，在本地存储中，不允许出现重复的键名，且，一个键只能对应一个值，如果出现重复键的存储，则值会保留最近一次存的内容
+
+	-storage与cookie的区别：
+	cookie存储有大小限制，storage不收限制，cookie需要指定作用域，不能跨域请求；cookie在每次请求一个新的页面时，都会被仿宋后台
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="button" value="获取" onclick="fun()">
+	<a href="test.html" target="_blank">跳转</a>
+	<script>
+			// sessionStorage.setItem('name','张三');
+			function fun(){
+				var s = sessionStorage.getItem('name');
+				console.log(s);
+				var s1 = localStorage.getItem('name');
+				console.log(s1)
+			}
+			// localStorage.setItem('name',"李四");
+
+	</script>
+	<br>
+	<!-- 实现自动登录 -->
+	<input type="text" id="userName">
+	<br>
+	<input type="password" id="pwd">
+	<br>
+	<input type="checkbox" id="check">记住我
+	<br>
+	<input type="button" value="登录" onclick="rememberMe()">
+
+	<input type="button" value="登录1" onclick="rememberMe1()">
+	<input type="button" value="清除" onclick="clearInfo()">
+	<script>
+		//首先获取用户存储信息
+		var info = localStorage.getItem('abc_userInfo');
+		if (info) {
+			//将json字符串转换成js对象
+			var obj = JSON.parse(info);
+			if (obj.state) {
+				document.getElementById('userName').value = obj.name;
+				document.getElementById('pwd').value = obj.pwd;
+				document.getElementById('check').checked = obj.state;
+			}
+		}
+		
+		function rememberMe(){
+			var uname = document.getElementById('userName').value;
+			var pwd = document.getElementById('pwd').value;
+			var check = document.getElementById('check');
+			if (uname.length == 0 || pwd.length == 0) {
+				alert('请填写完整')
+			}else{
+				// 存储信息时，需要保证数据不会被篡改，所以一般会 有自己的标识
+				var infoObj = {
+					name:uname,
+					pwd:pwd,
+					state:check.checked
+				}
+
+				console.log(infoStr);
+				//将对象转换成json字符串
+				var infoStr = JSON.stringify(infoObj);
+				localStorage.setItem('abc_userInfo',infoStr);
+				// localStorage.setItem('userName',uname);
+				// localStorage.setItem('pwd',pwd);
+				// localStorage.setItem('state',check.checked);
+			}
+		}
+		
+		function rememberMe1(){
+			localStorage.setItem('name','李四');
+		}
+		console.log(localStorage.length);
+		console.log(localStorage.key(1));
+
+		function clearInfo(){
+			localStorage.clear();
+		}
+	</script>
+</body>
+</html>

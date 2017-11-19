@@ -1,0 +1,144 @@
+<!-- 
+一、元素树
+	1、概念
+	元素树节点树的一个子集，它是由元素节点组成。也是包含元素节点
+
+	2、元素对象间的关系
+	-父子关系
+	parentElement     获取父元素节点
+	children          获取子元素节点集合，只会获取到直接子元素
+	firstElementChild 获取第一个子元素节点
+	lastElementChild  获取最后一个子元素节点
+
+	-兄弟关系
+	previousElementSibling  上一个兄弟节点
+	nextElementSibling      下一个兄弟节点
+
+二、选取元素
+	1、通过ID获取元素
+	根据元素id属性的值进行获取
+	语法：
+	document.getElementById('id属性值');
+	注意：元素的id属性具有唯一性
+
+	2、通过元素名获取元素
+	根据元素的名字进行获取
+	语法：
+	节点对象名.getElementsByTagName('元素名')；
+	注意，该方式获取到的是一个数组，如果需要使用某个节点对象，需要通过下标的方式，将节点对象先取出
+
+	3、通过name属性值获取元素
+	语法：
+	document.getElementsByName('name属性值');
+	通过该方式获取到的是一个集合，如果需要使用某个节点对象，需要通过下标将节点取出
+
+	4、通过class属性获取元素
+	语法：
+	节点对象名.getElementsByClassName('class属性值')
+	获取到的是集合
+	5、通过css的选择器进行获取元素
+	-节点对象名.querySelector('选择器名'); 获取到第一个与选择器匹配的元素
+	-节点对象名.querySlectorAll('选择器名');获取所有与选择器匹配的元素
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- <div id="d1">
+	...
+		<footer>zhuyi :
+			<a href="#" id="a1">友情链接</a>
+		</footer>
+		&copy;中企微云
+	</div>
+	
+	<script>
+	// var a = document.getElementById('a1');
+	var d = document.getElementById('d1');
+
+	// a.firstChild.nodeValue = "百度一下";
+
+	var ch =d.lastChild;
+	console.log(ch.previousSibling.lastChild)
+	ch.previousSibling.lastChild.previousSibling.firstChild.nodeValue = "百度一下"
+	</script> -->
+
+	<div id="d1">
+		<div>aaa</div>
+		123
+		<div id="d2">
+			<b>123
+				<div></div>
+			</b>
+		</div>
+		<span>
+			<div></div>
+		</span>
+		<!-- 注释 -->
+		<p id="p1"></p>
+		<s id="s1">文本</s>
+		<u id="s1">文本</u><!-- 该元素无法通过id获取 -->
+	</div>
+	<div class="c1"></div>
+	<div class="c1"></div>
+
+	<p name="name1"></p>
+	<p name="name1"></p>
+	<p name="name1">
+		<i class="c1"></i>
+	</p>
+
+	<div id="d3">
+		<div class="c1">1</div>
+		<div class="c1">2</div>
+		<div class="c1">3</div>
+	</div>
+	<div class="c1"></div>
+	<div class="c1"></div>
+	<script>
+	 var d = document.getElementById("d1");
+
+	 var par = d.parentElement;
+	 console.log(par);
+
+	 var d2 = document.getElementById("p1");
+	 console.log(d2.parentElement);
+
+	 console.log(d.children);
+
+	 console.log(d.firstElementChild);
+	 console.log(d.lastElementChild);
+
+	 console.log(d2.previousElementSibling)
+	 console.log(d2.nextElementSibling);
+
+	 var ele = document.getElementById('s1');
+	 console.log(ele.nodeName);
+
+	 var els = document.getElementsByTagName('div');//获取页面中所有的div元素
+	 console.log(els);
+
+	 var els1 = d.getElementsByTagName('div');//从d节点的子节点中寻找div
+	 console.log(els1);
+	 console.log(els1[1].nodeName)
+
+	 var els2 = document.getElementsByName('name1');
+	 console.log(els2)
+
+	 var els3 = document.getElementsByClassName('c1');//获取到页面中所有class=c1的元素
+	 console.log(els3);
+
+	 var d3 = document.getElementById('d3');
+	 var els4 = d3.getElementsByClassName('c1');//在d3的子元素中寻找class=c1的元素
+	 console.log(els4)
+
+	 var d4 = document.querySelector('div');//获取页面中的第一个div
+	 console.log(d4);
+	 console.log(d3.querySelector('.c1'));//获取d3中第一个class=c1的元素
+	 console.log(d3.querySelectorAll('.c1'));
+	</script>
+</body>
+</html>

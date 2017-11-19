@@ -1,0 +1,114 @@
+<!-- 
+1、创建一个节点
+	jQuery中使用$()工厂函数来创建节点
+	var 对象名 = $('html字符串');
+2、插入节点
+	1）内部插入节点：以子节点的形式插入
+	-append();作为最后一个子节点插入
+	语法：
+	jq对象1.append(jq对象2); 
+	-prepend();作为第一个子节点进行插入
+	语法：
+	jq对象1.prepend(jq对象2)
+	2）外部插入：以兄弟节点的形式插入
+	-after():作为下一个兄弟节点插入
+	-before():作为上一个兄弟节点插入
+3、删除节点
+	-remove();移除节点
+	语法：jq对象.remove();移除该对象
+	-remove('选择器')
+	语法：jq对象.remove('选择器');移除jq对象中匹配选择器的节点
+	-empty(); 清空节点
+	语法:jq对象.empty();清空节点中的子元素和文本内容，类似于innerHTML=''
+4、替换节点
+	-replaceWith()
+	语法：
+	jq对象1.replaceWith(jq对象2);
+	将所有匹配的jq对象1替换为jq对象2，jq对象2可以是已经存在的节点，也可以是html字符串
+	-repalceAll()
+	语法：
+	jq对象1.replaceAll(jq对象2)
+	用jq对象1替换掉所有的jq对象2
+5、复制节点
+	-clone() 用于复制节点
+	可以在括号中设置一个布尔值，决定是否复制节点的事件行为
+5、jQuery事件
+	1、页面加载后执行
+	window.onload 页面中的所有元素，包含所关联的文件都加载完全后，才执行,一个页面只能有一个onload
+	$(document).ready()
+	页面中的元素加载完成后执行，不会考虑所关联的文件，一个页面可以有多个ready方法
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<style>
+		.c1{
+			color: red;
+		}
+	</style>
+	<script>
+		// $(document).ready(function(){
+		// 	console.log($('#d1'))
+		// })
+		// 简写形式一
+		// $().ready(function(){
+		// 	console.log($('#d1'))
+		// })
+		// 
+		// 简写形式二
+		$(function(){
+			console.log($('#d1'))
+		})
+	</script>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2">
+		<span>123</span>
+		<p>
+			<span>abc</span>
+		</p>
+	</div>
+	<script>
+		// $('#d2').click(function(){
+		// 	console.log("1111")
+		// })
+		// 创建一个div
+		var d = $('<div></div>');
+		console.log(d);
+
+		// 创建有一个有文本 内容的div
+		var d1 = $('<div>123</div>');
+		console.log(d1);
+		// 创建一个有子元素的div
+		var d2 = $('<div class="c2"><a href="#">链接</a></div>');
+		console.log(d2)
+
+		// 创建一个带有属性的div
+		var d3 = $('<div class="c1">123</div>');
+		console.log(d3);
+
+		var d4 = $('<div></div><p></p>');//比较少用
+		console.log(d4);
+
+		$('#d1').append(d);
+		$('#d1').prepend(d1);
+
+		d1.after(d2);
+		d1.before(d3)
+
+		d3.remove();
+		$('div').remove('.c2');
+		$('#d1').empty();
+		$('span').replaceWith('<i>新文本</i>');
+
+		$('<b>加错效果</b>').replaceAll('i');//用b元素替换掉所有的i元素
+
+		var d4 = $('#d2').clone();
+		$('body').append(d4);
+	</script>
+</body>
+</html>

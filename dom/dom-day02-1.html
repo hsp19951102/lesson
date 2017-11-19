@@ -1,0 +1,97 @@
+<!-- 
+元素的属性
+	1、属性集合
+	我们可以通过attributes来获取元素的所有属性，注意，该方法得到的是一个数组、
+	2、获取属性值
+	通过
+	- .attributes[下标].nodeValue
+	- .attributes[下标].value
+	- .attributes['属性名'].value
+	- 节点对象名.getAttribute('属性名')
+	
+	3、修改属性值
+	-.attributes[下标].nodeValue = 值;
+	-.attributes[下标].value = 值;
+	-节点对象名.setAttribute(属性名,属性值)
+
+	4、移除属性
+	通过removeAttribute('属性名')
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.c1{
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1" class="c1" name="n1" title="t1">123123</div>
+	<script>
+		console.log(document.getElementById('d1').attributes);
+		var div1 = document.getElementById("d1");
+		console.log(div1.attributes[2].nodeValue)//获取属性的值
+		div1.attributes[2].nodeValue = "n2";//设置属性的值
+
+		console.log(div1.attributes[1].value)
+
+		console.log(div1.attributes['title'].value);
+
+		console.log(div1.getAttribute("title"))
+
+		div1.attributes[1].value = "c2";
+
+		div1.setAttribute("id","div1");//设置属性，如果已有该属性，则原属性值会被覆盖
+		div1.setAttribute("style","color:red;");//如果元素中没有该属性，则会添加
+		div1.setAttribute("class","c1 c3");//添加多个class
+
+		div1.removeAttribute("class");//移除属性，同时会移除属性所对应的样式
+	</script>
+	<style>
+		div>div{
+			height: 150px;
+			float: left;
+		}
+		.door{
+			width: 100px;
+			background-color: orange;
+		}
+		.lock{
+			border:1px solid red;
+			width: 40px;
+			line-height: 150px;
+			text-align: center;
+		}
+		.door_kuang{
+			border: 1px solid blue;
+			width: 100px;
+		}
+		#open{
+			display: none;
+		}
+	</style>
+	<div>
+		<div class="door"></div>
+		<div class="lock" onclick="open1()">&lt;&lt;</div>
+		<div class="door_kuang"></div>
+	</div>
+	
+	<script>
+		function open1(){
+			var door = document.querySelector('.door');
+			var lock = document.querySelector('.lock');
+			if(door.id!="open"){
+			door.setAttribute('id','open');
+			lock.innerHTML = "&gt;&gt;"
+		    }else{
+		    	door.id=" "
+		    	lock.innerHTML = "&lt;&lt;"
+		    }
+		}
+		
+	</script>
+</body>
+</html>

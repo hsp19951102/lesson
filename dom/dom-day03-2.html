@@ -1,0 +1,108 @@
+<!-- 
+常用HTML DOM对象、
+	1、image对象
+	该对象表示是一个img元素，页面中每出现一个img标记，就会创建一个image对象，同时，我们可以通过new关键字，创建一个image对象，常用的属性有width、height、src
+	width和height属性，需要设置为数字，不需要单位，另外，单独只设置一个属性时，会等比缩放
+
+	2、Table对象
+	该对象表示一个table元素，
+	常用的属性有：rows（获取table中所有的tr节点所组成的数组）
+	常用方法：
+	insertRow(下标);//在某处添加一行，该方法会返回一个tableRow对象
+	deleteRow(下标);//删除某行
+
+	-TableRow对象
+	该对象表示的是一个tr，
+	常用的属性：cells（获取tr中所有的td节点所组成的数组）
+				rowIndex 获取行的下标，改行在table中的位置
+	常用的方法：
+	insertCell(下标):在某处添加一列，该方法会返回一个TableCell对象
+	deleteCell(下标);删除某一列
+
+	-TableCell对象
+	该对象表示一个td元素
+	常用属性：cellIndex(td在行中的位置/下标)、colSpan、rowSpan
+
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="d1">
+		<img src="2.jpg" alt="" id="img1">
+	</div>
+	<table id="t1">
+		<tr>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>3</td>
+		</tr>
+		<tr id="tr1">
+			<td>4</td>
+		</tr>
+	</table>
+	<script>
+		var image1 = new Image();//创建一个img标记
+		image1.src = "1.jpg";
+		image1.width = 100;
+
+		var div = document.getElementById('d1');
+		div.appendChild(image1);
+
+		var image2 = document.getElementById('img1');
+		image2.src = "1.jpg";
+
+		var table = document.getElementById('t1');
+		console.log(table.rows);
+		table.deleteRow(1);//删除下标为1 的行
+
+		var tr1 = document.getElementById('tr1');
+		console.log(tr1.rowIndex);
+		console.log(tr1.cells);
+
+		//为table添加一行内容的过程
+		var tr2 = table.insertRow(1);//此处的tr2则是一个tr元素
+		var td1 = tr2.insertCell(0);
+		td1.innerHTML = "123"
+	</script>
+	<table id="t2">
+		<tr>
+			<td>1</td>
+			<td>2</td>
+			<td> <input type="button" value="删除" onclick="deleteRow(this)"></td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>4</td>
+			<td><input type="button" value="删除" onclick="deleteRow(this)"></td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>6</td>
+			<td><input type="button" value="删除" onclick="deleteRow(this)"></td>
+		</tr>
+	</table>
+	<script>
+		var table2 = document.getElementById('t2');
+		function deleteRow(btn){
+			var tr4 = btn.parentElement.parentElement;//找到对应tr
+			table2.deleteRow(tr4.rowIndex);
+		}
+	</script>
+	<input type="button" value="创建表格" onclick="fun2()">
+	<div id="d3"></div>
+	<script>
+		var d3 = document.getElementById('d3');
+		function fun2(){
+			d3.innerHTML = "<table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr><tr><td>5</td><td>6</td></tr></table>"
+		}
+	</script>
+</body>
+</html>

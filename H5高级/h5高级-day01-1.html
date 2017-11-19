@@ -1,0 +1,79 @@
+<!--  
+一、表单
+	1、input类型
+	-电子邮件类型
+	type = email
+	当输入有误时会提示，需要包含一个@
+	2、url类型
+	type=url
+	需要包含协议和域名
+	3、数字类型
+	type = number
+	4、范围类型
+	type=range
+	5、颜色类型
+	type=color
+	6、日期类型
+	type=date
+二、新增表单元素
+	1、datalist元素
+	2、progress
+三、表单控件属性
+四、表单验证
+	1、required
+	必填，不需要设置属性
+	2、pattern
+	通过正则实现表单值的验证
+	3、min和max
+	最大值最小值的限制
+	4、minlength和maxlength
+	最小长度和最大长度
+	当用户手动输入时，到达最大长度后将无法输入
+	
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="">
+		email:<input type="email" required="">
+		<br>
+		url: <input type="url">
+		
+		<br>
+		数字： <input type="number">
+		<br>
+		范围: <input type="range">
+		<br>
+		颜色：<input type="color" onchange="fun(this)">
+		<br>
+		日期：<input type="date">
+		
+		<input type="text" list="d1">
+		<datalist id="d1">
+			<option value="123"></option>
+			<option value="123ac"></option>
+			<option value="123v3"></option>
+			<option value="123123"></option>
+		</datalist>
+
+		<input type="submit">
+	</form>
+	<form action="">
+		<input type="text" placeholder="请输入手机号" pattern="13[0-9]\d{8}">
+		<br>
+		<input type="number" min="18" max="40">
+		<br>
+		<input type="text" minlength="6" maxlength="18" value="">
+		<input type="submit">
+	</form>
+	<script>
+		function fun(el){
+			console.log(el.value)
+		}
+	</script>
+</body>
+</html>

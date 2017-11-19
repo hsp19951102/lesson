@@ -1,0 +1,114 @@
+<!-- 
+一、有返回值的函数
+	返回值通过return关键字进行返回，一个函数最多只能有一个返回值
+	注意：在函数体运行过程中，遇到return后会直接结束该函数的运行，也就是函数体中return之后的语句都不会执行
+二、变量的作用域
+	1.什么是作用域
+	变量与函数的可访问范围，也就是在哪里可以使用这些变量或函数，它控制变量与函数的可见性和生命周期
+	在js中，变量和函数的作用域可以分为：函数作用域(又叫局部作用域，只在当前函数内可以被使用)和全局作用域(可以在代码的任何部分访问)
+	2.函数作用域中的变量（局部变量）
+	只在当前函数中起作用，离开此范围将无法使用
+	3.全局变量
+	存在于整个程序，可以在代码的任何地方使用
+三、声明提前
+	js程序在正常执行之前，会将所有var声明的变量和function声明的函数预读到所在作用域的顶部，但是变量的赋值仍保留在原位置，随脚本的解释执行；全局变量会将var声明的变量和function声明的函数提前到所在script的第一行，局部变量只会被提前到所在函数的第一行
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//定义一个有返回值的函数，返回两个参数的和
+		function fun1(a,b){
+			return a+b;
+		}
+		var s = fun1(2,9);
+		console.log(s);
+		//定义函数，返回两个数中最大的一个
+		function compare(x,y){
+			// if(x > y){
+			// 	return x;
+			// }else{
+			// 	return y;
+			// }
+			var big = x > y? x:y;
+			return big;
+		}
+		console.log(compare(5,9));
+		//用compare()求出三个数中最大的值
+		var c = 9,d = 10,e = 11;
+		var temp = compare(c,d);
+		var max = compare(temp,e);
+		console.log(max);
+
+		function fun2(a,b){
+			var s = a + b;
+			return s;
+			var ss = a * b;
+			console.log(ss);
+		}
+		console.log(fun2(2,3));
+
+		//输出一个数，求出这个数的阶乘
+		function factorial(n){
+			var s = 1;
+			for(var i = 1;i <= n;i++){
+				s *= i;
+			}
+			return s;
+		}
+		console.log(factorial(5));
+
+		//函数作用域
+		//局部变量
+		var aaa;
+		function fun3(){
+			var aaa = 10;
+			aaa++;
+			console.log(aaa);
+		}
+		fun3();
+		console.log(aaa);
+
+		var m = 5;
+		function fun4(){
+			var n = 4;
+			var k = m + n;
+			return k;
+		}
+		console.log(fun4());//9
+		//console.log(m,n);//报错，因为n是局部变量，在这里属于未声明的变量
+
+		//声明提前
+		console.log(num1);
+		var num1 = 10;
+		console.log(num1);
+		//以上三行相当于
+		//var num1;
+		//console.log(num1);
+		//num1 = 10;
+		//console.log(num1);
+	</script>
+	<script>
+		console.log(num2);
+		var num2 = 1;
+		console.log(num2);
+		function fun5(){
+			console.log(num3);//undefined
+			var num3 = 10;
+			console.log(num3);//10	
+		}
+		//从上五行相当于
+		//function fun5(){
+			//var num3;
+			//console.log(num3);
+			//num3 = 10;
+			//console.log(num3);
+		//}
+		fun5();
+	</script>
+</body>
+</html>

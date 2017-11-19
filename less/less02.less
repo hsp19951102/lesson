@@ -1,0 +1,97 @@
+/*
+1、混入（Mixins）
+	混入可以将一个定义好的class，在其他样式中直接引用
+2、嵌套规则
+	在less中使用嵌套来实现css中的后代选择器
+	嵌套规则
+	选择器1{
+		样式...
+		选择器2{
+			样式...
+		}
+	}
+3、内置函数
+	less提供了很多的内置函数，比如颜色、数学等
+4、模式匹配
+	根据传入的参数来改变混入的默认呈现效果
+5、注释
+	less支持的注释方式：与css一致
+6、import
+	导入，在less中可以使用@import '路径' 来引用其他的less文件
+ */
+// 混入
+// 带参数，参数无默认值的混入，注意，无默认值的情况下，使用该混入时，必须传值
+@import 'less01.less';
+#d2{
+	color:@bg-color
+}
+.class1 (@width){
+	width:@width;
+	border:1px solid red;
+}
+// 无参数的混入
+.class2 (){
+	line-height:200px;
+	border-radius: 5px;
+}
+#d1{
+	height:20px;
+	.class1(10px);//引用混入，并传值
+	.class2;//引用混入
+}
+.c1{
+	height:20px;
+	.class1(100px);
+}
+// 带参数，且有默认值的混入
+.myfun (@color:#333){
+	background-color:@color;
+}
+div{
+	.myfun;//如果不传值，则会使用默认值
+}
+p{
+	.myfun(red);//如果传了值，则使用当前所传的值
+}
+// 嵌套规则
+#id1{
+	width:100px;
+	height:200px;
+	.c1{
+		border:1px solid red;
+		color:black;
+	}
+	#d2{
+		background-color:black;
+		.ul{
+			font-size:20px;
+		}
+	}
+}
+// 伪类嵌套
+a{
+	color: black;
+	&:hover{//有&符，表示当前元素的伪类状态，不加该符号，表示当前元的子元素的伪类
+		color:red;
+	}
+}
+// 颜色函数
+@color1 : #333;
+.c12{
+	color:saturate(@color1,20%);
+}
+// 模式匹配
+.mixin (type1,@color){
+	color:@color;
+}
+.mixin (types,@color){
+	color:@color+#111;
+}
+//@_表示接收任意值
+.mixin (@_,@color){
+	border:1px solid red;
+}
+@switch: types;//根据@switch的值，选择使用哪一个混入
+.c13{
+	.mixin(@switch,#666);
+}

@@ -1,0 +1,139 @@
+<!-- 
+一、三目运算符
+	格式：
+	表达式1?表达式2:表达式3;
+	其中表达式1的值应该是布尔类型，如果表达式1的值为true,则整个表达式的值为表达式2的值，如果表达式1的值为false，则整个表达式的值为表达式3的值
+
+程序=数据+算法
+任何复杂的程序都可以通过“顺序”、“分支”、“循环”三种基本的逻辑组合实现
+顺序：从上到下逐行执行
+二、分支结构
+	在程序运行过程中，在不同情形下执行不同代码，也就表示，在分支语句中会有部分代码不会被执行
+	1.分支语句的分类
+	-if语句
+	-if...else...语句
+	-if...else if...else...语句
+	-switch...case...
+	2.if语句
+	当条件(可以是条件表达式，也可以是逻辑表达式)成立时才执行，语法结构为：
+	if(判断表达式){
+		其他语句;
+	}
+	如果条件表达式的值为true，则执行大括号中的语句，否则不执行
+	注意以下情况，括号中的值会默认转换成false
+	if(0)  if(null)  if(undefined) if(NaN) if("") if(0.0)
+	如果if语句块只有一条语句，大括号可以省略(不建议)，但是后续的代码会总被执行
+	3.if...else...语句
+	if需要条件，else不需要条件，语法：
+	if(判断语句){
+		语句1;
+		...
+	}else{
+		语句2;
+		...
+	}
+	当判断语句为true时，只执行if中的语句1，判断语句为false时，只执行语句2
+	注意：else不需要判断语句，一个if最多只有一个else,一个else只能对应一个if,且else必须有与之对应的if
+	4.if...else if...else语句
+	有时候需要处理多个分支情况，之前的if以及if...else...不能满足使用，所以出现了if...else if...else...
+	语法：
+	if(判断语句1){
+		语句1;
+	}else if(判断语句2){
+		语句2;
+	}else if(判断语句3)...{
+		语句3;
+	}else{
+		语句4;
+	}
+	语句1，2，3，4只会执行一句，且最后的else不是必须的
+	5.分支嵌套
+	分支语句之间允许嵌套使用，但是要注意嵌套的合理性
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var a = 1;
+		var b = 2;
+		var c = a < b ? a : b;
+		console.log(c);
+		//求两个数中的最大值
+		var d = 25;
+		var e = 20;
+		var f = d > e ? d : e;
+		console.log("最大值为："+f);
+		//输入一个年龄，判断是否成年
+		var age = 12;
+		var old = age >= 18? "成年人" : "未成年人";
+		console.log(old);
+
+		//分支语句
+		//if语句
+		//用户输入一个数，判断是否大于5
+		var num = prompt("输入一个数");
+		// if(num > 5){
+		// 	console.log("大于5");
+		// }
+		if(num>5)console.log("大于5");
+		console.log("又一句话");
+
+		//超市购物，如果总价格超过300，则打八折，输出应付金额，如果总价格为500，则奖励宝马一辆
+		var total = 500;
+		if(total>300){
+			console.log(total*0.8);
+		}
+		if(total==500){
+			console.log("恭喜，一辆宝马是你的了！");
+		}
+		//发工资，3500-5000需要交个人所得税3%,显示最后到手的工资
+		var salary = 4000;
+		if(salary>3500 && salary<5000){
+			console.log((salary-3500)*0.03);
+		}
+		//超市购物，输入应付金额，输入实付金额，如果实付金额小于应付金额，则提示有误，否则输出应找零多少
+		var yingfu = 300;
+		var shifu = 500;
+		if(yingfu > shifu){
+			console.log("钱不够");
+		}else{
+			console.log(shifu - yingfu);
+		}
+		//判断是否成年
+		var MyAge = 15;
+		if(MyAge>=18){
+			console.log("成年人");
+		}else{
+			console.log("未成年人");
+		}
+		//if...else if...else
+		//输入工资，低于3000，输出“吃低保”，3000-5000“工薪阶层”，5000-10000“白领”，10000-15000"小康生活"，15000以上“土豪”
+		var MySalary = 80000;
+		if(MySalary<3000){
+			console.log("吃低保");
+		}else if(MySalary>=3000 && MySalary<5000){
+			console.log("工薪阶层");
+		}else if(MySalary>=5000 && MySalary<10000){
+			console.log("白领");
+		}else if(MySalary>=10000 && MySalary<15000){
+			console.log("小康生活");
+		}else{
+			console.log("土豪");
+		}
+		//给出一个数，判断它是不是偶数，如果是偶数判断它能不能被6整除
+		var sss = 24;
+		if(sss%2==0){
+			console.log("是偶数");
+			if(sss%6==0){
+				console.log("能被6整除");
+			}
+		}else{
+			console.log("不是偶数");
+		}
+	</script>
+</body>
+</html>

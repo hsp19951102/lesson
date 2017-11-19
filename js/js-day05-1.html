@@ -1,0 +1,87 @@
+<!-- 
+一、数组
+	1.概念
+	数组是一种常用的保存批量数据的数据结构，是由多个元素组成的集合，也就是一个变量名储存多个值
+	js数组中元素的类型可以相同，也可以不同，元素按照线性顺序排列，所谓的线性排列，指的是除去第一个元素，每个元素都有唯一的前驱元素，除去最后一个元素，所有的元素都有后继元素
+	2.数组的定义和初始化
+	1）一维数组
+	-var 数组名 = [];//定义一个不包含元素的空数组
+	-var arr = [1,2,3];//定义一个包含元素的数组，每个元素之间用逗号隔开
+	-var arr1 = new Array();//定义一个空数组
+	-var arr2 = new Array(1,2,3);//定义包含元素的数组，多个元素之间用逗号隔开
+	2）初始化数组
+	初始化数组指的是给数组赋值
+	-定义的同时初始化：var arr = [1,2,3];
+	var arr1 = new Array(1,2,3);
+	-先声明一个空数组，然后再添加元素
+	var arr = [];
+	arr[下标]=值;
+	arr[0]='张三';
+	arr[1]= "李四";
+	赋值后arr的值为['张三','李四']
+
+	var arr1 = new Array();
+	arr1[0]=10;
+	下标：指的是元素所在数组的位置，是整数，数组的首元素下标为0（不是1）
+	3)数组是引用类型的对象
+	什么是引用类型：值不保存在本地的类型
+	4）访问数组
+	访问数组，主要是得到某个元素的值，主要通过元素的下标进行访问
+	设置数组元素的值：a[0]=10;
+	得到数组元素的值: var b = a[0];
+	5)获取数组的长度
+	数组名.length;
+	可以得到数组元素的个数，到最后一个有值的元素为准
+	6)遍历数组
+	遍历数组就是挨个访问数组的每一个元素，一般用于得到数组每个元素的值
+	遍历方法：
+	-for循环，元素的下标作为循环变量
+	-快速枚举法:for(变量 in 数组名)
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//定义数组
+		var student = [];
+		student[0]="杨环宇";
+		student[1]="丁庆伟";
+		console.log(student);
+		var age = new Array();
+		age[0]=25;
+		age[1]=22;
+		age[2]=23;
+		console.log(age);
+		var arr = [1,2,3,4,5,,,];
+		arr[2]=7;
+		console.log(arr);
+		var b = arr[4];
+		console.log(b);
+		console.log(arr.length);
+		console.log(arr[5]);//数组的下标对应的元素未赋值，则会打印undefined
+
+		//遍历数组
+		var array = [24,234,245,5,14,1,241,12,41,4,678,124,14];
+		for(var i = 0;i < array.length;i++){
+			console.log(array[i]);
+		}
+		for(var n in array){
+			console.log(array[n]);//这里的n就是数组array的下标
+		}
+
+		//定义一个数组，用于存储学生成绩，计算出其中不及格学生个数
+		var score = [23,48,98,45,89,76,68,79];
+		var count = 0;
+		for(var i = 0;i < score.length;i++){
+			if(score[i]<60){
+				count++;
+			}
+		}
+		console.log(count);
+	</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!-- 
+过渡只能模拟动画，实现一些简单的动画效果
+1、动画
+	1）概述
+	动画可以制作类似flash的效果，通过关键帧控制动画的每一步，使元素从一种样式逐渐变化为另一种样式，可以实现复杂的效果
+	2）动画的组成
+	-动画声明，通过@keyframes来声明动画的关键帧
+	-调用动画，通过animation来调用已有的动画，可以设置动画时间，播放次数等
+	3）关键帧
+	关键帧是动画中最小单位的单幅影像画面，关键帧就相当于二维动画中的原画，用来定义动画的变化，改变状态的帧
+	css通过@keyframes声明动画，指定关键帧
+	语法：
+	@keyframes 动画名称{
+		from/0%{
+			css样式;
+		}
+		百分比{
+			css样式;
+		}
+		......
+		to/100%{
+			css样式;
+		}
+	}
+	4)动画属性
+	animation-name:要调用的动画名称;
+	animation-duration:动画完成一个周期所需要的时间，取值为s或ms
+	animation-timing-function:动画的速度曲线（同过渡）
+	animation-delay:延迟时间
+	animation-iteration-count:表示动画的播放次数，取值为数值或infinit（无限循环）
+	animation-direction:动画播放方向，取值normal或alternate(轮流播放，在奇数次正常播放，偶数次反向播放)
+	5)简写属性
+	animation:名字 时间 函数 延迟 播放次数 方向;
+	6)动画在播放前后动画效果是否可见
+	animation-fill-mode属性，可以规定动画在播放前或后，其动画效果是否可见，可取值：none(不改变默认行为)/forwards(在动画完成后保持最后一帧的属性值)/backwards(动画开始之前应用第一帧的属性)
+	7)注意动画属性及关键帧的兼容性
+	关键帧兼容性
+	@-webkit-keyframes name
+	@-moz-keyframes name
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		@keyframes change{
+			from{
+				width:100px;
+				height:100px;
+				background-color: orange;
+			}
+			30%{
+				width:200px;
+				height:50px;
+				background-color: blue;
+			}
+			80%{
+				width:300px;
+				height:300px;
+				background-color: red;
+			}
+			to{
+				width:100px;
+				height:100px;
+				background-color: green;
+			}
+		}
+		#d1{
+			animation-name:change;
+			animation-duration: 3s;
+			animation-delay: 2s;
+			animation-timing-function: linear;
+			/*animation-iteration-count: infinite;*/
+			animation-direction: alternate;
+			/*animation-fill-mode: forwards;*/
+			animation-fill-mode: backwards;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1"></div>
+</body>
+</html>

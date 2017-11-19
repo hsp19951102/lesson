@@ -1,0 +1,97 @@
+<!--  
+画布：
+	1、颜色处理
+	-fillStyle：声明内容区域的颜色（填充色）
+	-strokeStyle：声明线条的颜色
+	-globalAlpha：透明度
+	注意，设置了相关颜色后，只会对后续的绘制起作用
+	2、渐变
+	canvas中支持渐变效果，包括线性渐变和射线渐变
+	-线性渐变
+	语法：
+	context.createLinearGradient(x1,y1,x2,y2);
+	其中x1/y1和x2/y2决定了渐变的方向
+	-射线渐变
+	语法:
+	context.createRadialGradient(x1,y1,r1,x2,y2,r2);
+	其中x1/y1/r1，表示，以x1和y1为圆心，以r1为半径画圆
+	其中x2/y2/r2，表示，以x2和y2为圆心，以r2为半径画圆
+	在创建了渐变对象后，还需要渐变对象添加颜色值，通过addColorStop(位置,颜色);
+	
+	3、文字
+	相关属性
+	-font：与css的font样式属性一样
+	-textAlign：水平对齐方式，默认为left，表示从指定的坐标点从左往右绘制，如果设置了right，则表示从指定的坐标点从右往左写
+	-textBaseline：文本基线，取值可以为top、middle、bottom等
+	相关方法：
+	-strokeText("文本",x1,y1);绘制空心文本及其坐标
+	-fillText("文本",x1,y1);绘制实心文本及坐标
+
+	4、阴影
+	-shadowColor：阴影颜色
+	-shadowOffsetX：取值为数字，表示阴影的水平偏移距离
+	-shadowOffsetY：取值为数字，表示阴影的垂直偏移距离
+	-shadowBlur：是否需要模糊效果的尺寸
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="1000px" height="1000px"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		//设置填充色
+		context.fillStyle = "red";
+		context.fillRect(10,10,80,80);
+		context.strokeStyle = "orange";
+		context.strokeRect(10,100,100,100);
+		context.globalAlpha = 0.5;
+		context.fillRect(10,219,80,40);
+
+		// 创建渐变对象
+		var grad = context.createLinearGradient(100,10,100,100);
+		// 添加渐变色
+		grad.addColorStop(0,"red");
+		grad.addColorStop(0.5,"orange");
+		grad.addColorStop(1,"blue");
+		// 设置填充色为该渐变对象
+		context.fillStyle = grad;
+		context.fillRect(100,10,100,100);
+
+		context.strokeStyle = grad;
+		context.strokeRect(210,10,100,100);
+
+		var grad1 = context.createRadialGradient(500,520,10,500,520,110);
+		grad1.addColorStop(0,"yellow");
+		grad1.addColorStop(1,"green");
+		context.fillStyle = grad1;
+		context.fillRect(420,440,160,160);
+		context.strokeStyle = grad1;
+		context.strokeRect(410,430,180,180);
+
+		context.font = "bold 30px 仿宋";
+		context.textAlign = "right";
+		context.fillStyle = "red";
+		context.globalAlpha = 1;
+		context.fillText("你好！小妹妹~",200,300);
+		context.font = "bold 40px 仿宋";
+		context.strokeStyle = "brown";
+		context.strokeText("你好，大哥哥",300,400);
+
+		context.shadowColor = "rgb(136,177,75)";
+		context.shadowOffsetX = 13;
+		context.shadowOffsetY = 13;
+		context.shadowBlur = 1;
+		context.font = "25px 华文行楷";
+		context.textAlign = "left";
+		context.fillText("你好，臭流氓",10,500);
+		context.strokeText("你好，臭流氓",10,550);
+		context.fillRect(10,600,100,100);
+		context.strokeRect(160,600,100,100);
+	</script>
+</body>
+</html>

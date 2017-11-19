@@ -1,0 +1,87 @@
+<!--  
+开发插件
+1、全局函数
+	全局函数实际上就是jQuery的对象方法，是位于jQuery命名空间内部的函数
+2、创建全局函数
+	创建全局函数，需要向jQuery添加一个属性
+3、添加多个全局函数
+	可以通过jQuery的extend方法进行多个函数的创建;通过extend创建多个全局函数，可以避免命名冲突，一般来讲，我们需要把一个插件的所有函数封装到一个对象中
+4、创建对象方法
+	jQuery中大多数内置的功能都是通过其对象方法提供，大部分的插件，也是通过对象方法实现
+	添加对象方法的方式：
+	$.fn.方法名 = function(){}
+	fn指的是jQuery的原型
+	通过fn创建的对象方法，可以直接使用jq对象进行调用
+	jq对象.方法名
+
+	注意，在jq的对象方法中，this指的是当前调用该方法的jq对象
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="myjq.js"></script>
+	<script src="changefont.js"></script>
+	<script>
+		// 创建一个全局函数
+		jQuery.fun = function(){
+			console.log("1234");
+		}
+		// 调用全局函数
+		$.fun();
+		//$就代表jQuery对象
+		jQuery.fun();
+		$.myFun();
+		$.fun1();
+		$.myPlugin.setStr();
+	</script>
+	<style>
+		#d1,.p1{
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<p class="p1"></p>
+	<p class="p1"></p>
+	<p class="p1"></p>
+	<script>
+		$('#d1').changeBgColor();
+		$('.p1').chageBgToColor("green");
+	</script>
+	<style>
+		.c1{
+			font-weight: bolder;
+		}
+		.c2{
+			font-style: italic;
+		}
+	</style>
+	<ul>
+		<li class="c1">ID额外就</li>
+		<li class="c2">广陵学院</li>
+		<li class="c1">水利学院</li>
+		<li class="c2">扬州大学</li>
+	</ul>
+	<input type="button" value="切换样式" onclick="changeClass()">
+	<script>
+		function changeClass(){
+			$('li').changeStyle("c1","c2");
+		}
+	</script>
+	<br>
+	<span id="dl">测试字体</span><br>
+	<input type="button" value="改变大小" onclick="chfont()">
+	<script>
+	function chfont(){
+		$("#dl").changefont("200px")
+	}
+	
+	</script>
+</body>
+</html>

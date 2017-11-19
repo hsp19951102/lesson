@@ -1,0 +1,60 @@
+<!-- 
+1.datalist元素
+	可以使用该元素创建一组列表项，可以为输入框做提示
+	该元素需要与input进行绑定，需要有选项option
+	语法：<input type="text" list="datalist的id值">
+	<datalist id="id值">
+		<option value="值"></option>
+	</datalist>
+2.progress元素
+	进度条
+	语法：<progress></progress>
+	属性：
+	-value:当前的进度
+	-max:最大进度值 
+3.meter
+	类似于进度条
+	语法：<meter></meter>
+	属性：
+	-min:最小值
+	-max:最大值
+	-low:指定低点的值，低于此值时被视为低值
+	-high:指定高点值，高于此值视为高值
+	-optimum:最适值
+新增表单属性
+	1.multiple属性：规定文本框中可以包含多个值（email,file）,多个值之间用","隔开，该属性不需要设置属性值
+	2.autofocus
+	自动获取焦点，不需要设置属性值
+	注意：一个表单中，只会设置一个文本框自动获取焦点
+	3.form
+	该属性可以将控件与表单关联起来
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" list="list1">
+	<datalist id="list1">
+		<option value="luffy"></option>
+		<option value="111"></option>
+		<option value="223"></option>
+		<option value="233"></option>
+		<option value="224"></option>
+	</datalist>
+	<progress value="80" max="100"></progress>
+	<br>
+	<meter min="0" max="100" low="20" high="80" value="50" optimum="50"></meter>
+	<form action="" id="f1">
+		用户名：<input type="text" autofocus><br>
+		密码：<input type="password"><br>
+		<input type="email" multiple><br>
+		<input type="file" multiple><br>
+		<input type="submit">
+		<input type="reset">
+	</form>
+	<input type="text" form="f1">
+</body>
+</html>

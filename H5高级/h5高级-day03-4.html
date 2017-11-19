@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=jeMGCzjQG5VXbW2oK3DYfbnXSMtkSvpv"></script>
+	<style>
+		#container{
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"></div> 
+	<input type="button" value="获取位置" onclick="getlocation()">
+	<script>
+		var map = new BMap.Map("container");          
+		var point = new BMap.Point(119.431437,32.383157);  
+		map.centerAndZoom(point, 19);                  
+		function getlocation(){
+			
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(position){
+				console.log(position);//包含了用户的位置信息
+				var lat = position.latitude;
+				var lon = position.longitude;
+				var point = new BMap.Point(lon,lat);  
+				// map.centerAndZoom(point,19);
+
+				// 添加标注
+				//首先创建覆盖物(Marker)，设置其位置
+				var marker = new BMap.Marker(point);
+				marker.addEventListener('click',fun)
+				// 将marker添加到地图上
+				map.addOverlay(marker);
+				map.panTo(point);
+
+				// 定义标注的图标,BMao.Icon('图片路径',图表尺寸)
+				var myIcon = new BMap.Icon("http://api.map.baidu.com/mapCard/img/location.gif",   
+				      new BMap.Size(14, 23), {      
+				       // 指定定位位置。     
+				       // 当标注显示在地图上时，其所指向的地理位置距离图标左上      
+				       // 角各偏移7像素和25像素。您可以看到在本例中该位置即是     
+				       // 图标中央下端的尖角位置。      
+				       anchor: new BMap.Size(7, 25),        
+				});        
+				 // 创建标注对象并添加到地图     
+				  var marker1 = new BMap.Marker(point, {icon: myIcon});      
+				  map.addOverlay(marker1);      
+				  
+			})
+		}
+		function fun(){
+			console.log("大头针被点击")
+		}
+
+		// 地址解析
+		//首先创建地址解析器
+		var geo = new BMap.Geocoder();
+		//调用其getPoint方法，将需要解析的地址传递到服务器
+		geo.getPoint("扬州市扬州大学广陵学院南校区",function(point){
+			console.log(point);
+		})
+	</script>
+</body>
+</html>

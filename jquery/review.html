@@ -1,0 +1,98 @@
+<!-- ajax解析在网页展示
+数据去重
+数组排序
+数组反序 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复习</title>
+	<script src='jquery-3.2.1.js'></script>
+	<style>
+		ul img{
+			width:100px;
+			margin: auto;
+		}
+		li{
+			margin: 10px;
+		}
+		#orign{
+			font-size: 16px;
+			margin-left: 200px;
+			margin-bottom: 20px;
+		}
+		.first{
+			margin-left: 200px;
+		}
+		.tri{
+			height: 0;
+			width: 0;
+			border:100px solid transparent;
+			border-bottom: 100px solid red;
+			margin-left: 500px;
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul"></ul>
+	<div id="orign"></div>
+	<input type="button" value="数组去重" class="first" onclick="remove()">
+	<input type="button" value="数组排序" onclick='order()'>
+	<input type="button" value="数组反序" onclick="reverse()">
+	<div class="tri"></div>
+	<script>
+		var list=[];
+		var arr=[58,99,7,99,8,58,12,10,26,88,99,12]
+		console.log(typeof(arr))
+		$("#orign").text(arr)
+		function get(){
+ 			$.ajax({
+                url:"http://route.showapi.com/119-42",
+                data:"showapi_appid=44993&showapi_sign=82829efed7b04e2a8df1dd79a1814c55",
+                type:'get',
+                success:function(info){
+                	var data=info.showapi_res_body.list;
+                	// console.log(info);
+                	for(var i=0;i<5;i++){
+                		var li=$('<div>'+data[i].year+'</div><div>'+data[i].title+'</div>');
+                		$("#ul").append(li);
+                	}
+                }
+            });
+		}
+		get();
+		function remove(){
+			for(var i=0;i<arr.length;i++){
+				for(var j=i+1;j<arr.length;j++){
+					if(arr[i]==arr[j]){
+						arr.splice(i,1)
+					}
+				}
+			};
+			for(var i=0;i<arr.length;i++){
+				for(var j=i+1;j<arr.length;j++){
+					if(arr[i]==arr[j]){
+						arr.splice(i,1)
+					}
+				}
+			};
+			$("#orign").text(arr)
+		}
+		function order(){
+			for(var i=1;i<arr.length;i++){
+				for(var j=0;j<arr.length-i;j++){
+					if(arr[j]>arr[j+1]){
+						var tem=arr[j];
+						arr[j]=arr[j+1];
+						arr[j+1]=tem;
+					}
+				}
+			};
+			$("#orign").text(arr)
+		}
+		function reverse(){
+			$("#orign").text(arr.reverse())
+		}
+	</script>
+</body>
+</html>

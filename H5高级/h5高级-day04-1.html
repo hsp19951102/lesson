@@ -1,0 +1,73 @@
+<!--  
+一、拖放API
+	在H5之后，引入了拖放API，允许用户对元素进行拖动
+	1、源元素事件
+	在拖放API中有些元素是作为事件源的角色(被拖动的元素)，这些元素触发的事件，叫源元素事件，另外有一些拖动事件由目标元素触发，称之为目标元素(源元素投放的目标)事件
+	1）源元素事件
+	-dragstart：当拖动开始时触发
+	-drag：拖动时触发
+	-dragend：拖动结束时触发
+	注意：在html的元素中，只有img标记是默认允许拖动的，其他元素需要设置其draggable属性为true，才能允许拖动
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: gray;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		
+
+	</style>
+	<script>
+		window.onload = function(){
+			// var ele = document.getElementById('dragELe');
+			// console.log(ele);
+			// ele.addEventListener('dragstart',function(){
+			// 	console.log('开始拖动')
+			// 	console.log(event.pageX+"-"+event.pageY);
+			// });
+			// ele.addEventListener('drag',function(){
+			// 	console.log("正在拖动"+event.pageX+"-"+event.pageY);
+			// 	this.style.display = "none"
+			// 	this.style.left = event.pageX+"px";
+			// 	this.style.top = event.pageY+"px";
+			// });
+			// ele.addEventListener('dragend',function(){
+			// 	console.log('结束拖放');
+			// 	console.log(event.pageX+"-"+event.pageY);
+			// 	this.style.display = "block"
+			// 	this.style.left = event.pageX+"px";
+			// 	this.style.top = event.pageY+"px";
+			// });
+
+			var div = document.getElementById('d1');
+			div.addEventListener('drag',function(){
+				this.style.display = "none"
+				this.style.left = event.pageX+"px";
+				this.style.top = event.pageY+"px";
+			})
+			div.addEventListener('dragend',function(){
+				console.log('结束拖放');
+				this.style.display = "block";
+				this.style.left = event.pageX+"px";
+				this.style.top = event.pageY+"px";
+				console.log(event.pageX,event.pageY);
+				console.log(event.offsetX,event.offsetY)
+			});
+		}
+		
+	</script>
+</head>
+<body>
+	<!-- <img src="1.jpg" alt="" id="dragELe"> -->
+	<div id="d1" draggable="true"></div>
+</body>
+</html>

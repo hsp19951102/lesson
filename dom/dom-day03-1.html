@@ -1,0 +1,128 @@
+<!-- 
+一、创建节点
+	1、创建元素
+	语法：
+	document.createElement("元素名");
+	2、创建文本节点
+	语法：
+	document.createTextNode('文本的内容');
+	3、创建注释
+	语法：
+	document.createComment('注释内容');
+二、插入节点
+	1、appendChild
+	语法：
+	节点对象a.appendChild(节点b);
+	将节点b作为节点a的最后一个子节点今天添加
+
+	2、insertBefore
+	语法：
+	节点对象a.insertBefore(节点b,节点c);
+	在节点a的子元素节点c之前追加一个子节点b；注意，必须保证节点c已经存在
+三、删除节点
+	语法：
+	节点a.removeChild(节点b);
+	移除节点a中的子节点b
+
+四、替换节点
+	语法：
+	节点a.replaceChild(节点b,节点c);
+	将节点a中的节点c替换为节点b,如果节点b是页面中已经存在的节点，则其会从原位置消失，然后在节点c的位置上显示;必须保证c存在
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="d1">
+		<b>123</b>
+		<div id="d2">111</div>
+	</div>
+	<div id="d3">abb</div>
+	<script>
+		var parent = document.getElementById('d1');
+		var div = document.createElement('div');
+		console.log(div);
+		div.textContent = "123";
+		div.style.color = "red";
+		div.innerHTML = "<a href='#'>超链接</a>";
+		parent.appendChild(div);
+		var textNode = document.createTextNode("这是文本节点");
+		parent.appendChild(textNode);
+		// var comment = document.createComment("这是注释内容");
+		// parent.appendChild(comment); 不建议
+		var i = document.createElement('i');
+		i.innerHTML = "abc";
+		parent.insertBefore(i,div);
+		var d2 = document.getElementById('d2')
+		parent.removeChild(d2);
+		var d3 = document.getElementById('d3');
+		parent.replaceChild(d3,i);
+	</script>
+	<!-- 编程实现：页面中有两个按钮，一个为创建表格的功能，一个为加载数据的功能 -->
+	<input type="button" value="创建表格" onclick="createTable()">
+	<input type="button" value="加载数据" onclick="loadData()">
+	<div id="box"></div>
+	<script>
+		var box = document.getElementById('box');
+		//先声明一个变量，用于表示创建好的表格
+		var table = null;
+		function createTable(){
+			//如果table已经存在，则不继续创建
+			if (table) {
+				return;
+			}
+			table =	document.createElement('table');
+			//创建行
+			var tr = document.createElement('tr');
+			//创建列
+			var arr = ['姓名','性别','年龄','操作'];
+			for (var i = 0; i < arr.length; i++) {
+				//创建th
+				var th = document.createElement('th');
+				th.textContent = arr[i];//设置th的文本内容
+
+				//将th插入到tr中
+				tr.appendChild(th);
+			}
+			//将tr插入到table
+			table.appendChild(tr);
+			//将表格插入到div中
+			box.appendChild(table);
+		}
+
+		//定义数组，表示要加载的数据
+		var data = [
+			{"name":"张三","sex":"男","age":17},
+			{"name":"李四","sex":"女","age":17},
+			{"name":"张三","sex":"男","age":17}
+		];
+		//加载数据
+		function loadData(){
+			if (table) {
+				//根据数据创建tr
+				for (var i = 0; i < data.length; i++) {
+					//创建tr
+					var tr1 = document.createElement('tr');
+
+					//创建td
+					var obj = data[i];
+					for(key in obj){//遍历对象的属性
+						console.log(obj[key]);
+						var td1 = document.createElement('td');
+						td1.textContent = obj[key];//得到属性的值
+						tr1.appendChild(td1);
+					}
+					var opTd = document.createElement('td');
+					opTd.textContent = "删除";
+					tr1.appendChild(opTd);
+
+					table.appendChild(tr1);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+// 变量
+$bgColor: black
+div
+	color: $bgColor
+.d1
+	background-color: $bgColor
+$myBorder: 1px solid $bgColor
+p
+	border: $myBorder
+
+#d1
+	width: 100px
+	height: 200px
+	p
+		color: red
+	line-height: 20px
+a
+	font-size: 10px
+	&:hover
+		font-size: 40px
+b
+	border:
+		style: solid
+		width: 1px
+		color: red
+// 继承
+.c1
+	font-size: 20px
+	@extend #d1

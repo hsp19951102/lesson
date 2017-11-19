@@ -1,0 +1,59 @@
+<!-- 
+CSS
+	1.概念
+	层叠样式表（级联样式表），简称为样式表;html是网页的内容，css是内容的表现，css主要是给html中的页面元素定义样式，实现了内容与表现的分离，提高了代码的可读性和可重用性
+	2.css与html的关系
+	html用于构建网页的结构，css用于构建html元素的样式
+	3.html属性与css样式的使用原则
+	w3c建议我们尽量使用css来代替样式属性（style属性），实现内容与表现的分离，除非样式为html所特有
+	4.css的使用方式
+	1）内联样式表：样式定义在单个html元素中
+	语法：通过style属性添加样式
+	2）内部样式表
+	内部样式表规则位于头元素中，通过style元素实现，所有的样式属性都写在style元素中
+	语法：由一个或多个样式规则组成，每个样式规则由一个或多个样式属性组成
+	选择器1｛
+		样式属性1：值;
+		样式属性2：值;
+		...
+	｝
+	选择器2｛
+		样式属性1：值;
+		样式属性2：值;
+		...
+	｝
+	3)外部样式表
+	将所有的样式放在一个单独的.css文件中，再在html文档的头部通过link元素进行引入
+	第一步：创建css文件，css文件中直接定义样式规则，其中的语法与内部样式表语法一致
+	第二步：通过link元素进行引入
+	<link rel="stylesheet" href="">
+	注意：一个html文档可以引入多个css文件，同样，一个css文件可以被多个html文档引入
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css-day01-1.css">
+	<!-- 外部样式表 -->
+	<link rel="stylesheet" href="css-day01-1-1.css">
+	<!-- 内部样式表 -->
+	<style>
+		h1{
+			color:red;
+			background-color: orange;
+		}
+		p{
+			color:blue;
+			background-color: yellow;	
+		}
+	</style>
+</head>
+<body>
+	<h1>这是一个大标题</h1>
+	<!-- 内联样式表 -->
+	<p style="border:1px solid red;">这是一段内容</p>
+	<div>这是一个div</div>
+	<span>这是一个span</span>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!--  
+项目属性：
+	1）flex-grow
+	该属性用于定义项目的放大比例，取值为正整数，默认为0，也就是如果容器存在剩余空间，项目也不会被放大；所有项目设置为1时，表示这些项目，平均分配剩余空间；当某一个项目设置为2，其他项目均设置为1，则该项目占有剩余空间的尺寸，比其他元素多一倍
+	2）flex-shrink
+	该属性定义了项目的缩小比例，取值为整数，默认值为1，会自动缩小，如果某项目设置为0，其他项目设置为1，当剩余空间不足时，当前元素保持不变，其他元素进行缩小
+	3）flex-basis
+	该属性定义了再分配多余控件之前，项目占主轴的空间，浏览器会根据这个属性计算剩余空间，默认值为auto，也就是保持项目的原有大小，也可以设置为跟width或height属性一样的值
+	4）flex
+	该属性是grow、shrink、basis的简写属性，取值顺序为：grow shrink basis
+	默认值为：0 1 auto; 注意，后两个属性可以省略
+	该属性有两种快捷取值：
+	-auto(1 1 auto)
+	-none(0 0 auto)
+	5）align-self
+	该属性用于设置项目自身的对齐方式，取值：
+	-auto：默认值，表示继承容器（父元素）的align-items属性，如果没有父元素，则等同于stretch
+	-flex-start：默认值，交叉轴的起始位置
+	-flex-end：自己的结束位置
+	-center：自己的中心
+	-space-between：沿自己两端对齐，项目之间的间距相等，适用于多个项目
+	-space-around：每个项目两侧间距相等，项目间的空隙要大于项目与边框的间距
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			/*width: 800px;*/
+			display: flex;
+			border: 1px solid red;
+		}
+		.item{
+			width: 200px;
+			height: 100px;
+			background: gray;
+			margin: 10px;
+			flex-grow: 1;
+			flex-shrink: 0;
+		}
+		div.item1{
+			width: 500px;
+			background-color: orange;
+			flex-shrink: 0;
+		}
+		div.item2{
+			flex-grow: 2;
+		}
+		div.d1{
+			width: 80px;
+			background-color: orange
+		}
+		.d2{
+			width: 200px;
+			height: 200px;
+			background: orange;
+			flex-basis: 400px;
+		}
+		.box1{
+			width: 800px;
+			height: 800px;
+			display: flex;
+			border: 1px solid red;
+			justify-content: center;
+		}
+		.item11{
+			width: 100px;
+			height: 100px;
+			background: gray;
+			margin: 10px;
+			
+		}
+		.d12{
+			align-self: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="item"></div>
+	</div>
+	<div class="box">
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item"></div>
+	</div>
+	<div class="box">
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item item1">1234567890qwerrrtyuioopasdfghjkl</div>
+	</div>
+	<div class="box">
+		<div class="item"></div>
+		<div class="item"></div>
+		<div class="item item2"></div>
+	</div>
+	<div class="box">
+		<div class="item"></div>
+		<div class="d1"></div>
+	</div>
+	<div class="box">
+		<div class="d2"></div>
+	</div>
+	<div class="box1">
+		<div class="item11">1</div>
+		<div class="item11 d12">2</div>
+		<div class="item11">3</div>
+	</div>
+</body>
+</html>

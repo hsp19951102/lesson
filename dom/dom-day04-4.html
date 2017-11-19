@@ -1,0 +1,71 @@
+<!-- 
+一次性定时器
+	通过setTimeout
+	语法：
+	setTimeout(触发函数,时间);
+	延迟一定时间后调用，该方法会返回一个定时器对象，用于清空定时器，使用clearTimeout(定时器对象)进行清空
+
+	注意：无论是周期性定时器还是一次性定时器，其操作均是异步执行
+navigator对象
+该对象用于获取浏览器的信息
+
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		for(var attr in navigator){
+			console.log(attr+":"+navigator[attr]);//获取navigator对象的所有属性及属性值
+		}
+	</script>
+	<input type="button" value="启动" onclick="fun()">
+	<script>
+		setTimeout(function(){
+			console.log("这是一个一次性的")
+		},1000);
+
+		var timer = setTimeout(function(){
+			console.log("---");
+			clearTimeout(timer);//清空
+			timer = null;
+			console.log(timer);
+		},1000);
+		// clearTimeout(timer); 注意，此处清空，会影响定时器操作
+		// 
+		// 可以通过在定时器函数中继续调用一次性定时器，实现周情形定时器的效果
+		function fun(){
+			var timer1 = setTimeout(function(){
+				console.log("_+_+_+");
+				clearTimeout(timer1);//清空
+				timer1 = null;
+
+				fun();
+			},1000);
+		}
+	</script>
+	<!-- 点击付款按钮，开始计时，并提示在5秒后将关闭付款窗口 -->
+	<input type="button" value="付款" onclick="payment()">
+	<div id="cutDown"></div>
+	<script>
+		var ele = document.getElementById('cutDown');
+		var i = 5;
+		function payment(){		
+			var t = setTimeout(function(){
+				ele.textContent = i;
+				clearTimeout(t);
+				t=null;
+				if (i < 0) {
+					self.close();
+				}
+				i--;	
+				payment();
+				
+			},1000)
+		}
+	</script>
+</body>
+</html>

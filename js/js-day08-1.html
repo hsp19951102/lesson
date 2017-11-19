@@ -1,0 +1,101 @@
+<!-- 
+一、Object(对象)
+	1.对象概述
+	-通用定义：对象是需求场景中的名称在程序中的表示，比如js中的日期，数学，数组。
+	-ES中的定义：属性的无序集合，每个属性存放一个原始值、方法；对象是无特定顺序的值的数组
+	对象的属性和方法：
+	-属性：封装对象的数据，表示与对象有关的值，可以通过对象名.属性名进行使用
+	-方法：表示对象的行为，表示对象可以执行的或可以完成的功能，通过对象名.方法名()访问
+	2.js中的对象
+	1)分类
+	-内置对象：String,Number,Boolean,Array,Date,Math,Object,RegExp,Function
+	-宿主对象：浏览器提供的对象，由浏览器厂商自定义提供实现，主要分为两类：BOM(Browser Object Model,Window/Navgator/Screen/Location)、DOM(Document Object Model,Document/Button等)
+	-自定义对象：由用户自己创建的对象
+	3.自定义对象（创建对象）
+	1）对象直接量
+	由名/值组成的一个映射表，名和值之间用冒号隔开，名/值对之间用逗号隔开
+	语法结构：
+	var 对象名 = {
+		属性名1:值1,
+		属性名2:值2,
+		...
+	}
+	其中，冒号前的是属性名，属性名由开发者自己定义（一般为有意义的英文单词），冒号后面是属性的值，如果值为字符串，需要用引号引起来，注意，最后一个属性值后不需要逗号；对象结尾的大括号后也不需要分号
+	2)通过new关键字创建对象
+	语法格式：
+	var 对象名 = new Object();
+	对象名.属性名 = 属性值;
+	3)通过构造函数，批量创建相同结构的对象
+	-构造函数：描述一类对象结构的特殊函数
+	语法：
+	第一步：定义构造函数
+	function 函数名(形参列表){
+		this.属性名1 = 形参1;
+		this.属性名2 = 形参2;
+		....
+	}
+	注意：函数名就是类名，一般着字母大写，形参列表主要用于为属性赋值，this关键字表示当前调用该函数的对象
+	第二步：利用构造函数创建对象
+	var 对象名 = new 构造函数名(实参列表);
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//对象直接量
+		var student = {
+			sex : "男",
+			name : "张三",
+			age : 22,
+			eat : function(){
+				console.log("会吃");
+			}
+		}
+		console.log(student.name);
+		student.eat();
+		var flower = {
+			name : "狗尾巴草",
+			color : "green",
+			smell : "味道好极了"
+		}
+		console.log(flower.name + flower.smell);
+		//new Object()
+		var car = new Object();
+		console.log(car);
+		car.name = "QQ";
+		car.color = "orange";
+		car.weight = "2t";
+		console.log(car);
+		//通过构造函数创建对象
+		//第一步：先声明一个构造函数
+		function Person(pName,pAge,pSex){
+			this.name = pName;
+			this.age = pAge;
+			this.sex = pSex;
+			this.weight = "80kg";
+		}
+		//通过构造函数创建对象
+		var yanghuanyu = new Person("杨环宇",23,"男");
+		var huangshipeng = new Person("黄世鹏",25,"不详");
+		/*
+		huangshipeng = {
+			name = "黄世鹏",
+			age = 25,
+			sex = "不详"
+		}
+		 */
+		var mycar={
+			name:"Lamborghini",
+		}
+		console.log(huangshipeng.sex);
+		console.log(yanghuanyu.name);
+		console.log(huangshipeng.weight);
+		console.log(yanghuanyu.weight);
+		console.log(mycar.name)
+	</script>
+</body>
+</html>

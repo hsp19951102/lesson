@@ -1,0 +1,162 @@
+<!--  
+需要循环轮播的幻灯图
+ 假设需要展示n张图，
+ -在页面中先放置一个盒子，用于存放轮播图，其overflow属性设置为hidden；
+ -在盒子中放置一个ul，其宽度设置为（n+2）*100%，并设置定位属性，其中为了保证显示第一张图，left需要预先设置为-屏幕宽
+ -ul中设置n+2个li，第一个li放最后一张图，最后一个li放第一张图，每个li的宽设置为100/(n+2)%
+ -当幻灯图轮播到最后一个li时，动画结束后，需要无缝跳转到第二个li
+ -当幻灯图轮播到第一个一个li时，动画结束后，需要无缝跳转到倒数第二个li
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+		}
+		ul{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			overflow: hidden;
+			position: relative;
+
+		}
+
+		ul{
+			overflow: hidden;
+			/*ul的宽，需要保证能够完全水平放置所有的轮播图片，所以其width应设置为：n*100%*/
+			width: 300%;
+			position: relative;
+			left: 0;
+			top: 0;
+			transition: left 1s linear;
+		}
+		li{
+			float: left;
+			/*li的宽度，应设置为100/n%*/
+			width: 33.33%;
+		}
+		li img{
+			width: 100%;
+		}
+		input{
+			width: 40px;
+			height: 40px;
+			background-color: rgba(0,0,0,.5);
+			position: absolute;
+			top: 50%;
+			z-index: 100;
+			color:white;
+			font-size: 30px;
+		}
+		.left{
+			left: 0;
+		}
+		.right{
+			right: 0;
+		}
+		#slider1{
+			width: 500%;
+		}
+		#slider1 li{
+			width: 20%;
+		}
+	</style>
+</head>
+<body>
+	<!-- 首先外层放一个大的包含框 -->
+	<div class="box">
+		<!-- 使用列表，其中li的个数，与图片个数保持一致（不需要循环轮播） -->
+		<input type="button" value="<" class="left" onclick="changeSlider(1)">
+		<ul id="slider">
+			<li><img src="1.jpg" alt=""></li>
+			<li><img src="2.jpg" alt=""></li>
+			<li><img src="3.jpg" alt=""></li>
+		</ul>
+		<input type="button" value=">" class="right" onclick="changeSlider(2)">
+	</div>
+	<div class="box">
+		<!-- 使用列表，其中li的个数，如果需要循环轮播，则li的个数为n+2,其中n表示图片个数 ；第一个li放最后一张图，最后一个li放第一张图-->
+		<input type="button" value="<" class="left" onclick="changeSlider1(1)">
+		<ul id="slider1">
+			<li><img src="3.jpg" alt=""></li>
+			<li><img src="1.jpg" alt=""></li>
+			<li><img src="2.jpg" alt=""></li>
+			<li><img src="3.jpg" alt=""></li>
+			<li><img src="1.jpg" alt=""></li>
+		</ul>
+		<input type="button" value=">" class="right" onclick="changeSlider1(2)">
+	</div>
+	<script>
+		var width = document.documentElement.clientWidth;
+		var ul = document.getElementById('slider')
+
+		var offs = 0;
+		// setInterval(function(){
+		// 	if (offs<width*2) {
+		// 		offs+=width;
+		// 	}else{
+		// 		offs = 0;
+		// 	}
+		// 	ul.style.left = -offs+'px';
+		// },2000);
+		
+		// var offs = 0;
+		function changeSlider(tag){
+			if (tag==1) {
+				if (-offs<width*2) {
+					offs -=width;
+				}
+			}
+			if (tag==2) {
+				if (offs<0) {
+					offs +=width;
+				}
+				console.log(offs)
+			}
+			ul.style.left = offs+'px';
+		}
+
+		var ul1 = document.getElementById('slider1');
+		var offs1 = -width;
+		ul1.style.left = offs1+'px';
+		function changeSlider1(tag){
+			// 如果当前显示为第一张图，也就是第二个li，为ul添加过度动画
+			if (Math.abs(offs1)/width == 1 || Math.abs(offs1)/width == 3) {
+				ul1.style.transition='left 1s linear';
+			}
+			if (tag==1) {			
+				offs1 -=width;	
+			}
+			if (tag==2) {
+				offs1 +=width;
+			}
+			ul1.style.left = offs1+'px';
+
+			setTimeout(function(){
+				//如果相除的结果为4，说明已显示了li中的最后一个，需要跳转到第一张图，也就是第二个li，并需要把动画效果去掉
+				if (Math.abs(offs1)/width == 4 ) {
+					ul1.style.transition='none';
+					offs1 = -width;
+					ul1.style.left = offs1+'px';
+					// ul1.style.transition='left 1s linear';
+				}
+				//如果相除的结果为0，说明已显示了li中的第一个，需要跳转到最后一张图，也就是倒数第二个li，并需要把动画效果去掉
+				if (Math.abs(offs1)/width == 0 ) {
+					ul1.style.transition='none';
+					offs1 = -width*3;
+					ul1.style.left = offs1+'px';
+					// ul1.style.transition='left 1s linear';
+				}
+			},1200)
+			
+		}
+	</script>
+</body>
+</html>

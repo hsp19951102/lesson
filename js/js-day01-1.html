@@ -1,0 +1,58 @@
+<!-- 
+计算机语言：
+	面向对象：将问题分解成对象，java/c++/c#
+	面向过程：主要是解决问题的过程,C
+	面向对象思想：有大象和冰箱两个对象，大象有进冰箱的方法，冰箱有开关门的方法
+	面向过程思想：先把冰箱门打开，再把大象装进去，再把冰箱门关上
+	javascript-js
+一、js概述（让HTML动态显示）
+	1.什么是JavaScript
+	JavaScript是一种脚本语言
+	常见的脚本语言有：JavaScript/VBScript/PHP/Python
+	2.JavaScript的特点
+	-代码可以在任何文本编辑工具编写，语法类似C和java
+	-无需编译，由js解释器执行
+	-弱类型语言：没有过多的数据类型，只有一种var，为变量赋值时会自动判断并转换数据的具体类型；强类型语言数据类型有int(整型)、float(浮点型，小数)、char(字符型)
+	-基于对象：没有提供对象抽象、继承、重载等有关面向对象语言的功能，二是把其他语言所创建的复杂对象统一起来，从而形成一个强大的对象系统
+二、js语法
+	1.使用js
+	1）使用浏览器的内核
+	浏览器内核主要用于页面内容的渲染，由两部分组成，一是内容的排版引擎，用于解析html和css，一是脚本解析引擎，用于解析js
+	浏览器内核
+	浏览器      内核名称      脚本解析引擎
+	IE			trident       chakra
+	firefox     gecko         猴子系列
+	safari      webkit        nitro
+	chrome      webkit         V8
+	2)搭建运行环境
+	2.第一个js程序
+	使用浏览器执行一段js
+	1)script元素，可以直接在html文档的head部分或body部分创建script元素，然后在元素中书写js代码
+	2）外部脚本文件
+	将js代码写入一个单独的文件，并且保存文件为后缀名为.js，该文件是纯文本文件，文件中不需要<script></script>元素，直接写js代码，在html的head部分或body部分通过script元素的src属性，指定文件的url
+	3.js调试
+	解释型语言，若某行代码错误，则解释器终止此次执行，但是不会影响后续执行及后续的html的解析；也就是只会终止当前script元素内的后续代码，不会影响其他的script元素
+	4.语法规范
+	语句：会被js引擎解释执行，由表达式、关键字、运算符组成，大小写敏感，使用分号或换行结束一段语句
+	注释：单行注释// 多行注释/**/
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// console表示控制台对象，log()为输出函数
+		console.log("第一个js程序");
+		console.log("第一句话");
+		console.logs("第二句话");//此语句错误
+		console.log("第三句话");
+		/*
+			这是多行注释
+		*/
+	</script>
+</head>
+<body>
+	<script src="js-day01-1.js"></script>
+</body>
+</html>

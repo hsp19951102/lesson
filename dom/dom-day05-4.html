@@ -1,0 +1,41 @@
+<!-- 
+一、cookie
+	cookie是一种能够让网站服务器把少量的数据储存到用户的硬盘或者内存中，以及从硬盘或内存中取数据的一种技术。cookie就是当你浏览某个网站时，由web服务器在你的硬盘上创建很小的文本文件，泳衣存储你的用户名、密码、邮箱等信息，当你再次访问该网站时，会通过读取cookie，获取相应用户信息，通过此技术，可以实现密码记录，两周内免登录等类似的功能
+
+	1、cookie的存放
+	一般cookie会将信息保存在客户的某个特定目录下，一般来讲，cookie只允许同源的网站访问，也就是说，谁保存的谁能用，其他网站不能够访问
+	cookie的存储，一般由服务器进行创建并发送给客户端进行保存，也可以通过js创建并保存
+	cookie的存储是以键值对的方式存的
+	格式：document.cookie = "username=zhangsan";
+
+	2、cookie的取
+	语法：
+	var cookie = document.cookie;
+	取出的cookie是一个字符串，每一条信息之间用分号隔开
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="uname">
+	<script>
+		// cookie的存放
+		document.cookie = "username=zhangsan1";
+		document.cookie = "password=123";
+
+		var cookie = document.cookie;
+		console.log(cookie);
+		//分割字符串，得到每一条cookie
+		var infos = cookie.split(";");
+		console.log(infos);
+		var username = infos[0].split("=")[1];
+		console.log(username)
+
+		var text = document.getElementById('uname');
+		text.value = username;
+	</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!-- 
+一、图像
+	1.图像格式
+	-jpg，有损压缩
+	-png，无损压缩，带透明通道
+	2.图像元素
+	img标记标识一个图像元素，是一个非封闭行内块级元素
+	语法：<img src="" alt="">
+	常用属性：
+	-src:表示显示图片的地址（路径）
+	-alt:表示当图片找不到时显示的文字提示
+	-width:宽度，取值为长度单位，可以为px或百分比
+	-height:高度，取值为长度单位，可以为px或百分比
+	注意：img元素可以作为任何封闭型标记的子元素
+二、链接
+	1.超链接，点击可以跳转到其他页面
+	a元素，表示超链接，封闭型行内元素
+	语法：<a href=""></a>,会在网页中以蓝色带下划线的文本显示
+	属性：
+	-href:要链接到的地址，可以是任何文件的路径
+	-target:目标打开的位置，取值为：_self（在当前页打开），_blank（在新的标签页打开）
+	2.链接的表现形式
+	-下载资源：语法：<a href="1.jpg"></a>, 注意：href值必须是一个文档路径（html除外）
+	-电子邮件：语法：<a href="mailto:邮箱地址"></a>
+	-返回页面顶部：语法：<a href="#"></a>
+	3.锚点
+	锚点是文档中某一行的一个标记，用于链接到文档的某个位置
+	使用方法：
+	第一步:定义锚点：
+		方式一：<a name="锚点名"></a>;
+		方式二：<标记 id="锚点名"></标记> 注意：id值必须以下划线，字母开头，不能包含中文
+	第二步：链接到锚点：<a href="#锚点名"></a>，这种方式锚点与链接必须在同一个页面
+	注意：如果使用a元素定义锚点，则可以使用name或id,其他元素必须使用id
+	跨页面跳转锚点：<a href="页面url#锚点名"></a>
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="1.jpg" alt="这是一张图片" width="200px" height="400px">
+	<br>
+	<a href="http://www.baidu.com" target="_blank">百度</a>
+	<a href="http://www.sina.com" target="_self">新浪</a>
+	<a href="1.jpg">下载</a>
+	<a href="html-day01-1.html">下载2</a>
+	<a href="mailto:11111@qq.com">电子邮箱</a>
+	<br>
+	<br>
+	<a href="#hhh">第一个锚点</a>
+	<a href="#a1">第二个锚点</a>
+	<a href="#a2">第三个锚点</a>
+	<a href="html-day02-1.html#div2">跨页面</a>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h1 id="hhh">这是第一个锚点</h1>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<a name="a1">这是第二个锚点</a>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<a name="a2">这是第三个锚点</a>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<a href="#">返回顶部</a>
+</body>
+</html>

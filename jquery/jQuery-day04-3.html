@@ -1,0 +1,48 @@
+<!--  
+传参
+	1、直接通过最简单的形参、实参
+	2、参数映射
+	直接传参，需要考虑参数的顺序，这种设置，不利于插件使用，我们可以通过参数映射的方式，将参数以一个对象的方式传入到插件中，这种方式，不需要考虑其顺序
+	3、默认参数
+	在某种情况下，有些参数不是必须的，此时就需要一组默认的参数值，当用户不传参时，就使用默认的值，当用户传参时，就使用用户设定的值替换默认值，这种情况，可以使用extend函数进行参数的合并
+
+	4、回调函数
+	插件接收的参数，其属性值可以是一个函数，该函数可以在插件调用，然后再绑定插件的地方进行声明，可以接收一些插件内部的传值，这叫回调函数
+
+	5、可指定的默认值
+	一个插件的默认值有时也可能发生改变，我们可以通过扩展实现指定对应的默认值
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="myPlugin.js"></script>
+</head>
+<body>
+	<div id="d1">12</div>
+	<div id="d2">222</div>
+	<script>
+		// $('#d1').myPlugin("2px","dotted","red");
+		
+		$('#d1').myPlugin({
+			bStyle:"dashed",
+			bColor:"blue",
+			bWidth:"20px"
+		});
+		$('#d2').myPlugin({
+			bWidth:"10px",
+			//回调函数
+			fun:function(t){
+				console.log(t);
+				return t;
+			}
+		},2);
+
+		var r = $.extend({name:"张三",age:20,sex:"男"},{name:"李四",sex:"女"});
+		console.log(r);//{name: "李四", age: 20, sex: "女"}
+	</script>
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<!-- 
+1.定位属性
+	position:relative(相对定位)/absolute(绝对定位)/fixed(固定定位);
+	1)相对定位
+	position:relative;
+	元素仍保持其原有的形状，元素定位前所占的位置仍保留，元素框会相对于其原来的位置偏移某个距离 
+	使用定位，除了要position属性外，还需要top,bottom,left,right属性配合使用，取值为尺寸单位。注意top和bottom,left和right的冲突关系。
+	相对定位，参照对象是自己原来的位置，比如：left:10px,元素会向右移10px。
+	2)绝对定位
+	将元素从普通文档流中完全移除，不占空间，使用偏移属性来固定元素的位置，绝对定位参照的是最近的拥有position属性的祖先元素；如果元素的所有祖先元素都未设置position属性，则他的位置会相对于它最初的包含框，比如body
+	语法：position:absolute;
+	left/right/top/bottom进行偏移
+	3)固定定位
+	将元素固定在页面的某个位置，元素从普通流中移除，不占空间，当用户滑动页面时，元素不会跟着移动
+	语法：
+	position:fixed;
+	left/right/bottom/top设置偏移
+2.堆叠顺序
+	一旦修改了元素的定位方式，则元素可能会发生堆叠，可以使用z-index属性来控制元素框的堆叠顺序
+	语法：
+	z-index:取值为整数，可以为负数;
+	取值越大表示其离用户越近，也就是最容易被用户看到，如果设置为负值，则表示离用户更远
+	该属性只能在有定位属性的元素中使用
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			border:1px solid red;
+		}
+		#box{
+			width:800px;
+			height:800px;
+			border:1px solid black;
+		}
+		.d1{
+			width:200px;
+			height:200px;
+			background-color: red;
+			position: relative;
+			top:20px;
+			left:20px;
+		}
+		.d2{
+			width:500px;
+			height:500px;
+			border:1px solid blue;
+			margin-top:20px;
+			/*position: relative;*/
+		}
+		.d3{
+			width:150px;
+			height: 150px;
+			background-color: orange;
+			position: absolute;
+			top:50px;
+			left:100px;
+			z-index: -1;
+		}
+		.d12{
+			width:600px;
+			height:600px;
+			border:2px solid green;
+			position: relative;
+		}
+		#fixedBox{
+			width:200px;
+			height:100px;
+			background-color: brown;
+			position: fixed;
+			top:200px;
+			right:20px;
+		}
+		.d4{
+			width:200px;
+			height:200px;
+			background-color: purple;
+			/*position: relative;
+			z-index: 1;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		afa
+		<div class="d1"></div>
+		afasdf
+		<div class="d12">
+			<div class="d2">
+				<div class="d3"></div>
+				<div class="d4"></div>
+			</div>
+		</div>
+	</div>
+	<div id="fixedBox"></div>
+</body>
+</html>

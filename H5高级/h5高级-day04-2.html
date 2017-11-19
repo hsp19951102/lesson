@@ -1,0 +1,93 @@
+<!--  
+目标元素事件
+	-dragenter：拖动的过程中，当鼠标进入目标元素区域时触发
+	-dragover：当源对象拖动到目标对象中时触发，会被持续触发
+	-drop：当拖动操作在目标元素中结束时触发
+	-dragleave：拖动操作离开目标元素时触发
+	注意：drop事件时，需要将所有相关的目标元素事件的默认行为取消
+	event.preventDefault()
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<style>
+		#d1{
+			width: 200px;
+			height: 200px;
+			background-color: gray;
+			/*position: absolute;*/
+			left: 10px;
+			top: 10px;
+		}
+		#d2{
+			width: 400px;
+			height: 400px;
+			border:1px solid red;
+		}
+		#img1{
+			display: block;
+			width: 100px;
+			/*margin-top: 220px;*/
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var div = document.getElementById('d1');
+			var leftX,topY;
+			div.addEventListener('dragstart',function(){
+				// 开始拖动时，记录鼠标距离事件源元素的坐标
+				leftX = event.offsetX;
+				topY = event.offsetY;
+			});
+			div.addEventListener('drag',function(){
+				// 拖动过程中，当前坐标，等于pageX-leftX
+				var left = event.pageX-leftX;
+				var top = event.pageY-topY;
+				this.style.left = left+"px";
+				this.style.top = top+"px";
+				console.log(event.offsetY);
+			});
+			div.addEventListener('dragend',function(){
+				var left = event.pageX-leftX;
+				var top = event.pageY-topY;
+				this.style.left = left+"px";
+				this.style.top = top+"px";
+			});
+
+			// 用于记录当前被拖动的对象
+			var dragElement = null;
+			var img = document.getElementById('img1');
+			img.addEventListener('dragstart',function(){
+				dragElement = $(this).clone()[0];
+			})
+			var div2 = document.getElementById('d2');
+			div2.addEventListener('dragenter',function(){
+				event.preventDefault();
+				console.log('有东西被拖入')
+			});
+			div2.addEventListener('dragover',function(){
+				event.preventDefault();
+				console.log('源对象已进入')
+			});
+			div2.addEventListener('drop',function(){
+				event.preventDefault();
+				console.log('放下');
+				// 当放下时，将当前拖动的对象直接添加到目标区域
+				this.appendChild(dragElement)
+			},false);
+			div2.addEventListener('dragleave',function(){
+				event.preventDefault();
+				console.log('元素被拖出')
+			})
+		}
+	</script>
+</head>
+<body>
+	<div id="d1" draggable='true'></div>
+	<img src="1.jpg" alt="" id="img1">
+	<div id="d2"></div>
+</body>
+</html>

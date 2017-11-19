@@ -1,0 +1,71 @@
+<!-- 
+一、赋值传递
+	指将实参值复制一份，传递给函数的形参
+	js中函数传递参数时，都是按值传递的，如果传递的是原始类型的数据，在函数中改变形参的值，不会影响实参，但是如果在函数中改变一个全局变量的值，则会在调用该函数后，影响该变量的值
+	注意：所有的形参都是局部变量，即使与全局变量重名
+二、函数作用域
+	与变量作用域一样，也分为“全局函数”和“局部函数”，全局函数就是在script中声明的，局部函数指在函数中声明的
+三、系统提供的全局函数
+	在ECMAScript中预定义了一些全局函数，我们可以直接使用：
+	parseInt();
+	parseFloat();
+	Number();
+	isNaN();
+	1.encodeURI与decodeURI函数
+	encodeURI函数用于对URI（统一资源标志符）进行编码，返回编码后的uri字符串；主要用于对中文和特殊字符进行编码
+	decodeURI是将encodeURI编码的字符串进行解码
+
+	2.eval()函数
+	该函数主要用于执行以string形式出现的js代码，使用此函数使js可以执行动态的js源代码
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function fun1(num1){
+			num1++;
+			console.log(num1);//11
+		}
+		var num1 = 10;
+		fun1(num1);
+		console.log(num1);//10
+
+		//如果在代码的任何一个地方对一个未声明的变量赋值，那么会默认在全局的第一行将该变量声明为全局变量
+		function fun2(){
+			n = 20;
+			console.log(n);//20
+		}
+		fun2();
+		s = 9;
+		console.log(n);//20
+		console.log(s);
+
+		//函数作用域
+		fun3();
+		function fun3(){
+			function fun4(){
+				console.log("局部函数");
+			}
+			fun4();
+		}
+		//fun3();
+		//fun4();//会报错，因为fun4是一个局部函数
+		
+		//encodeURI函数
+		var uri = "http://www.baidu.com/图片/风景图片";
+		var encode = encodeURI(uri);
+		console.log(encode);
+		var decode = decodeURI(encode);
+		console.log(decode);
+
+		//eval()函数
+		var e = prompt("请输入代码");
+		console.log(e);
+		eval(e);
+	</script>
+</body>
+</html>

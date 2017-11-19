@@ -1,0 +1,177 @@
+<!-- 
+3D转换
+	相当于在2D的环境中增加一个Z轴，注意3D转换中增加了一个perspective属性，该属性用于定义3D元素的距离，以像素记。其子元素会获得透视效果，而不是元素本身，只能影响3D转换元素，注意浏览器的兼容性
+	-webkit-：谷歌、Safari
+	-moz-:火狐
+	-o-:欧朋（Opera）
+	-ms-:IE
+	1)3D位移
+	可以改变元素在Z轴的位置
+	语法：
+	transform:translate3d(x,y,z);
+	或
+	transform:translateZ(z);
+	2)3D旋转
+	语法：
+	transform:rotateX(deg);
+	transform:rotateY(deg);
+	transform:rotateZ(deg);
+	3)3D缩放
+	语法：
+	transform:scaleZ(z);
+	transform:scale3d(x,y,z);
+	注意：scaleZ和scale3d函数单独使用没有效果，需要配合其他转换函数一起使用
+过渡
+	1）概念
+	使css属性的值在一定时间内平滑的变化，比如鼠标悬停背景色发生变化 
+	2）使用过滤的四要素
+	-指定过渡属性（哪个属性要用到过滤），比如background-color
+	-指定过渡时间，可以为秒(s)或毫秒(ms)
+	-指定过渡延迟时间，表示什么时候开始执行过渡
+	-触发过渡，通过用户行为触发过渡效果，比如悬停、单击
+	2）过渡属性
+	transition属性用于设置过渡
+	transition-property:指定过渡的css属性名;当设置多个属性过渡时，属性之间用逗号隔开
+	transition-duration:指定过渡时间;规定了过渡需要花费的时间，可以为s或ms
+	transition-timing-function:规定属性过渡效果的速度曲线(贝塞尔曲线)，取值可以为ease(默认值，慢速开始，快速变化，慢速结束)/linear(始终保持相同的速度)/ease-in(慢速开始，加速效果)/ease-out(有减速效果)/ease-in-out(慢速开始和结束，先加速后减速)
+	transition-delay:过渡延迟，即多长时间开始执行过渡，取值为s或ms
+	注意：不是所有的属性都可以设置过渡，可以设置的有：颜色属性、取值为数值的属性、转换属性、渐变属性、visibility、阴影属性
+	3)简写形式
+	transition:属性 过渡时间 过渡函数 延迟时间,属性 过渡时间 过渡函数 延迟时间...;
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			perspective: 200px;
+			/*-webkit-perspective:500px;*/
+		}
+		#d1{
+			width:200px;
+			height:200px;
+			background-color: orange;
+			margin:auto;
+			/*transform: translateZ(100px);*/
+			transform:translate3d(50px,50px,100px);
+		}
+		#d2{
+			width:200px;
+			height:200px;
+			background-color: blue;
+			margin:auto;
+			/*transform:rotateX(30deg);
+			transform: rotateY(30deg);
+			transform:rotateZ(30deg);*/
+			transform: rotateX(30deg) rotateY(30deg) rotateZ(30deg);
+		}
+		#d3{
+			width:200px;
+			height:200px;
+			background-color: green;
+			margin:auto;
+			-webkit-transform: rotateX(30deg) scaleZ(8);
+		}
+		#box1{
+			height:600px;
+			/*border:1px solid red;*/
+		}
+		#d4{
+			width:200px;
+			height:200px;
+			background-color: blue;
+			margin:auto;
+			transition-property: width,height;
+			transition-duration: 2s;
+			transition-timing-function: linear;
+			transition-delay: 2s;
+		}
+		#d4:hover{
+			width:400px;
+			height:500px;
+		}
+		#d5{
+			width:200px;
+			height:200px;
+			background-color: orange;
+			margin:auto;
+			transition:transform 3s ease,width 2s linear;
+		}
+		#d5:hover{
+			transform:rotate(360deg);
+			width:400px;
+		}
+		#d6{
+			width:800px;
+			height:600px;
+			border:1px solid blue;
+		}
+		#d6 div{
+			width:200px;
+			height:50px;
+			background-color: orange;
+			margin-top: 50px;
+		}
+		#d6 .div1{
+			transition:transform 3s ease;
+		}
+		#d6 .div2{
+			transition:transform 3s linear;
+		}
+		#d6 .div3{
+			transition:transform 3s ease-in;
+		}
+		#d6 .div4{
+			transition:transform 3s ease-out;
+		}
+		#d6 .div5{
+			transition:transform 3s ease-in-out;
+		}
+		#d6:hover div{
+			transform:translate(600px);
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="d1"></div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div id="d2"></div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div id="d3"></div>
+		<br>
+		<br>
+		<br>
+		<div id="box1">
+			<div id="d4"></div>
+		</div>
+		
+		<br>
+		<div id="d5"></div>
+		<br>
+		<br>
+		<div id="d6">
+			<div class="div1">ease</div>
+			<div class="div2">linear</div>
+			<div class="div3">ease-in</div>
+			<div class="div4">ease-out</div>
+			<div class="div5">ease-in-out</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+</body>
+</html>

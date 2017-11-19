@@ -1,0 +1,103 @@
+<!--  
+bootstrap栅格
+是bootstrap提供的一套响应式的，移动设备优先的流式网格系统，随着屏幕或视口尺寸的增加，横向将页面分为12等份，就形成了栅格系统，栅格由行和列组成
+栅格的行用row表示，列由col-尺寸类型-列宽组成
+栅格的列类型(通过class的值区分)
+-col-sm 一般用于平板，也就是屏幕尺寸大于768
+-col-xs 超小，一般用于手机，也就是屏幕小于768
+-col-lg 超大，pc端，大于1200像素的屏幕
+-col-md 中等，pc端，多用于992像素
+
+使用栅格
+1、首先拥有一个包含框，其class值为container或container-fluid
+-container：针对不同的屏幕尺寸，宽度做相应的修改，且两边留有空白，居中
+-container-fluid：完全充满（100%）
+2、数据行
+使用class=row的元素，表示栅格一行，必须包含在.container或.container-fluid中，在数据行中，需要包含列
+3、数据列
+使用class=col-xx-xx的元素表示数据列，栅格的内容应放在数据列中，并且，数据列只能放在数据行中;一行最多放12列，超出则换行
+列对应的class的最后部分表示列占的宽，比如col-md-1,表示中等尺寸，占1/12列宽，col-md-3 中等尺寸，占3个列宽；需要保证row中所有的col占得列宽不能超过12，否则换行
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Document</title>
+	<style>
+		.container{
+			background: gray;
+		}
+		.container-fluid{
+			background-color: orange;
+		}
+		.row{
+			min-height: 30px;
+		}
+		[class ^= 'col']{
+			height: 30px;
+			border:1px solid brown;
+		}
+
+		.test{
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-2"></div>
+			<div class="col-md-2"></div>
+			<div class="col-md-2"></div>
+			<div class="col-md-2"></div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<!-- 实现布局效果，1200以上，显示12个，992以上显示6个，768以上显示4个，768以下显示两个 -->
+	<div class="container test">
+		<div class="row">
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+			<div class="col-lg-1 col-md-2 col-sm-3 col-xs-6"></div>
+		</div>
+	</div>
+
+	<!-- 默认分左右两列，左侧表示主要内容，右侧表示侧边信息，当页面缩小到一定程度后，垂直排列 -->
+	<div class="container test">
+		<div class="row">
+			<div class="col-md-10"></div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<div class="container test">
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4"></div>
+		</div>
+	</div>
+
+	<!-- 照片墙，默认三行8列，缩小后，变6行4列，最后变12行，两列，图片居中，且相互之间有空隙 -->
+
+	<!-- <div class="container-fluid">123</div> -->
+</body>
+</html>

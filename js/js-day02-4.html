@@ -1,0 +1,101 @@
+<!-- 
+switch...case...语句
+	分支语句的一种，可以替换if...else if...else...中等值判断的情况，switch语句中的每一个分支case不允许重复，每一个case都需要用break来结束，如果遗漏break，会从第一个满足条件的case进入，直到遇见第一个break才会退出
+	语法：
+	switch(表达式/变量){
+		case 值1:
+			语句1;
+			...
+			break;
+		case 值2:
+			语句2;
+			...
+			break;
+		case 值3:
+			语句3;
+			...
+			break;
+		.....
+		default:
+			语句;
+			...
+	}
+	switch括号中的表达式结果可以是任何值
+	当case的值等于表达式的值时，会进入该分支
+	switch...case...只能用于处理是否等值的情况
+	任何的switch...case...语句都可以被if...else if...else...语句代替，但不是所有的if...else if...else...语句都能被switch...case...代替
+	switch...case...与if...else if...else...的区别
+	-if...else..语句应用范围广，可以判断等值与不等值的情况
+	-switch...case...语法结构清晰，但是只能判断等值的情况
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//switch...case...
+		var i = 2;
+		switch(i){
+			case 1:
+				console.log("第一项");
+				break;
+			case 2:
+				console.log("第二项");
+				break;
+			case 3:
+				console.log("第三项");
+				break;
+			default:
+				console.log("未知");
+		}
+		//车辆限号，一三五，尾号为奇数的不能跑，二四六，尾号为偶数的不能跑，周日不限
+		var week = prompt("请输入今天星期几");
+		switch(week){
+			case "星期一":
+				console.log("尾号奇数不能跑");
+				break;
+			case "星期二":
+				console.log("尾号偶数不能跑");
+				break;
+			case "星期三":
+				console.log("尾号奇数不能跑");
+				break;
+			case "星期四":
+				console.log("尾号偶数不能跑");
+				break;
+			case "星期五":
+				console.log("尾号奇数不能跑");
+				break;
+			case "星期六":
+				console.log("尾号偶数不能跑");
+				break;
+			case "星期日":
+				console.log("不限号");
+				break;
+			default:
+				console.log("不能识别");
+		}
+
+		switch(week){
+			case "星期一":
+			case "星期三":
+			case "星期五":
+				console.log("尾号奇数不能跑");
+				break;
+			case "星期二":
+			case "星期四":
+			case "星期六":
+				console.log("尾号偶数不能跑");
+				break;
+			case "星期日":
+				console.log("不限号");
+				break;
+			default:
+				console.log("不能识别");
+		}
+	</script>
+</body>
+</html>

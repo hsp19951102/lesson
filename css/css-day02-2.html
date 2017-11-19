@@ -1,0 +1,136 @@
+<!-- 
+1.群组选择器
+	由多个基础选择器组成，选择器之间用逗号隔开，所有选择器匹配的元素都使用该样式
+	语法：
+	选择器1,选择器2,...{
+		样式规则;
+		...
+	}
+	注意：群组选择器可以包含任何基础选择器
+2.后代选择器
+	依据元素在其位置的上下文关系来定义样式，又称为包含选择器，用于选择作为某元素的后代元素
+	语法：父元素对应的选择器 子元素对应的选择器
+	后代选择器包括直接子元素（直接嵌套在元素中）和间接子元素(嵌套在直接子元素中)，后代选择器中可以包含任何选择器
+3.直接子元素选择器
+	父元素对应的选择器>子元素对应的选择器
+4.伪类选择器
+	用于为某些选择器添加特效，使用冒号作为结合符，结合符前为要加特效的选择器名，冒号后为伪类名
+	-:link(未访问过的链接)
+	-:visited(访问过的)
+	-:hover(鼠标悬停在元素上)
+	-:active(被选择的元素)
+5.选择器的优先级
+	id>class>元素选择器>通过选择器
+	权值：
+	id选择器权值为100
+	class选择器权值为10
+	元素选择器权值为1
+6.!important规则
+	!important规则可以调整样式规则的优先级，将该字段添加在样式规则之后，中间用空格隔开，此时该样式优先级最高，也就是高于id
+
+7.如果某html文件样式较多或多个html文件可以共享同一批样式，则建议使用外部样式表
+如果想单独提高某元素的样式，可以使用内联
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.title{
+			background-color: orange;
+		}
+		#content{
+			background-color: blue;
+		}
+		.title,#content,span{
+			color:red;
+		}
+		div i{
+			color:blue;
+		}
+		div>i{
+			background-color: orange;
+		}
+		a:link{
+			color:red;
+		}
+		a:visited{
+			color:green;
+		}
+		a:hover{
+			color:orange;
+		}
+		a:active{
+			color:blue;
+		}
+		#div1{
+			width:200px;
+			height:200px;
+			background-color: red;
+		}
+		#div1:hover{
+			background-color: green;
+		}
+		#div1:active{
+			background-color: yellow;
+		}
+		#aaa{
+			color:red;
+		}
+		.bbb{
+			color:green;
+		}
+		.bbb b{/*权值为10+1*/
+			color:blue;
+		}
+		.bbb .ccc b{/*权值10+10+1*/
+			color:red;
+		}
+		.bbb p b{/*权值10+1+1*/
+			color:orange ;
+		}
+	</style>
+</head>
+<body>
+	<h1 class="title">大标题</h1>
+	<p id="content">这是一段文字</p>
+	<p>这是第二段文字</p>
+	<span>这是span</span>
+	<p>fadsfadfadsf; <i>这是第一个i</i></p>
+	<div>
+		<i>直接</i>
+		<h2>这是<i>h2</i></h2>
+		<p>这是p <i>元素</i></p>
+		<p>这是另一段文字</p>
+		<span>
+			<p>adfadf <i>倾斜</i></p>
+		</span>
+	</div>
+	<a href="http://www.baidu.com">百度一下</a>
+	<a href="http://www.sina.com">新浪</a>
+	<a href="http://www.51cto.com">51</a>
+	<a href="http://www.163.com">163</a>
+	<a href="http://www.126.com">126</a>
+	<div id="div1"></div>
+
+	<div id="aaa" class="bbb">
+		<p class="ccc">
+			<b>测试权值1</b>
+		</p>
+		<div>
+			<b>测试权值2</b>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

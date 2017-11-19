@@ -1,0 +1,99 @@
+<!--  
+1、可见性过滤选择器
+	-:hidden  匹配不可见的元素（dispaly:none;type=hidden;样式标记、script标记，以及头部的一些标记）
+	-:visible  匹配可见的元素
+
+2、属性过滤选择器
+	-[属性名] 匹配具有某属性的元素
+	-选择器[属性名] 先找到匹配选择器的所有元素，在从元素中找到匹配属性的元素
+	-[属性=值] 匹配属性等于某值的元素
+	-[属性 != 值] 匹配属性不等于某值的元素
+	-[属性 ^= 值] 匹配属性值以某字符串开头的元素
+	-[属性 $= 值] 匹配属性值以某字符串结尾的元素
+	-[属性 *= 值] 匹配属性值包含某字符串的元素
+3、子元素过滤选择器
+	-:first-child 获取第一个子元素
+	-选择器1 选择器2:first-child 首先找到匹配选择器1的所有元素，然后再这些元素的第一个子元素中找到匹配选择器2的子元素
+	-:last-child  获取最后一个子元素
+	-:nth-child(下标/even/odd)  获取指定下标位置的子元素，或者是下标为偶数或奇数的子元素
+	-:only-child  获取父元素中唯一的一个子元素
+4、表单属性过滤选择器
+	-:enabled  获取所有可用的表单元素
+	-:disabled 获取所有不可用的表单元素
+	-:checked  获取所有被选中的元素（单选和多选框）
+	-:selected 获取所有被选中的元素（下拉框）
+
+5、表单选择器
+	-:input   获取所有的表单元素（input、button、textarea、select）
+	-:text 获取所有的文本框
+	-:password
+	-:file 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script src="jquery-3.2.1.min.js"></script>
+	<style>
+		#d1{
+			/*display: none;*/
+		}
+		#d2{
+			visibility: hidden;
+		}
+		body div:first-child{
+			background: gray;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1">12</div>
+	<div id="d123"></div>
+	<div id="d234"></div>
+	<div id="d2"></div>
+	<input type="hidden" id="d">
+	<div>
+		<p class="p1">1</p>
+		<b></b>
+	</div>
+	<div id="d3">
+		<p class="p2"></p>
+	</div>
+	<input type="text" id="i2">
+	<input type="text" disabled="">
+
+	<input type="checkbox">
+	<input type="checkbox">
+	<input type="checkbox">
+	<button type="button" onclick="fun()">点击</button>
+	<textarea name="" id="" cols="30" rows="10"></textarea>
+	<select name="" id="">
+		<option value=""></option>
+	</select>
+	<script>
+		console.log($("body :hidden"));//body的子元素中不可见的
+		console.log($("div[id]"));
+		console.log($("[id=d1]"));
+		console.log($("[id ^= d1]"));
+		console.log($("[id $= 234]"));
+		console.log($("[id *= 1]"));
+		console.log($("body :first-child"));
+		console.log($("body #d2:first-child"));//找不到
+		console.log($("body :last-child"));
+		console.log($("body :nth-child(1)"));
+		console.log($("body :nth-child(even)"));
+		console.log($("body :only-child"))
+		console.log($(":enabled"))
+		console.log($(":disabled"));
+		console.log($(":checked"))
+		function fun(){
+			console.log($(":checked"))
+		}
+		console.log($(":input"))
+		console.log($(":text"));
+		console.log($("[type=text]"))
+	</script>
+</body>
+</html>

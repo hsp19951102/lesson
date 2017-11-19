@@ -1,0 +1,84 @@
+<!-- 
+栅格之间可以相互嵌套
+
+导航栏
+	一般作为网页的头部导航，是一个网站的必备控件
+	在bootstrap中，通过设置nav标记的class为navbar设置为一个导航条
+	再设置class为navbar-default生成一个默认的导航条
+响应式导航栏
+	当页面缩小时，导航内容部分，折叠成为一个菜单按钮，点击按钮，菜单下拉
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Document</title>
+	<style>
+		/*.navbar-nav{
+			float: right;
+		}*/
+		/*@media screen and (max-width: 767px){
+			.nav-header{
+				overflow: hidden;
+			}
+		}*/
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- 导航的头部，一般用于放网站logo及标题 -->
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand">扬州大学</a>
+			</div>
+			<!-- 导航列表， -->
+			<div>
+			<!-- 通过设置class，添加导航条相应的样式 -->
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">路南校区</a></li>
+					<li><a href="#">路北校区</a></li>
+					<li><a href="#">荷花池校区</a></li>
+					<li><a href="#">文汇路校区</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- 响应式导航栏 -->
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header" >
+				<!-- 响应式的导航头部，包含logo及用于折叠显示导航条的按钮 -->
+				
+				<!-- 
+				class = toggle作用是表示这是一个用于展开和收缩内容的按钮 
+				data-toggle属性属于自定义属性，表示其切换的效果
+				data-target:属于自定义是户型，表示被切换的目标元素，一般取值#id属性值，此处的id值需要与下面navbar-collapse元素的id值保持一致
+				-->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNav">
+					<!-- 三道杠 -->
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a href="#" class="navbar-brand">中企微云</a>
+			</div>
+			<!-- 
+			class=collapse表示该元素是一个可以折叠的框
+			class= navbar-collapse表示该元素是一个可以折叠的导航栏
+			 -->
+			<div class="collapse navbar-collapse" id="myNav">
+				<ul class="nav navbar-nav">
+					<li><a href="">导航栏一</a></li>
+					<li><a href="">导航栏二</a></li>
+					<li><a href="">导航栏三</a></li>
+					<li><a href="">导航栏四</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</body>
+</html>

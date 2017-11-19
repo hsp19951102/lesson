@@ -1,0 +1,72 @@
+<!-- 
+一、循环语句
+	循环就是重复执行相同的操作
+	1.while循环
+	语法结构：
+	while(表达式){
+		循环体;
+	}
+	表达式为true,则执行一次循环体的语句，执行完这些语句后，会再次判断表达式的值，如果依然为true，则继续执行循环体，直到表达式的值为false,则跳出循环，执行后续语句，注意，避免死循环
+	2.do...while
+	语法结构：
+	do{
+		循环体;
+	}while(表达式)
+	会先执行一次循环体，然后再判断表达式的值，如果为true，则再次执行循环体，如果为false，则跳出循环
+
+	while和do...while的区别，条件不满足时，while不会执行，而do...while会执行一次
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//打印1-100所有的数
+		var i = 1;
+		while(i<=100){
+			console.log(i);
+			i++;
+		}
+		//输入一周的气温，算出平均值
+		// var day = 1;
+		// var sum = 0;
+		// while(day<=7){
+		// 	var temperature = prompt("请输入第"+day+"天的温度");
+		// 	sum += parseFloat(temperature);
+		// 	day++;
+		// }
+		// console.log("平均温度"+parseInt(sum/7));
+		//打印1-100之间所有能被9整除的数
+		var a = 1;
+		while(a<=100){
+			if(a%9==0){
+				console.log(a);
+			}
+			a++;
+		}
+		//登录系统，要求用户先输入密码，如果不正确则提示用户重新输入，直到输入正确
+		var password = "123456";
+		var pwd;
+		do{
+			pwd = prompt("请输入密码！");
+		}while(pwd!=password)
+		//提示输入实付金额，如果实付金额小于应付金额，则提示重复输入
+		var yingfu = 200;
+		var shifu;
+		do{
+			shifu = prompt("请输入实付金额");
+		}while(shifu < yingfu)
+		//输出1-100的总和
+		var n = 1;
+		var result = 0;
+		while(n < 101){
+			result += n;
+			n++;
+		}
+		console.log(result);
+	</script>
+</body>
+</html>

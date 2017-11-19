@@ -1,0 +1,159 @@
+<!-- 
+CSS高级
+	一、选择器
+	1.兄弟选择器
+	两个同级别的元素，称为兄弟元素（有同一个父元素）
+	1)相邻兄弟选择器
+	用于匹配指定元素的相邻兄弟元素，只会给+后面的元素添加样式
+	语法：
+	选择器1+选择器2｛
+		样式规则;
+	｝
+	注意：只会考虑后面相邻的兄弟元素
+	2）通用兄弟选择器
+	匹配元素后面的所有兄弟元素，使用~进行连接
+	语法：
+	选择器1~选择器2{
+		样式规则;
+	}
+	二、多列
+	1）分割列
+	将元素分割成多列显示的内容
+	语法：column-count:正整数;
+	2)设置列间距
+	column-gap:尺寸单位;
+	设置列之间的间隔
+
+	补充：
+	处理浏览器兼容：
+	谷歌、Safari:-webkit-
+	火狐：-moz-
+	欧朋：-o-
+	IE:-ms-
+	三、转换
+	1）概念
+	转换就是元素改变形状、尺寸和位置的一种效果，也叫变形，可以向元素添加2D或3D转换，从而对元素进行旋转、缩放、移动和倾斜。
+	2D转换是在元素的X轴和Y轴进行变化，3D转换指元素还可以在Z轴进行变化 
+	2）转换属性
+	transform属性用于向元素添加2D或3D转换样式
+	语法：
+	transform:none/转换函数;
+	转换函数可以取值为多个，函数之间用空格隔开
+	转换函数的分类
+	3）2D位移
+	translate()：用于将元素从当前位置移动到指定位置
+	语法：
+	transform:translate(value);元素沿X轴移动
+	transform:translate(x,y);元素沿X轴和Y轴移动
+	transform:translateX(value);沿X轴
+	transform:translateY(value);沿Y轴
+	4）2D旋转
+	rotate()：用于旋转元素，根据原点按照顺时针给定的角度进行旋转，允许为负值，表示逆时针
+	语法：
+	transform:rotate(deg);deg表示角度
+	5）2D缩放
+	scale():根据给定的缩放比例改变元素的尺寸
+	语法：
+	transform:scale(value);在X轴与Y轴同时缩放
+	transform:scale(value1,value2);第一个值为X轴，第二个值为Y轴
+	注意：当scale取值小于1时，表示缩小，大于1时，表示放大
+	transform:scaleX(value);
+	transform:scaleY(value);
+	6)转换原点
+	transform-origin属性用来指定元素的转换原点位置，默认情况下原点为元素的中心点
+	语法：
+	transform-origin:value;x/y/z轴的点
+	transform-origin:value value;表示X轴和Y轴（2D转换）
+	transform-origin:x y z;三个轴
+	元素的左上角为（0，0）
+	7)2D倾斜
+	skew()：用于让元素倾斜，围绕X轴和Y轴，按照一定的角度倾斜，可能会改变元素的形状
+	语法：
+	transform:skew(x,y);取值为角度
+	transform:skewX(deg);
+	transform:skewY(deg);
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#d1+p{
+			color:red;
+		}
+		#d1~.p2{
+			background-color: orange;
+		}
+		#d2{
+			width:600px;
+			height:200px;
+			border:1px solid red;
+			column-count: 4;
+			-webkit-column-count:4;
+			column-gap:50px;
+		}
+		#d3{
+			width:200px;
+			height:200px;
+			background-color: blue;
+			/*transform: translate(100px);*/
+			/*transform:translate(200px,50px);*/
+			/*transform:translateX(50px);*/
+			/*transform:translateY(100px);*/
+			transform: rotate(-30deg);
+		}
+		#d4{
+			width:100px;
+			height:100px;
+			margin:auto;
+			background-color: orange;
+			margin-top: 100px;
+			/*transform:scale(2);*/
+			transform:scale(1.5,0.8);
+		}
+		#d5{
+			width:200px;
+			height:200px;
+			background-color: red;
+			margin:auto;
+			/*transform-origin: 20px;
+			transform:rotate(45deg);*/
+			/*transform-origin: 0px 50px;
+			transform:rotate(30deg);*/
+		}
+		#d6{
+			width:200px;
+			height:200px;
+			background-color: green;
+			margin:auto;
+			/*transform:skew(30deg,30deg);*/
+			/*transform:skewX(45deg);*/
+			transform:skewY(45deg);
+		}
+	</style>
+</head>
+<body>
+	<div id="d1">div1</div>
+	<p class="p1">p1</p>
+	<p class="p2">p2</p>
+	<span class="p2">span1</span>
+	<div id="d2">要闻江苏新闻35℃扬州
+	习近平沙场阅兵 号令解放军向世界一流军队进发习近平在庆祝建军90周年阅兵时的讲话	全景纪实 李克强：取缔“地条钢”要坚定不移推进国家安监总局原局长杨焕宁严重违纪被撤职
+	商务部：上半年中国企业非理性对外投资得到遏制普京宣布755名美国外交官必须离开俄罗斯委内瑞拉制宪大会选举结束 美称将对当选成员制裁国际泳联世锦赛落幕 中国12金收官列奖牌榜第2</div>
+	<div id="d3"></div>
+	<div id="d4"></div>
+	<br>
+	<div id="d5"></div>
+	<br>
+	<div id="d6"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!--  
+1、切割图形
+	通过clip()方法，可以切割画布中绘制的图形，该方法用于切割使用路径方式在画布中绘制的区域，所以在切割之前，必须先绘制图形
+
+2、画布相关方法
+	1）状态方法
+	状态方法只画布所处的形态，包含两个方法
+	-save()：保存当前画布的状态
+	-restore()：恢复画布之前保存的状态
+	save和restore是两个相互匹配的元素，用于保存和取出画布状态。当我们去改变画布的状态时（比如旋转），实际上我们只是想操作某一个元素，但经过状态改变后，会影响整个后续的内容，所以需要先保存之前的状态，再需要恢复的地方进行取出
+	2）转换方法
+	-rotate():旋转画布
+	-translate()：位移
+	-scale()：缩放画布
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="800px" height="320px" style="border: 1px solid red"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		context.rect(30,50,200,200);
+		context.stroke();
+		context.clip();//通过此操作，画布出去特定矩形区域外，均不会显示
+		context.fillStyle = "red";
+		context.fillRect(10,10,300,300);
+	</script>
+	<canvas id="canvas1" width="800px" height="320px" style="border: 1px solid black"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas1');
+		var context = canvas.getContext('2d');
+		context.rect(10,10,80,80);
+		context.stroke();
+		//状态发生改变之前，先保存画布的状态
+		context.save();
+		context.rotate(30*Math.PI/180);
+		context.fillRect(100,100,80,80);
+		//绘制完成之后，再取出之前保存的状态
+		context.restore();
+		context.fillStyle = "red";
+		context.fillRect(100,10,80,80);
+
+		context.save();
+		context.translate(30,40);
+		context.strokeStyle = "blue";
+		context.strokeRect(10,10,80,80);
+
+		context.restore();
+		context.strokeStyle = "green";
+		context.strokeRect(10,10,90,90);
+
+		context.save();
+		context.scale(2,2);
+		context.fillStyle = "blue";
+		context.fillRect(100,10,80,80);
+	</script>
+
+</body>
+</html>

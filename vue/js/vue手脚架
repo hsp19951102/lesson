@@ -1,0 +1,27 @@
+1、安装vue-cli
+	cnpm install vue-cli -g
+	更新vue-cli
+	cnpm update vue-cli
+2、在电脑某位置创建一个用于存放工程的文件夹，然后通过cd命令，进入该文件夹
+3、创建工程
+	vue init webpack-simple 工程名（不能是中文，不要有空格）
+4、使用cd命令，进入项目文件夹
+5、使用npm install命令安装依赖，不要使用cnpm
+6、使用npm run dev 命令运行项目
+
+7、.vue文件的介绍
+是vue的单文件组件，是一个独立的组件文件
+单文件组件的好处：
+-代码集中，便于开发和维护
+-可复用性高，可以直接将.vue文件拷贝到新项目
+
+.vue文件包含三个部分
+-template：组件对应的html模板，template标记必须有一个根标记
+-script：组件的数据及方法
+-style：组件的样式，如果style标记不设置scoped属性，则表示全局样式，会影响其他组件，添加scoped属性后，则表示属于该组件独立的样式
+
+8、安装路由模块
+	-使用命令：cnpm install vue-router --save
+	-创建路由js文件：router.js，并进行相关配置
+	-在main.js文件中引入路由
+	-在需要路由的地方，设置连接和出口

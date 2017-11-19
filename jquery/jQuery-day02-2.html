@@ -1,0 +1,82 @@
+<!--  
+1、判断是否有某样式
+	语法：hasClass('class值');其结果是一个bool值，如果有这个class，则返回true，否则返回fasle
+2、读取css样式属性的值
+	语法：jq对象.css('样式属性名');
+3、设置css属性
+	-设置一个样式属性
+	jq对象.css("属性名","属性值");
+	-设置多个样式属性
+	jq对象.css({"属性名":"属性值","属性名":"属性值"});
+	属性和属性值之间用冒号隔开，多个样式之间用逗号隔开
+
+	注意，通过css方法添加的样式，都是内联样式
+
+4、遍历节点
+	-children()  获取直接子节点
+	-children("选择器") 获取子节点中匹配选择器的元素
+	-next()       获取下一个兄弟节点
+	-next('选择器') 获取下一个兄弟节点且满足选择器的元素，只考虑紧邻的
+	-prev()    获取上一个兄弟节点
+	-prev('攒则其')  获取上一个兄弟节点且满足选择器的元素
+	-siblings()  获取其他兄弟节点
+	-find('选择器')  查找子节点中能够匹配选择器的元素，包含直接和间接
+	-parent()   父节点，只往上找一层
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<style>
+		#d1{
+			width: 100px;
+			background: red;
+			margin-top: 10px;
+		}
+		#d{
+			width: 0px;
+			height: 0px;
+			border-left: 40px solid black;
+			border-top: 40px solid red;
+			border-right: 40px solid orange;
+			border-bottom: 40px solid blue;
+			/*border-radius: 40px;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="d"></div>
+	<div id="d1" class="c1" style="color: red;">1212 </div>
+	<div id="d2">
+		<div class="c2"></div>
+		<p><span class="c2"></span></p>
+	</div>
+	<p class="p1"></p>
+	<script>
+		console.log($('#d1').hasClass('c2'));
+		console.log($('#d1').css('color'));
+		console.log($('#d1').css('width'));
+		console.log($('#d1').css('marginTop'));
+		console.log($('#d1').css('margin-top'));
+		$('#d1').css("border","1px solid blue");
+		$('#d1').css({"font-size":"20px","color":"white"});
+
+		console.log($('#d2').children());
+
+		console.log($('#d2').children('p'));
+
+		console.log($('#d1').next());
+		console.log($('#d1').next('p'));
+
+		console.log($('#d1').prev());
+
+		console.log($('#d1').siblings());
+
+		console.log($('#d2').find('.c2'));
+
+		console.log($('.c2').parent())
+	</script>
+</body>
+</html>

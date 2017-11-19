@@ -1,0 +1,148 @@
+<!--  
+1、事件坐标
+	event对象记录了事件发生时鼠标的位置
+	-clientX/y、clientY/y，表示鼠标相对于浏览器显示区域的坐标位置
+	-pageX、pageY 相对于页面左上角的位置
+	-screenX/screenY 相对于屏幕的位置
+	-offsetX/offsetY 相对于目标元素左上角的坐标位置
+
+2、页面滚动的事件
+	通过window.onscroll进行滚动事件的监听
+
+3、事件的内存与性能
+	页面中绑定的事件处理函数的数量，会影响页面性能，也就是触发函数越多，消耗的内存就会增加，页面有时会出现卡顿；我们可以利用冒泡的性能对其进行优化
+
+	html中每个元素的事件处理函数，在元素被释放（移除）后，该函数不会被移除；所以需要在移除元素之前，先移除其绑定的事件
+
+	移除事件的方法：
+	-在html标记中使用事件属性绑定函数，这种方式不能被移除
+	-在js中使用对象属性绑定的方式，可以移除
+	例如：
+	div.onclick = function(){}
+	移除：div.onclick = null;
+	-通过addEventListener，如果使用匿名函数的方式，则无法移除
+	例如：
+	div.addEventListener('click',function(){},false);该方式不能被移除
+	div.addEventListener('click',fun,false);
+	div.removeEventListener('click',fun,false);移除事件
+4、addEventListener的特性
+	该方式，可以给一个事件同时绑定多个监听函数，触发时，会依次调用绑定的函数
+5、onload函数
+	通过window.onload = function(){};
+	该方式的意思是，在页面所有的元素加载完毕后，以及该页面所依赖的其他文件都完全加载以后，再执行onload函数；
+	注意，一个文档只能有一个onload
+6、常见的事件
+	click（单击） dblclick(双击) mousedown(鼠标被按下) mouseup（鼠标弹起） mouseenter(鼠标移入) mouseout(鼠标移出元素) mouseover(鼠标进入) mousemomve（鼠标在元素中移动） keyup（键盘按下） keydown keypress change(下拉框发生改变)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#d1,#d2{
+			width: 200px;
+			height: 200px;
+			background: gray;
+			margin: 10px;
+		}
+	</style>
+	<script>
+		
+		window.onload = function(){
+			var div1 = document.getElementById('d1');
+			console.log(div1);
+			div1.onmousemove = function(){
+				console.log("=-=-=")
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="d1" onclick="fun(event)" ></div>
+	<script>
+		function fun(event){
+			console.log(event.clientX,event.clientY);
+			console.log(event.pageX,event.pageY);
+			console.log(event.screenX);
+			console.log(event.offsetX);
+		}
+	</script>
+	<!-- 当页面滚动到一定程度后，显示回到顶部功能 -->
+	<style>
+		body{
+			height: 2000px;
+		}
+		#top{
+			position: fixed;
+			bottom: 100px;
+			right: 0;
+			display: none;
+		}
+	</style>
+	<div id="top">
+		<a href="#">回到顶部</a>
+	</div>
+	<script>
+		//首先添加滚动监听
+		window.onscroll = function(){
+			// 首先获取滚动的距离
+			var top  = document.documentElement.scrollTop || document.body.scrollTop;
+
+			var toTop = document.getElementById('top');
+			//当滚动200px时，显示回到顶部
+			console.log(top);
+			if (top>=200) {
+				toTop.style.display = "block";
+			}else{
+				toTop.style.display = "none";
+			}
+		}
+	</script>
+	<div id="d2">2</div>
+	<script>
+		var d2 = document.getElementById('d2');
+		d2.addEventListener('click',fun1,false);
+		d2.addEventListener('click',fun2,false);
+		function fun1(){
+			console.log("11111");
+		}
+		function fun2(){
+			console.log("22222");
+		}
+	</script>
+	<style>
+		#d3{
+			width: 800px;
+			height: 600px;
+			border: 1px solid black;
+			position: relative;
+		}
+		#d4{
+			width: 40px;
+			height: 40px;
+			background: red;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+	<div id="d3" onmousemove="move(event)">
+		<div id="d4"></div>
+	</div>
+	<script>
+		var	d4 = document.getElementById('d4');
+		function move(event){
+			if (event.target == d4) {
+				return;
+			}
+			var x = event.pageX;
+			var y = event.offsetY;
+			console.log(x,y);
+			d4.style.left = x+'px';
+			d4.style.top = y+'px';
+			console.log(d4);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!--  
+flex布局
+	1、简介
+	flex布局，是flexible box的缩写，意思是弹性布局，比传统的盒子模型更加灵活，当一个元素使用了flex属性后，起子元素上的float、clear、vertical-align将不会起作用；任何一个元素都可以设置为flex布局
+	语法：
+	div{
+		display:flex;
+	}
+	兼容性：
+	div{
+		display:-webkit-flex;
+	}
+	2、基础概念
+	设置了flex样式的元素，称之为flex容器，其所有的子元素称之为项目
+	容器默认存在两根轴（x、y），主轴(x轴)的开始位置称之为main-start、结束位置叫main-end，交叉轴（y轴）起始的位置称之为cross-start，结束位置称之为cross-end；项目默认沿着主轴进行排列（默认水平排列），单个项目占据的主轴空间叫做main-size、占据交叉轴的空间叫cross-size
+	3、容器属性
+	设置了flex的元素，常用属性有：
+	1）flex-direction
+	该属性用于设置主轴的方向，也就是项目排列的方向，其取值可以有以下四个
+	-row：默认值，水平排列，从左往右排
+	-column：垂直方向，从上往下排
+	-row-reverse：水平，从右往左
+	-column-reverse：垂直，从下往上
+	2）flex-wrap
+	用于设置是否允许项目换行，取值：
+	-nowrap：默认，不换行，当宽度不够时，项目会缩小
+	-wrap：换行，第一行在上
+	-wrap-reverse 换行，第一行在下
+	3）flex-flow
+	该属性是flex-direction和flex-wrap的简写形式，默认值是row nowrap
+	4）justify-content
+	该属性定义了项目在主轴上的对齐方式，其取值：
+	-flex-start：默认值，主轴的起始位置
+	-flex-end：右对齐，主轴的结束位置
+	-center：居中，主轴的中心位置
+	-space-between：沿主轴两端对齐，项目之间的间距相等，适用于多个项目
+	-space-around：每个项目两侧间距相等，项目间的空隙要大于项目与边框的间距
+	5）align-items
+	该属性定义了项目在交叉轴上的对齐方式，其取值：
+	-flex-start：默认值，交叉轴的起始位置
+	-flex-end：交叉轴的结束位置
+	-center：交叉轴的中心
+	-space-between：沿交叉两端对齐，项目之间的间距相等，适用于多个项目
+	-space-around：每个项目两侧间距相等，项目间的空隙要大于项目与边框的间距
+	6）align-content
+	该属性定义了多行项目时，与交叉轴的对齐方式，其取值
+	-flex-start：交叉轴的起点
+	-flex-end：交叉轴的终点
+	-center：交叉轴中心
+	-space-between：沿交叉两端对齐，每行之间的间距相等，适用于多行
+	-space-around：每行两侧间距相等，行间的空隙要大于项目与边框的间距
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			display: flex;
+			display: -webkit-flex;
+			border: 1px solid red;
+			/*flex-direction: column;*/
+			/*flex-direction: row-reverse;*/
+			/*flex-direction: column-reverse;*/
+
+			/*flex-wrap: wrap;*/
+			flex-wrap: wrap-reverse;
+			justify-content: space-between;
+		}
+		.item{
+			width: 200px;
+			height: 100px;
+			background: gray;
+			margin: 10px;
+			color: white;
+			font-size: 20px;
+		}
+		.box1{
+			display: flex;
+			border: 1px solid red;
+			/*justify-content: flex-end;*/
+			/*justify-content: center;*/
+			/*justify-content: space-between;*/
+			justify-content: space-around;
+			/*align-items: flex-end;*/
+			align-items: center;
+			height: 300px;
+		}
+		.box2{
+			display: flex;
+			flex-direction: column;
+			border: 1px solid red;
+			/*justify-content: flex-end;*/
+			/*justify-content: center;*/
+			/*justify-content: space-between;*/
+			justify-content: space-around;
+			align-items: flex-end;
+			height: 500px;
+		}
+		.box3{
+			display: flex;
+			border: 1px solid red;
+			height: 800px;
+			width: 600px;
+			flex-wrap: wrap;
+			align-content: flex-end;
+			/*align-content:center;*/
+			align-content: space-around;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="item">1</div>
+		<div class="item">2</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+		<div class="item">5</div>
+		<div class="item">6</div>
+	</div>
+	<div class="box1">
+		<div class="item">123</div>
+	</div>
+	<div class="box1">
+		<div class="item">123</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+	</div>
+	<div class="box2">
+		<div class="item">123</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+	</div>
+	<div class="box3">
+		<div class="item">123</div>
+		<div class="item">3</div>
+		<div class="item">4</div>
+
+	</div>
+</body>
+</html>

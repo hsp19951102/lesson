@@ -1,0 +1,138 @@
+<!-- 
+一、视频处理
+	1、简介
+	H5新增了用于视频处理的元素，可以播放本地和网页上的视频资源
+	2、video元素
+	video元素用于播放视频，在h5中，支持mp4和ogg格式，该元素是一个行内块级元素，可以设置宽高
+	语法：
+	<video src=""></video>
+	src表示要播放的本地视频或网络视频的路径
+	常用属性
+	src：视频路径
+	autoplay：自动播放，不需要属性值
+	controls：显示播放相关的控件，比如播放、暂停按钮、音量调节等
+	width/height:设置宽高
+	poster:用于设置视频播放前显示的封面,取值为路径
+	preload：该属性用于设置视频的缓存方式，取值：none(不缓存)/metadata(播放前只加载视频的宽高及其他相关信息)、auto(尽可能快的加载视频)
+	loop：设置循环播放，不需要属性值
+
+	3、通过编程实现视频播放
+		1）事件
+		-canplaythrough：当整个视频可以顺利播放时，会触发该事件
+		-canplay：不考虑整体状态，只要视频加载了一定的可以播放的视频流，就会触发
+		-ended：视频播放到末尾时触发，注意设置loop时，不触发
+		-pause: 暂停
+		-play：开始播放时触发
+		2）处理方法
+		-play()  播放视频
+		-pause() 暂定播放
+		-load()   加载视频
+		3）video对象的属性
+		-paused: 视频是否处于暂停状态，如果暂停，则为true
+		-ended：是否播放结束
+		-duration：获取视频的总时长
+		-currentTime：当前播放的位置
+		-volume：获取/设置视频的音量取值0-1
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<video src="1.mp4" autoplay="" controls="" width="400px" height="400px" loop=""></video>
+	<video src="1.mp4" controls="" width="400px" height="400px" poster="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1798203804,1445173353&fm=11&gp=0.jpg"></video>
+	<video src="1.mp4" width="200px" height="200px" controls="" id="video"></video>
+	<br>
+	<input type="button" value="播放" onclick="start()">
+	<input type="button" value="暂停" onclick="stop()">
+	<script>
+		var video = document.getElementById('video');
+		video.addEventListener('canplaythrough',function(){
+			console.log("你可以开心的看视频了")
+		});
+		video.addEventListener('canplay',function(){
+			console.log('你可以看一点点')
+		});
+		video.addEventListener('ended',function(){
+			console.log('视频播放结束')
+		});
+		video.addEventListener('pause',function(){
+			console.log('视频暂停')
+		});
+		video.addEventListener('play',function(){
+			console.log('视频播放')
+		});
+
+		function start(){
+			video.play();
+			console.log(video.paused);
+			console.log(video.duration);
+			console.log(video.currentTime);
+			console.log(video.volume);
+			video.volume = 0.1;
+		}
+		function stop(){
+			video.pause();
+			console.log(video.paused)
+		}
+	</script>
+	<br>
+	<!-- 实现一个自己的播放器 -->
+	<style>
+		#screen{
+			width: 400px;
+			height: 300px;
+			border: 1px solid red;
+			position: relative;
+		}
+		#myBtn{
+			position: absolute;
+			width: 80px;
+			height: 80px;
+			left: 160px;
+			top: 110px;
+			background-image: url(play.jpg);
+			background-size: 100% 100%;
+		}
+	</style>
+	<script src="jquery-3.2.1.min.js"></script>
+	<div id="screen">
+		<video src="1.mp4" width="400px" height="300px" id="myVideo" poster="1.jpg"></video>
+		<input type="button" id="myBtn" onclick="playVideo()">
+	</div>
+	<script>
+		var myVideo = document.getElementById('myVideo');
+		function playVideo(){
+			if (myVideo.paused) {
+				myVideo.play();
+				$('#myBtn').css('display','none')
+			}else{
+				myVideo.pause();
+				$('#myBtn').css({'display':'block',"background-image":"url(play.jpg)"});
+			}
+			
+		}
+		$(myVideo).on('mouseover',function(){
+			//鼠标移入时，如果视频在播放，则显示暂停按钮
+			if (!myVideo.paused) {
+				$('#myBtn').css({'display':'block',"background-image":"url(pause.jpg)"});
+			}
+		});
+		$(myVideo).on('mouseleave',function(){
+			if (!myVideo.paused) {
+				$('#myBtn').css('display','none')
+			}
+		});
+		$('#myBtn').on('mouseover',function(){
+			if (!myVideo.paused) {
+				$('#myBtn').css({'display':'block',"background-image":"url(pause.jpg)"});
+			}
+		});
+		myVideo.addEventListener('ended',function(){
+			$('#myBtn').css({'display':'block',"background-image":"url(play.jpg)"});
+		})
+	</script>
+</body>
+</html>

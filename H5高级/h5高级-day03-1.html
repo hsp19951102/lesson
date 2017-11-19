@@ -1,0 +1,59 @@
+<!--  
+canvas处理图片的绘制
+	1、绘制图像
+	使用drawImage()方法进行图片的绘制
+	语法：
+	-context.drawImage(图片对象,x,y);
+	image可以是img元素，也可以说video元素，也可以是js中的image对象
+	-context.drawImage(图片对象,x,y,width,height)
+	2、平铺图像
+	所谓平铺就是让图片能够按照一定比例进行缩放，以充满画布
+	一可以使用drawImage，让 图片的尺寸等于画布的尺寸
+	二是使用createPattern()方法
+	语法：
+	context.createPattern(图片对象,平铺类型);
+	平铺类型取值：no-repeat(不平铺)/repeat-x(水平方向平铺)/repeat-y(垂直方向平铺)/repeat(平铺)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#canvas{
+			border:1px solid black;
+		}
+	</style>
+</head>
+<body id="body">
+	<img src="1.jpg" width="100px" alt="" id="pic">
+	<canvas id="canvas" width="900px" height="800px"></canvas>
+	<script>
+		var img = document.getElementById('pic');
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		//图片加载完成后再进行绘制，以保证操作有效性
+		// img.onload = function(){
+		// 	context.drawImage(img,10,10);
+		// }
+
+		// var img1 = new Image()
+		// img1.src = "play.jpg";
+		// img1.onload = function(){
+		// 	context.drawImage(img1,10,300,200,200)
+		// }
+		
+		img.onload = function(){
+			// 首先创建pattern
+			var pattern = context.createPattern(img,"repeat");
+			//设置画布的fillStyle为pattern
+			context.fillStyle = pattern;
+			//绘制图形
+			context.fillRect(0,0,400,400);
+
+			context.clearRect(10,10,80,80);
+		}
+		
+	</script>
+</body>
+</html>

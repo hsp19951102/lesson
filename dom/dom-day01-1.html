@@ -1,0 +1,38 @@
+<!-- 
+DOM
+通过ja访问html中的元素（节点），获取或者设置元素的内容，实现html页面的动态化。
+
+一、document
+	每一个html文档被执行时，都会默认生成一个document对象，通过该对象，可以访问文档中所有的节点信息
+	document是一个html文档的根节点
+二、DOM树
+	一个html文档由多个节点组成，其中document是根节点，由根节点依次进行子节点的分布，类似一个树状结构，称之为DOM树，document包含的节点有：元素节点、属性节点、文本节点、注释节点
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			background: gray;
+			margin: 30px;
+			border: 2px solid red;
+			padding: 20px;
+			display: inline-block;
+		}
+		.c1{
+			height: 100px;
+			padding-top: 120px;
+		}
+	</style>
+</head>
+<body>
+	<div>12
+	3</div>
+	<!-- 这是c1 -->
+	<div class="c1"></div>
+</body>
+</html>

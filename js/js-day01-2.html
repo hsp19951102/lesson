@@ -1,0 +1,80 @@
+<!-- 
+一、变量
+	1.概念
+	变量是存储信息的容器，比如我们在数学中使用x代表一个值，在js中这些字母或单词被称为变量
+	2.变量的声明
+	变量的声明，作用在于创建一个可以存储数据的容器
+	使用关键字var声明变量
+	语法：
+	var 变量名;
+	比如：var name;
+	注意变量名的命名规范：不允许使用关键字和保留字作为变量名（关键字：break/delete/for/new/throw/void/case/do/functioin/null/true/while/catch/else/if/return/try/with/continue/false/in/switch/default/undefined/var/this/typeof/finally/instanceof...保留字：class/int/float/double....）
+	变量名可以包含字母、数字、下划线、美元符号($),且不能以数字开关，要尽量做到见名知意
+	3.变量的赋值
+	通过=给变量进行赋值
+	语法：
+	var 变量名 = 值;
+	比如：var name = "张三";//值为字符串
+		var age = 20;//值为数值
+		var height = 1.68;//值为小数
+	可以在一行同时声明多个变量，变量之间用逗号隔开
+	var name,age,sex;
+	变量可以先声明再赋值
+	var name;
+	name = "张三";
+	也可以声明的同时进行赋值
+	var age = 20;
+	一行声明多个变量时，可以给某个变量单独赋值
+	var name,age,sex="男";
+	如果打印一个未赋值的变量，则结果为undefined
+	4.使用变量
+	同一个变量名，只需要声明一次
+	使用变量前先初始化，也就是需要声明和赋值
+	如果使用了未声明的变量，则会报错，如果变量使用前未赋值，则输出结果为undefined
+	5.变量值的存取
+	一旦声明了变量，则可以在任何地方对变量进行存(赋值)和取(使用变量的值)
+二、常量
+	1.概念
+	常量指的是值不能被改变的量，使用const关键字进行声明，习惯上会以大写字母命名
+	语法：
+	const 常量名;
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var 123;//错误
+		// var abc;//正确
+		// vqr aaa;//错误，变量需要用var声明
+		// var 1name;//错误
+		// var float;//错误，float为保留字
+		// var name;//正确
+		// var default;//错误，default为关键字
+		// var n_2;//正确
+		// var $score;//正确
+		// var _age;//正确
+		var age;
+		console.log(age);
+		var name = "张三";
+		console.log(name);
+		name = "李四";
+		console.log(name);
+		var age;
+		var age1;
+		age = 20;
+		console.log(age);
+		age1 = age;//此处把age的值赋给了age1
+		console.log(age1);
+		var sex = "女";
+		var Sex = "未知";
+		console.log(sex,Sex);
+		const PI = 3.14;
+		//PI = 2;//不能改变常量的值
+		console.log(PI);
+	</script>
+</body>
+</html>

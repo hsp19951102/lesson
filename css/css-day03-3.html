@@ -1,0 +1,171 @@
+<!-- 
+table的css属性
+	margin/padding/文本格式化/width/height/背景属性/border
+	1.table特有的属性
+	1）垂直对齐方式：
+	vertical-align:top/middle/bottom;
+	2)边框合并
+	border-collapse:separate(不合并，默认值)/collapse(合并);
+	3)边框边距
+	border-spacing:尺寸单位;
+	取值可以为一个值或两个值，一个值时表示同时应用于水平和垂直方向，两个值时，第一个表示设置水平方向，第二个表示设置垂直方向
+	注意：当我们设置了边框合并属性，边框边距属性会被忽略
+	4)是否显示空白列
+	empty-cells:hide(隐藏)/show(显示);
+	注意：当我们设置边框合并时，显示空白列也会被忽略
+	5)标题位置
+	caption-side:top(上部)/bottom(下部)
+	6)显示规则
+	设置表格的列宽是否自动设置
+	语法：
+	table-layout:auto/fixed;
+	-auto:列宽由单元格的内容决定，是默认值，也叫自动表格布局
+	-fixed:列宽由表格宽度和表格高度决定，也就是固定表格布局
+显示
+	1.显示方式
+	一切皆为框，页面上所有的元素都可以显示为框
+	块级元素：占一行，div/p/h1-h6/table/ol/ul/form/hr
+	行内块级元素：img
+	行内元素：span/a
+	2.改变显示规则
+	我们可以通过样式属性来改变元素的显示类型
+	语法：
+	display:none(不显示)/block(块级元素)/inline-block(行内块级元素)/inline(行内元素)
+	3.显示效果
+	用于设定元素是否可见
+	语法：
+	visibility:visible(可见，默认值)/hidden(隐藏)/collapse(用于表格元素，删除某一行或某一列，不影响表格布局)
+	注意：display:none;和visibility:hidden;的区别，display消失后不占空间，visibility显示后仍占空间
+	4.透明度
+	语法：
+	opacity:小数（0-1之间的小数，0表示透明，1表示不透明）;
+	注意：子元素会继承父元素的透明效果，子元素opacity效果相当于父元素opacity值*子元素opacity值，子元素opacity值为1时，与父元素的透明效果相同，小于1时，会进一步透明
+	IE浏览器：
+	filter:alpha(opacity=值);值为0-100
+光标
+	默认情况下，光标会根据用户的操作发生改变，比如鼠标悬停在超链接上时，会显示为一个小手，在文本上时会显示为I，我们可以通过css样式改变光标的显示风格
+	语法：
+	cursor:default(默认值)/pointer(手)/crosshair(十字架)/text(I)/wait(沙漏或转圈)/help(问号或气球)
+列表css样式
+	1）列表项标志
+	语法：
+	list-style-type:
+	取值：有序：decimal(数字)/none(无列表项标志)/upper-roman(大写罗马数字)/lower-roman(小写罗马数字)
+	无序：disc(实心圆)/circle(空心圆)/square(实心矩形)/none(无列表项标志)
+	2)列表项图片
+	语法：
+	list-style-image:url(图片路径);
+	设置该属性要注意图片的大小
+	3）列表项标志位置
+	语法：
+	list-style-position:outside(默认值，标志位于文本之外)/inside(标志位于文本内)
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		table{
+			border:1px solid black;
+			border-collapse: collapse;
+			/*border-spacing: 20px;*/
+			border-spacing: 5px 20px;
+			empty-cells:hide;
+			caption-side: bottom;
+			width:400px;
+			height:100px;
+			table-layout: fixed;
+		}
+		td{
+			border:1px solid black;
+		}
+		.div1{
+			width:200px;
+			height:200px;
+			background-color: orange;
+			display: none;
+		}
+		.s1{
+			background-color:blue;
+			width:100px;
+			height:100px;
+			display:block;
+			/*visibility: hidden;*/
+			cursor:pointer;
+		}
+		.s2{
+			background-color: red;
+			cursor:wait;
+		}
+		.san{
+			visibility: collapse;
+		}
+		.div2{
+			width:200px;
+			height:200px;
+			background-color: red;
+			opacity:0.7;
+			filter:alpha(opacity=70);
+			cursor:crosshair;
+		}
+		.div3{
+			width:120px;
+			height:120px;
+			background-color:blue;
+			opacity:0.5;
+		}
+		.u1{
+			list-style-type:circle;
+			border:1px solid red;
+			list-style-position: inside;
+		}
+		.u1 li{
+			border:1px solid blue;
+		}
+		.u2{
+			list-style-image:url(1.jpg);
+		}
+		
+	</style>
+</head>
+<body>
+	<table>
+		<caption>表格标题</caption>
+		<tr>
+			<td>姓名</td>
+			<td>性别</td>
+			<td>年龄</td>
+			<td>地址</td>
+		</tr>
+		<tr class="san">
+			<td>张三三</td>
+			<td>男</td>
+			<td></td>
+			<td>江苏</td>
+		</tr>
+		<tr>
+			<td>李四</td>
+			<td></td>
+			<td>22</td>
+			<td>浙江</td>
+		</tr>
+	</table>
+	<div class="div1">这是一个div</div>
+	<span class="s1">这是span</span>
+	<span class="s2">这是第二个span</span>
+	<div class="div2">
+		<div class="div3"></div>
+	</div>
+	<ul class="u1">
+		<li>111</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+	<ul class="u2">
+		<li>aaa</li>
+		<li>bbb</li>
+		<li>ccc</li>
+	</ul>
+</body>
+</html>

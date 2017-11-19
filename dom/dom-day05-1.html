@@ -1,0 +1,96 @@
+<!-- 
+一、location对象
+	该对象包含了有关当前URL的信息，多用于获取和改变当前浏览器的网址，也可用于页面之间的传值
+	常用属性：
+	-href：设置或获取当前页面的URL
+	-hash：设置或获取从#往后的内容，包含#
+	-host：设置或返回当前URL的主机名和端口号
+	-hostname:获取或设置主机名
+	-pathname：获取路径部分
+	常用方法
+	-reload()：重新加载页面，也就是刷新
+二、event对象
+	1、概念
+	当用户与web页面进行某些交互时，解释器会创建与之对应的event对象，用于描述事件信息，常见事件有：单击、双击、键盘按下、键盘弹起等
+	2、事件触发函数
+	当事件发生时所调用的函数，就叫触发函数，也就是用户执行某个操作时所调用的函数
+	3、事件的处理
+	1）事件的定义
+	事件定义就是给某个元素绑定事件
+	给元素设置事件监听函数的方法有
+	-直接在html标记中使用元素的事件属性
+	-在js中为元素的事件属性赋值
+	-使用对象.addEventListener('事件名',触发函数,bool)
+	第一个参数是事件名，第二个参数是函数或函数名，第三个参数表示是否在捕获阶段触发函数，取值为true或false
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 跳转到锚点 -->
+	<a href="#m1">跳转</a>
+	<!-- 设置一个锚点 -->
+	<a name="m1">锚点</a>
+	<input type="button" value="获取" onclick="fun()">
+	<input type="button" value="跳转" onclick="fun1()">
+	<script>
+		//获取当前页面的url
+		var i=5;
+		for (var j = 0; j <5; j++) {
+			i++;
+		}
+		var url = location.href;
+		console.log(url);
+		function fun(){
+			var h = location.hash;
+			console.log(h);
+		}
+		// 页面间传值
+		function fun1(){
+			var newsID = 123;
+			// location.href = "a.html";
+			// 如果需要传值，则在html之后加?参数名=参数值即可
+			// 多个参数传递：xx.html?a=1&b=2&c=3
+			location.href = "a.html#"+i+"";
+		}
+	</script>
+	<!-- 事件绑定 -->
+	<!-- 方式一,在标记中使用事件属性 -->
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+			background: gray;
+		}
+	</style>
+	<div onclick="fun2()">方式一</div>
+	<div id="d1">方式二</div>
+	<div id="d2">方式三</div>
+	<script>
+		function fun2(){
+			console.log("触发函数")
+		}
+		var d = document.getElementById('d1');
+		// 事件绑定的第二种方式
+		d.onclick = function(){
+			console.log("方式二");
+		}
+
+		// 事件绑定的第三种方式
+		var d1 = document.getElementById('d2');
+		d1.addEventListener('click',function(){
+			console.log("方式三")
+		},false);
+
+		d1.addEventListener('dblclick',fun4,false);
+
+		function fun4(){
+			console.log("双击");
+		}
+	</script>
+</body>
+</html>

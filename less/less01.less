@@ -1,0 +1,43 @@
+/* 
+less
+	1、概念
+	less是一门css预处理语言，它主要扩充了css语言，增加了变量、
+	混合、函数等功能，使css语言动态化，提高了css代码的可维护性
+	2、安装
+	-打开sublime，然后ctrl+shift+p，弹出一个框，输入install pakage
+	，接着在弹出框输入less，选择LESS，回车安装;在按照以上步骤，
+	输入less2css，然后回车，进行安装
+	-打开cmd，使用npm安装less，首先：cnpm install less -g 回车安装
+	然后再：cnpm install less-plugin-clean-css -g
+	3、使用less
+		less文件可以直接在项目中引用，然后再通过less.js进行编译
+		也可以通过工具，将.less编译成css文件，然后再引用，比较推荐该种方式
+		
+		第二种方式，直接通过sublime，就可以编译生成对应的css
+	4、语法
+		1）变量
+		在less中，使用@表示一个变量，其语法为:@变量名，使用
+		变量的语法与定义方式一样，也是@变量名
+		less变量命名规则：所有的变量，都是以@开头，变量名有字母、
+		数字、下划线和-组成；在样式外部定义的变量是全局变量，在
+		样式内部定义的称为局部变量
+		2）变量计算
+		less中允许变量进行相应的运算
+*/ 
+@bg-color : #333;//全局变量
+div{
+	width:100px;
+	height:200px;
+	background:@bg-color;
+	line-height: @line-hight;
+	@text-color:black;//局部变量，并且会将black转化成16进制色值
+	color:@text-color;
+}
+@line-hight : 200px;//全局变量
+
+// 变量运算
+@my-color:@bg-color+#666;
+#d1{
+	background-color:@my-color;
+	width:@line-hight+100px;
+}

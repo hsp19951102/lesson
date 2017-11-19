@@ -1,0 +1,44 @@
+<!--  
+模块化（comment.js、AMD、CMD、UMD、ES6模块语法）
+webpack
+	1、概念
+	该工具是一个模块打包工具，主要用于分析我们的项目结构，找到js模块以及一些不能够被浏览器直接运行的扩展语言（sass、less、typescript、jsx），然后将其编译成合适的格式，以供使用
+	2、webpack的好处
+	-可以提高我们的工作效率
+	3、用法
+	1）基础用法
+	-首先全局安装webpack工具：cnpm install webpack -g
+	-创建一个用于使用webpack的项目，cd到项目根目录
+	-通过命令cnpm init创建一个package.json文件
+	-在项目中安装webpack依赖包，在项目根目录，执行命令：cnpm install --save-dev webpack
+	-在项目文件中创建两个子文件夹：app、public；app文件夹主要放原始数据以及我们项目所写的模块，public用来放置用于浏览器读取的数据
+	-创建index.html，作为首页文件，放入public，其作用是加载打包后的js文件
+	-创建两个js文件，其中一个需命名为main.js，另一个自取，js文件放入app文件夹内
+	-配置webpack，在项目根路径下，创建一个webpack的配置文件，取名为webpack.config.js，在该文件中配置入口路径及打包后文件的存放位置
+	-在控制台输入webpack命令即可打包，手动在index.html中引入bundle,js
+	2）通过webpack构建本地服务
+	-在项目中本地安装依赖包：cnpm install --save-dev webpack-dev-server
+	-配置webpack.config.js文件，添加devServer属性配置
+	-配置package.json文件的scripts属性，用于配置服务信息
+	-在cmd输入npm run server去开启本地服务
+	3）Loders
+	在webpack中，可以使用不同的loader加载（编译）不同类型的文件，比如json、jsx、sass等
+	注意，在使用loaders时，需要单独安装指定的loader
+	loaders使用需要在webpack.config.js中进行配置，添加loaders属性，每一个loader所需要的配置信息包括：test（用于匹配所处理的文件的扩展名的正则），loader（名称）
+
+	以json为例，首先需要本地安装json loader：cnpm install --save-dev json-loader  装完之后，需要在webpack.config.js中进行配置，添加loaders
+
+	4）插件
+	常用的插件：htmlwebpackplugin
+	依据一个简单的模板，生成最终的html5文件，
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.shareTo{
+			background-color: orange;
+			width: 200px;
+			height: 300px;
+			display: none;
+			float: left;
+		}
+		.shareBtn{
+			background-color: gray;
+			width: 80px;
+			height: 100px;
+			line-height: 100px;
+			float: left;
+			margin-top: 100px;
+		}
+		.shareTo>div{
+			height: 50%;
+			line-height: 150px;
+		}
+		div{
+			text-align: center;
+		}
+		#show{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class = "shareTo">
+		<div>分享到qq</div>
+		<div>分享到微信</div>
+	</div>
+	<div class="shareBtn" onclick="show()">分享</div>
+	<script>
+		// 首先获取shareTo
+		var shareView = document.querySelector('.shareTo');
+		function show(){
+			if (shareView.id != "show") {
+				shareView.id = "show";
+			}else{
+				shareView.id = "";
+			}
+			
+		}
+	</script>
+</body>
+</html>

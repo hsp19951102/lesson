@@ -1,0 +1,129 @@
+<!-- 
+文本格式化
+	1.概述
+	文本格式化主要包括控制字体和文本格式，控制字体包括字体大小、加粗、字体系列等；设置文本格式包括文本颜色、文本排列和文本缩进等
+	2.字体属性
+	1）通过字体属性可以给文本设置字体系列
+	样式属性：font-family
+	语法：font-family:字体1,字体2...;
+	该样式的取值可以为多个字体，字体名之间用逗号隔开，优先使用字体1，如果环境中没有安装此字体，则使用字体2，以此类推。
+	注意：如果字体名包含空格或中文，则需要用引号引起来
+	2)字体大小
+	font-size:取值为尺寸单位，多用px或em
+	3)字体加粗
+	font-weight:normal/bold/bolder/lighter;
+	4)字体倾斜
+	font-style:normal/italic(倾斜)
+	5）简写
+	font:字体倾斜 字体加粗 字体大小 字体系列;
+	3.文本属性
+	1）文本颜色
+	color:颜色;
+	2)文字方向
+	direction:rtl(从右到左)/ltr(从左到右);
+	3)字符间距
+	letter-spacing:尺寸单位;
+	4)文本对齐方式-
+	text-align:left/right/center;
+	5)文本修饰
+	text-decoration:none(没有修饰)/underline(下划线)/overline(上划线)/line-through(删除线)
+	6)行高
+	line-height:尺寸单位;
+	!!!!注意：当元素的行高等于元素的总高度时，会垂直居中
+	7）首行文本缩进
+	text-indent:尺寸单位;
+	8)文本阴影
+	text-shadow:水平阴影距离 垂直阴影距离 模糊距离 颜色;
+	9)文本溢出(选修)
+	处理空白：
+	white-space:normal/nowrap(不换行，会在同一行继续，直到遇到br)/pre(空白会被保留，类似pre)/pre-wrap(会保留空白，会正常换行)/pre-line(合并空白序列，可以保留文本的格式，包括空格、回车、tab、换行，不需要改变标签为pre)
+
+	text-overflow:clip(截断)/ellipsis(显示为省略号);
+	长单词换行：
+	word-wrap:normal(不换行)/break-word;
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			font-family:"宋体","华文行楷","times new roman1",meiryo,"微软雅黑";
+		}
+		p{
+			font-size:40px;
+			font-weight: bold;
+			font-style:italic;
+			direction:rtl;
+			letter-spacing: 5px;
+		}
+		/*div{
+			border:1px solid red;
+			text-align: right;
+			font-size: 30px;
+			font-weight: bold;
+			text-decoration: line-through;
+			line-height: 100px;
+		}*/
+		a{
+			text-decoration: none;
+		}
+		#div1{
+			width:600px;
+			height:200px;
+			border:1px solid red;
+			line-height: 200px;
+		}
+		#div2{
+			width:400px;
+			border:1px solid blue;
+			text-indent: 30px;
+			/*white-space: nowrap;*/
+			/*white-space: pre;*/
+			/*white-space: pre-wrap;*/
+			white-space: pre-line;
+		}
+		h1{
+			text-shadow: 5px 5px 5px red;
+		}
+		h3{
+			width:200px;
+			border:5px solid red;
+			white-space: nowrap;
+			overflow:hidden;
+			text-overflow: ellipsis;
+		}
+		h4{
+			width:200px;
+			border:5px solid blue;
+			word-wrap:break-word;
+		}
+	</style>
+</head>
+<body>
+	<p>这是一段sfasdfasfd文字</p>
+	<div>这是另一段文字</div>
+	<a href="">超链接</a>
+	<div id="div1">一做贼dskfj鞯 夺戈夺夺日东奔西<span>这是span</span></div>
+	<div id="div2">alsdkfj af
+	;aldf ;asdfj a;
+	fja f;asjf       ;fj sa;fj sa;flj f;asjf a;fj
+	 sa;fasj f;aslfj sa;fja ;fjas fd
+
+	;ajf ;ajf ;asfja;s fjas fjasf</div>
+	<h1>这是大标题</h1>
+	<h3>是顶替工载地甘甘工载载载村落载载飘落要载发村柑械</h3>
+	<h4>asdfaasdfaasdf afasdfasdfsfsfsfsfsfdfasdfafaafafaf asdfasudadfadsffoiaf afdafadfasdfafaf af afd af asfafasdf asffasdfas</h4>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

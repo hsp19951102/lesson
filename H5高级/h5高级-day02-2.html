@@ -1,0 +1,46 @@
+<!--  
+一、canvas
+	1、概念
+	是h5新增的标签，主要作用是在页面中形成一个画布，可以通过其自身的属性进行图形的绘制
+	2、创建canvas
+	canvas元素会在网页上创建一个空白的矩形区域，然后通过调用API操作这个区域，该空白区域与div类似，可以设置宽和高，所以该元素是一个行内块级元素
+	注意，canvas元素中不需要设置任何内容，包括文本内容及子元素
+	创建完成canvas之后，通过DOM操作获取到该元素的对象，然后需要调用
+	getContext方法，其目的是得到画布的绘图上下文，通过这步操作，才可以完成绘图操作
+	3、绘制矩形
+	-fillRect()
+	通过fillRect方法可以绘制实心矩形
+	语法：context.fillRect(x,y,width.height);
+	x/y表示矩形左上角的位置，width/height表示宽高；默认颜色为黑色
+	注意：canvas不存在溢出情况，只要图形的范围超出了画布，超出部分就不会被显示
+	-strokeReact()
+	绘制空心矩形
+	语法：context.strokeRect(x,y,width,height);
+	-clearRect()
+	清除矩形区域
+	语法：context.clearRect(x,y,width,height);
+	清除矩形区域所指定的范围，类似橡皮擦
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 创建一个canvas元素 -->
+	<canvas width="400px" height="400px" id="canvas"></canvas>
+	<script>
+		// 得到画布的dom对象
+		var canvas = document.getElementById('canvas');
+		// 获取画布上下文
+		var context = canvas.getContext('2d');//暂时只支持2d
+		// 绘制实心矩形
+		context.fillRect(10,10,100,80);
+		//绘制空心矩形
+		context.strokeRect(10,100,100,100);
+		// 清除矩形区域
+		context.clearRect(40,30,80,80);
+	</script>
+</body>
+</html>

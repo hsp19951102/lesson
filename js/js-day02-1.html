@@ -1,0 +1,81 @@
+<!-- 
+运算符
+	1.算数运算符
+	包括：+,-,*,/,%,++,--
+	+:如果相加的变量是number类型，则会得到变量的和，如果是string类型，则会将字符串拼接到一起
+	-toFixed();表示保留小数后几位数字，括号中需要设置保留的位数，四舍五入
+	取余运算
+	只保留整数部分的商
+
+	自增自减
+	++(自增):在表达式中，++在后，会先将变量的值作为表达式的结果，然后变量再自增，++在前，会先自增，再赋值
+	--(自减)：在表达式中，--在后，会先将变量的值作为表达式的结果，然后再自减，--在前，会先自减，再赋值
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var a = 10;
+		var b = 23;
+		var c = "12";
+		console.log(a+b);
+		console.log(b+c);
+		console.log("abc"+c);
+		console.log(34+b);
+		console.log(b-a);
+		console.log(a*c);
+		// 员工工资组成为基本工资加绩效工资，基本工资为5000，绩效工资为0-1000，用户输入绩效工资，算出应发工资。
+		var salary = 5000;
+		// var per_salary = prompt("请输入绩效工资！");
+		//console.log("应发工资为："+(5000+parseFloat(per_salary)));
+		//老张买菜花了1.6元，他给了2元，应找零多少？
+		var price = 1.6;
+		var pay = 2;
+		var sub = pay - price;
+		console.log("￥"+sub.toFixed(2));
+		//浏览器在处理小数时偶尔会出现bug，在出现bug时，可以用toFixed()函数进行处理
+		var abc = 2.3252;
+		console.log(abc.toFixed(2));
+		//取余
+		var i = -10 % -3;//-1
+		console.log(i);
+		var i1 = 10.5 % 3;//1.5
+		console.log(i1);
+		var i2 = 10/3;
+		console.log(i2);
+		var i3 = 10 % -3;
+		console.log(i3);
+		//自增 
+		var j = 2;
+		j++;//j=j+1
+		console.log(j);
+		var m = 2;
+		var n = ++m;
+		console.log(m,n);
+		var s = 3;
+		var q = --s;
+		console.log(s,q);
+
+		var x = 2;
+		var y = x++  +        ++x  +     x++;
+		//     x++=2,x=3    ++x=4,x=4   x++=4,x=5
+		//y=    2    +     4    +      4
+		console.log(x,y);
+		//x:5 y:10*4
+		//x:5 y:11
+		//x:7 y:7*3
+		//x:5 y:5
+		//x:9 y:8
+
+		var u = 3;
+		var v = ++u + u++ + ++u;
+		console.log(u,v);
+		//u:6 v:14
+
+	</script>
+</body>
+</html>

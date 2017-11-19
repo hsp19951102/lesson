@@ -1,0 +1,204 @@
+<!--  
+表单验证插件
+	1、什么是表单验证
+	主要是针对表单元素的值进行验证，然后给出相应的图形或文字提示
+	表单验证的插件有很多，这里主要讲jquery.validate
+
+	设置required属性，表示字段必填
+	minlength  最小长度
+
+	2、将表单的验证规则写到js中
+
+图表插件echarts
+	可以实现常用的柱状图、饼状图、折线图等
+	先引入相关的js文件
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<!-- 首先引入插件的js文件 -->
+	<script src="jquery.validate.min.js"></script>
+
+	<style>
+		label.error{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<form action="">
+		<input type="text" required="" minlength="6">
+		<input type="email">
+		<input type="submit">
+	</form>
+	<!-- 表单验证（jquery.validate）-->
+	<form action="" id="form2">
+		<input type="text" id="username" name="username" placeholder="清输入用户名">
+		<br>
+		<input type="text" id="pwd" name="pwd" placeholder="清输入密码">
+		<input type="text" name="phone" placeholder="清输入手机号">
+		<input type="submit">
+	</form>
+	<script>
+		// 自定义验证规则
+		// 添加手机号的验证规则
+		$.validator.addMethod('mobile',function(value,element){
+			return this.optional(element) || /^1[34578]\d{9}$/.test(value);
+		},"手机格式不正确");
+		
+		//首先绑定验证插件，并设置验证规则
+		$('#form2').validate({
+			//首先设置需要验证的角色（表单元素）
+			rules:{
+				// 此处的属性名，需要与表单元素的name属性值相对应
+				username:"required",
+				pwd:"required",
+				// phone:"mobile"
+				phone:{
+					required:true,
+					mobile:true
+				}
+			},
+			//设置对应的提示信息
+			messages:{
+				username:"你忘了填用户名",
+				pwd:"你的密码呢？！",
+				// phone:"滚一边去，没这种手机号码"
+				phone:{
+					required:"必填",
+					mobile:"输入手机号"
+				}
+			}
+		})
+	</script>
+	<!-- 引入echarts的js文件 -->
+	<script src = "cj/echarts.min.js"></script>
+	<input type="button" value="柱状图1" onclick="fun()">
+	<input type="button" value="柱状图2" onclick="fun1()">
+	<input type="button" value="折线图" onclick="fun2()">
+	<input type="button" value="饼状图" onclick="fun3()">
+	<!-- <input type="button" value="其他" onclick="fun4()"> -->
+	<!-- 设置一个元素，用于显示图表 -->
+	<div id="charts" style="width: 800px;height: 400px"></div>
+	
+	<script>
+		//绑定图表,初始化图表组件
+		var myChart = echarts.init(document.getElementById('charts'));
+		
+		function fun(){
+			// 设置图表相关的参数
+			var option = {
+				//标题
+				title:{
+					text:"我的图表"
+				},
+				//提示工具
+				tooltip:{},
+				legend:{
+					data:["销量"]
+				},
+				//x轴相关数据
+				xAxis:{
+					data:['羊肉串',"猪肉串","牛板筋","茄子"]
+				},
+				//y轴刻度，可不设置
+				yAxis:{},
+				series:[{
+					name:"销量",
+					// 图表类型
+					type:"bar",
+					data:[10,17,26,15]
+				}]
+			};
+			myChart.setOption(option);
+		}
+		
+		function fun1(){
+			var option1 = {
+				//标题
+				title:{
+					text:"我的图表"
+				},
+				//提示工具
+				tooltip:{},
+				legend:{
+					data:["销量","热度"]
+				},
+				//x轴相关数据
+				xAxis:{
+					data:['羊肉串',"猪肉串","牛板筋","茄子"]
+				},
+				//y轴刻度，可不设置
+				yAxis:{},
+				series:[{
+					name:"销量",
+					// 图表类型
+					type:"bar",
+					data:[10,17,26,15]
+				},{
+					name:"热度",
+					// 图表类型
+					type:"bar",
+					data:[13,27,16,10]
+				}]
+			};
+			myChart.setOption(option1);
+		}
+
+		function fun2(){
+			var option = {
+				//标题
+				title:{
+					text:"我的图表"
+				},
+				//提示工具
+				tooltip:{},
+				legend:{
+					data:["羊肉串销量"]
+				},
+				//x轴相关数据
+				xAxis:{
+					data:['老李烧烤',"八戒烧烤","刘家大排档","小四川"]
+				},
+				//y轴刻度，可不设置
+				yAxis:{},
+				series:[{
+					name:"羊肉串销量",
+					// 图表类型
+					type:"line",
+					data:[10,17,26,15]
+				}]
+			};
+			myChart.setOption(option);
+		}
+		function fun3(){
+			var option = {
+				//标题
+				title:{
+					text:"我的图表"
+				},
+				series:[{
+					name:"薪资分布分布",
+					// 图表类型
+					type:"pie",
+					data:[
+						{value:70,name:"7000以上"},
+						{value:23,name:"5k~7k"},
+						{value:5,name:"4k~5k"},
+						{value:2,name:"低保"}
+					]
+				}]
+			};
+			myChart.setOption(option);
+		}
+
+		// function fun4(){
+		// 	var 
+		// 	myChart.setOption(option);
+		// }
+	</script>
+</body>
+</html>

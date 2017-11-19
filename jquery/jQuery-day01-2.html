@@ -1,0 +1,106 @@
+<!-- 
+1、层次选择器
+	类似css中的后代选择器
+	1）获取子元素
+	语法：选择器1 选择器2
+	首先找到匹配选择器1的所有元素，再从这些元素的子元素中，找到匹配选择器2的元素
+	2）获取直接子元素
+	选择器1>选择器2
+	首先找到匹配选择器1的所有元素，再从这些元素的直接子元素中，找到匹配选择器2的元素
+	3）选择器1+选择器2
+	兄弟选择器
+	先找到匹配选择器1的所有元素，然后再从紧邻这些元素后且匹配选择器2的元素
+	4）选择器1~选择器2
+	先找到匹配选择器1的所有元素，然后再从这些元素之后的元素中找到能够匹配选择器2的所有元素
+2、过滤选择器
+	1）什么是过滤选择器
+	过滤选择器就是通过特定的过滤规则，来筛选出所需要的元素，过滤选择器一般以:开头，找找不同过滤规则，可以分为基本过滤选择器、内容过滤、可见性过滤、属性过滤、子元素过滤以及表单过滤等
+	2）基本过滤选择器
+	-选择器:first  匹配选择器的第一个元素
+	-选择器:last   匹配选择器的最后一个子元素
+	-选择器1:not(选择器2)  匹配选择器1且不匹配选择器2的所有元素
+	-选择器:even   获取匹配选择器，且下标为偶数的元素
+	-选择器:odd    获取匹配选择器，且下标为奇数的元素
+	-选择器:eq(下标) 获取匹配选择器，且下标为指定位置的元素
+	-选择器:gt(下标) 获取匹配选择器，且下标大于指定位置的元素
+	-选择器:lt(下标) 获取匹配选择器，且下标小于指定位置的元素
+
+	3）内容过滤选择器
+	主要是针对元素的内容
+	-选择器:contains(文本) 匹配选择器，且包含指定内容的元素，注意，只考虑纯文本
+	-选择器:empty 匹配选择器，且没有内容的元素（既没有子元素，也没有文本）
+	-选择器:parent 获取匹配选择器中，有子元素或者有文本的元素
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<style>
+		#d2+.p2{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1">nnn
+		<div id="d2">ccc</div>
+		<div>aaa</div>
+		<p class="p1">111111</p>
+		<p class="p2">2222</p>
+	</div>
+	<div class="box">1212
+		<p class="c1">
+			<span class="s1"></span>
+		</p>
+		<div class="s1">23233
+			<b class="s1"></b>
+		</div>
+	</div>
+	<p class="box">
+		<b>
+			<s class="s1"></s>
+		</b>		
+	</p>
+	<script>
+		var eles = $("div.box .s1");
+
+		// var eles1 = $("div>.s1");
+		var eles1 = $(".box>.s1");
+		console.log(eles1);
+
+		var $brother = $('div+p');
+		console.log($brother);
+		var $brother1 = $('.box+p')
+
+		var $brother2 = $('div~p');
+
+		console.log($("div:first"))
+		console.log($("div:last"))
+		console.log($("div:not(#d1)"))
+
+		console.log($("div:even"));
+
+		console.log($("div:eq(1)"));
+	</script>
+	<div class="c11">
+		<p>
+			<a href="#">1236</a>
+		</p>
+	</div>
+	<div class="c11">
+		<s>1235</s>
+	</div>
+	<div class="c11">
+		<b>1234</b>
+	</div>
+	<script>
+		var $e = $(".c11:contains(6)");
+		console.log($e);
+
+		console.log($(":empty"));
+		console.log($(":parent"));
+	</script>
+</body>
+</html>

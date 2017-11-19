@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- 使用.less文件，可以直接通过link进行引入，此处我们需要将rel设置为stylesheet/less,然后，需要在.less文件引入后，引入less的js文件 -->
+	<link rel="stylesheet/less" href="less01.less">
+	<!-- 在引入js之前，需要一个less变量，声明编译less的环境参数 -->
+	<script>
+		less = {
+			env:"development",
+			async:false,
+			fileAsync:false,
+			poll:1000,
+			function:{},
+			rootpath:''
+		}
+	</script>
+	<script src="less-1.7.0.js"></script>
+</head>
+<body>
+	<div>123</div>
+</body>
+</html>

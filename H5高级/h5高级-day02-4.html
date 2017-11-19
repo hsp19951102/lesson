@@ -1,0 +1,115 @@
+<!--  
+路径相关
+	1、创建路径
+	针对一些复杂图形的绘制，需要自己通过路径进行描绘，路径指的就是画笔移动的轨迹，路径建立后，将其发送给画布上下文，然后既可以绘制图形
+	创建路径相关的方法
+	-beginPath()：开始一个新的路径描述，创建路径之前，必须调用该方法
+	-closePath()：关闭路径，用直线将最后一个点与起始点进行连接，形成一个封闭的图形，当然如果你需要保持开发，则可以不使用该方法
+	-stroke()：将路径绘制为轮廓形状
+	-fill()：将路径绘制为实心形状，使用该方法，可以不使用closePath()
+	-rect(x,y,width,height)：生成一个矩形路径
+	-arc(x,y,r,起始弧度,结束弧度,方向)：以x、y为原点，以r为半径，根据起始和终止弧度绘制一段圆弧或圆形，方向取值为bool值，表示顺时针或逆时针;
+	-moveTo(x,y)：设置/移动笔尖到某点;
+	-lineTo(x,y)：绘制一条直线，连接当前笔尖的位置，与x/y对应的位置
+
+	2、线型
+	包含线的宽度、端点样式
+	-lineWidth：线宽，取值为数值
+	-lineCap：设置线端点的形状，取值：butt(线条端点为矩形)/round(圆角)/square(末端添加矩形帽)
+
+	3、连接点的样式
+	通过lineJoin设置线条连接点的样式
+	取值：round(圆角)/bevel(斜角)/miter(尖角，默认值)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="1000px" height="900px"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		
+		context.beginPath();
+		context.strokeStyle = "red";
+		context.moveTo(30,30);
+		context.lineTo(40,70);
+		context.lineTo(60,70);
+		context.stroke();
+
+		context.beginPath();
+		context.strokeStyle = "red";
+		context.moveTo(130,30);
+		context.lineTo(140,70);
+		context.lineTo(160,70);
+		context.closePath();//连接当前点与起始点
+		context.stroke();
+
+
+		context.beginPath();
+		context.strokeStyle = "red";
+		context.fillStyle = "red";
+		context.moveTo(30,130);
+		context.lineTo(40,170);
+		context.lineTo(60,170);
+		context.fill();
+
+		// 绘制矩形
+		context.beginPath();
+		context.rect(30,200,100,100);
+		context.stroke();
+
+		//绘制圆
+		context.beginPath();
+		context.arc(60,400,50,0,Math.PI*2,false);
+		context.stroke();
+
+		context.beginPath();
+		context.arc(220,400,50,0,Math.PI,false);
+		context.stroke();
+
+		context.beginPath();
+		context.arc(330,400,50,0,Math.PI,false);
+		context.closePath();
+		context.stroke();
+
+		context.beginPath();
+		context.strokeStyle = "red";
+		context.moveTo(30,530);
+		context.lineTo(100,530);
+		context.lineWidth = 10; 
+		context.lineCap = "butt";
+		context.stroke();
+
+		context.beginPath();
+		context.strokeStyle = "red";
+		context.moveTo(30,550);
+		context.lineTo(100,550);
+		context.lineWidth = 10; 
+		context.lineCap = "round";
+		context.stroke();
+
+
+		context.beginPath();
+		context.strokeStyle = "red";
+		context.moveTo(30,570);
+		context.lineTo(100,570);
+		context.lineWidth = 10; 
+		context.lineCap = "square";
+		context.stroke();
+
+		context.beginPath();
+		context.strokeStyle = "red";
+		context.moveTo(30,590);
+		context.lineTo(100,590);
+		context.lineTo(50,640);
+		context.lineWidth = 10; 
+		context.lineCap = "square";
+		context.lineJoin = "bevel";
+		context.stroke();
+	</script>
+</body>
+</html>

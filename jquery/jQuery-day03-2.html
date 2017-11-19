@@ -1,0 +1,87 @@
+<!--  
+jQuery类数组操作
+	1、什么是类数组
+	类似数组的一些操作，因为jQuery对象的结构跟数组的结构很相似，所以jQuery对象具备一些类似数组的属性和方法
+	2、类数组操作
+	-length：表示长度
+	-each()函数，用于遍历类数组对象
+	语法：
+	jq对象.each(function);
+	-eq(下标) 获取jq对象中指定下标处的jq对象
+	-get(下标) 得到指定下标处的dom对象
+	-jq对象1.index(对象)，获取对象在jq对象中的下标
+插件
+	1、插件的概念
+	插件就是别人封装好的，开发人员可以直接在项目中使用的自定义控件
+	2、插件的查找
+	略
+	3、常用插件介绍
+	1）datepicker（日期选择工具）
+	日期选择工具，会绑定到一个标准的input上，当焦点移动到input上时，会显示日期选择器
+	使用步骤
+	-引入jQuery-ui的js文件和css文件
+	-将datepicker进行绑定
+	常用操作：
+	-onSelect：该属性是一个方法，当用户选择了日期后触发
+	-showAnmi: 设置日历显示和消失的动画，取值为动画名，如：fadeIn、slideDown
+	-showOtherMonths： 是否显示其他月份的日期，默认是false
+	-格式化日历
+	让日期以某种特定的格式显示，比如：2017-8-23
+	通过dateFormat属性进行修改，属性可取值:yy-mm-dd、yy/mm/dd、yy年mm月dd日，mm和dd可以写为m和d，这样不会补全前面的0
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="jquery-ui.min.css">
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li id="li3">3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		$('ul li').each(function(i){
+			//此处的i表示dom对象的下标，this指的是当前所遍历到的dom对象
+			console.log("---"+i+"-"+this.textContent)
+			console.log($('li').index($(this)))
+		});
+		console.log($('li').eq(1).text());
+		console.log($('li').get(1).textContent);
+
+		var index = $('li').index($('#li3'));
+		console.log(index);
+	</script>
+	<input type="text" id="d1">
+	<input type="text" class="c1">
+
+	<script>
+		//将日期选择控件与input进行绑定
+		$('#d1').datepicker({
+			numberOfMonths:2,
+		}
+			);
+		//使用onSelect属性
+		$('.c1').datepicker({
+			onSelect:function(date){
+				//此处的date表示用户所选择的日期
+				console.log(date);
+			},
+			showAnim:"fadeIn",
+			showOtherMonths:true,
+			selectOtherMonths:true,  //设置其他月份的日期是否可选
+			changeYear:true,//是否显示年份选择
+			changeMonth:true,//是否显示月份选择
+			showButtonPanel:true,//显示today和done按钮
+			numberOfMonths:1,//显示的月份个数
+			dateFormat:"yy年m月d日"
+		});
+	</script>
+</body>
+</html>

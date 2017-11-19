@@ -1,0 +1,63 @@
+<!-- 
+移除属性：removeAttr("属性名")
+1、样式操作
+	1）通过改变属性，比如 改变class/id
+	2）追加样式
+	所谓的追加样式其实就是给元素添加一个或多个class
+	语法:
+	jQuery对象.addClass('class值');会保留原来的class
+	3）删除样式
+	也就是删除某个class值
+	语法：
+	-jq对象.removeClass('class值');
+	-jq对象.removeClass();删除所有class所对应的样式
+	4）切换样式
+	语法：jq对象.toggleClass('class值');如果元素已存在该class值，则移除，如果不存在则添加
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.min.js"></script>
+	<style>
+		.c1{
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+		}
+		.c2{
+			background: gray;
+		}
+		#d2{
+			color: red;
+		}
+		.c3{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="d1" class="c1"></div>
+	<div id="d2">123</div>
+	<input type="button" value="删除c2" onclick="deleteC2()">
+	<input type="button" value="删除class" onclick="deleteClass()">
+	<div id="d3" class="c1"></div>
+	<input type="button" value="切换" onclick="fun()">
+
+	<script>
+		$('#d1').addClass('c2');
+		$('#d2').addClass('c1 c2');//追加多个class
+
+		function deleteC2(){
+			$('#d2').removeClass('c2');
+		}
+		function deleteClass(){
+			$('#d2').removeClass();
+		}
+		function fun(){
+			$('#d3').toggleClass('c3');
+		}
+	</script>
+</body>
+</html>

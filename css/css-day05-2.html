@@ -1,0 +1,100 @@
+<!-- 
+sublime快捷操作
+	ctrl+D 选中光标所占的文本，继续操作会选中下一个相同的文本
+	alt+F3 选中文本按下快捷键，即可一次性选中所有相同文本
+	ctrl+Enter 向下插入一行
+	ctrl+shift+Enter 向上插入一行
+	ctrl+左箭头 向左单位性地移动光标
+	ctrl+右箭头 向右单位性地移动光标
+	ctrl+shift+左箭头 向左单位性地选中文本
+	ctrl+shift+右箭头 向右单位性地选中文本
+	shift+左箭头 向左选中文本
+	shift+右箭头 向右选中文本
+	tab 向右缩进 
+	shift+tab 向左缩进
+	ctrl+shift+K 删除一行
+	ctrl+/ 注释
+	ctrl+Z 撤销
+	ctrl+Y 恢复撤销
+	ctrl+F 搜索	ctrl+K+B 开启/关闭侧边栏
+	F11 全屏
+
+
+	网页开发注意事项：
+	1.属性的取值：不能用中文，不能用汉语拼音，不能用汉语拼音首字母缩写，尽量使用英文单词，例如：userName,user_name,address
+	2.能不用定位就不用定位
+	3.浮动要谨慎，注意浮动塌陷
+	4.注意网页布局的固定性，当浏览器窗口缩小时，要保证网页不变形（min-width）
+	5.块级元素居中：margin:auto;给自己设置该属性
+	行内块、行内元素居中：text-align:center;给父元素设置该属性
+	6.在一行内的行内块级元素对齐：vertical-align:top/middle/bottom;
+	7.如果给元素设置了100%的内容区域，再设置内边距会增大元素范围，也会导致元素超出父元素
+	8.一般网页宽度会设置为1200px,也就是一般min-width:1200px;
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">																								
+	<title>Document</title>
+	<style>
+		#div1{
+			width:600px;
+			height:600px;
+			border:1px solid black;
+			margin:auto;
+			padding-left:20px;
+		}
+		#div2{
+			width:100%;
+			height:40px;
+			background-color: orange;
+			/*padding-right:10px;*/
+		}
+	</style>
+</head>
+<body>
+	<!-- <div></div> -->
+
+	<div>
+		<p></p>
+	</div>
+	<div id="div1">
+		<div id="div2"></div>
+	</div>
+
+	<div>aaadefg</div>
+	<div>aaadefg</div>
+	<div>aaadefg</div>
+	<div>aaadefg</div>
+	<div>aaadefg</div>
+	<div>aaadefg</div>
+
+	<!-- zen coding -->
+	<!-- 一次性创建5个div -->
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<!-- 创建一个id为box的div元素 -->
+	<div id="box"></div>
+	<!-- 创建一个class为box的span元素 -->
+	<span class="box"></span>
+	<!-- 创建相邻的两个元素 div+p -->
+	<div></div>
+	<p></p>
+	<!-- 创建子元素 div>p>b*2 -->
+	<div>
+		<p><b></b><b></b></p>
+	</div>
+	<div id="box1">
+		<p class="text"></p>
+	</div>
+	<div id="box2" class="box3"></div>
+
+	<div></div>
+	<p></p>
+	<div></div>
+	<p></p>
+</body>
+</html>

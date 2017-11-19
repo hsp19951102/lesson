@@ -1,0 +1,72 @@
+<!-- 
+BOM
+	BOM可以理解为是一个浏览器对象，主要用于操作浏览器或者获取浏览器的相关信息
+	BOM主要包含的对象有：window、navigator、history、location、document、event
+	window是bom的根对象，其他对象本质上是window的属性，而window的属性一般可以省略window.,通过属性名直接访问
+
+	1、window对象
+	该对象表示的是浏览器中打开的窗口，基本上每一个新窗口都会对应一个window对象
+	常用属性：
+	-innerWidth/innerHeight  表示窗口内部的宽和高(不包含顶部地址栏)
+	-outerWidth/outerHeight   可以理解为整个浏览器当前的宽高
+	-pageXOffset/pageYOffset  设置或返回页面距离窗口左上角的x轴和y轴的距离
+
+	常用方法：
+	-alert()
+	-setInterval()   周期性定时器
+	-setTimeout()    一次性定时器
+	-clearInterval() 清除周期性定时器
+	-clearTimeout()  清除一次性定时器
+	-close()         关闭窗口
+	-open()          打开窗口
+	-prompt()        可输入的提示框
+	-confirm()       带俩按钮的提示框 
+
+	2、窗口
+	1、打开和关闭
+	可以使用close()关闭窗口，一般都会通过self.close()关闭当前窗口
+
+	可以使用open打开窗口
+	语法：
+	var 窗口名 = window.open('要打开的html路径')
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background: gray;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<input type="button" value="关闭" onclick="fun()">
+	<input type="button" value="打开" onclick="fun1()">
+	<script>
+		console.log("inner-width:"+window.innerWidth);
+		console.log("inner-height:"+window.innerHeight);
+
+		console.log("outer-width:"+window.outerWidth);
+		console.log("outer-height:"+window.outerHeight);
+
+		console.log(window.pageXOffset);
+		console.log(window.pageYOffset);
+
+		window.pageXOffset = 300;
+		window.pageYOffset = 200;
+		var myWin;
+		function fun(){
+			// self.close(); 关闭自身窗口
+			myWin.close(); //关闭指定窗口
+		}
+		function fun1(){
+		 	myWin =	open("dom-day03-1.html");
+		}
+	</script>
+</body>
+</html>

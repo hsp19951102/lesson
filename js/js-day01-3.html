@@ -1,0 +1,98 @@
+<!-- 
+一、数据类型
+	js数据类型包括两个大类，一是原始类型(number,string,boolean,null（空对象）,undefined（未定义）)，二是引用类型(Object对象,Function函数,Number,String,Boolean,Date日期,Error错误)
+	1.基本数据类型
+	1）number类型：数字类型，可以是整数，也可以表示小数
+	2)string类型：字符串类型，表示一系列的文本字符数据，比如：姓名，性别，可以包含数字、字符、标点等；js中字符串使用一对单引号或双引号引起来
+	3)boolean类型：布尔类型，仅有两个值：true/false。也代表1/0。
+二、数据类型转换
+	隐式转换/显式转换
+	1.隐式转换（自动类型转换）
+	js是松散类型的程序语言，变量的声明不需要指定数据类型，变量由赋值操作决定数据类型，不同类型的数据在计算过程中会自动进行转换，这就是隐式转换
+	出现隐式转换的情形：
+	number+string=string;
+	number+boolean=number;布尔值会转为0(false)或1(true)
+	boolean+boolean=number;
+	string+boolean=string;布尔值会转换为字符串true或false
+	typeof()函数可以用于查询当前变量当前数据的数据类型
+	数据类型的优先级：string>number>boolean
+	2.显式类型转换（强制类型转换）
+	通过转换函数，将高级类型强制转换为低级类型
+	-toString();转换为字符串，所有的数据类型都可以转换为字符串
+	-parseInt();解析出一个string或number类型的整数部分，如果不能转换，则返回NaN(not a number)
+	-parseFloat();解析出一个字符串中的小数，如果没有可转换的内容，则返回NaN
+	-Number();把一个string解析为number，只能包含数字，如果包含非法字符，则返回NaN
+
+	3.从页面获取数据
+	prompt();注意，从页面获取的所有数据，均为string类型
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//number类型
+		var stuNO = 113;
+		var weight = 78.5;
+		//string类型
+		var name = "张三";
+		var sex = "男";
+		var price ="12.5元";
+		var str = "a1,._+adfasdf中文";
+		var str1 = 'abcde';
+		//boolean类型
+		var isSunshine = false;
+		var isMan = true;
+
+		console.log(weight);
+		console.log(sex);
+		console.log(isMan);
+
+		//数据类型转换
+		var a=10;
+		var b="11";
+		console.log(a+b);//number+string=string
+		var c=false;
+		console.log(a+c);//number+boolean=number
+		var d=true;
+		console.log(c+d);//boolean+boolean=number
+		console.log(b+d);//string+boolean=string
+		console.log(typeof(b));
+		b = false;
+		console.log(typeof(b));
+		var e="aaa";
+		console.log(a+d+e);
+
+		//显式类型转换
+		var aa = 12;
+		var bb = "bb";
+		var cc = false;
+		var str = aa.toString();
+		console.log(typeof(str));
+
+		var dd = 209.23;
+		var ee = "139ac23";
+		var ff = "a23bcdef";
+		var num = parseInt(ff);
+		console.log(num);
+		var gg = "23.33.5ace";
+		var num1 = parseInt(gg);
+		var num2 = parseFloat(gg);
+		var num3 = Number(gg);
+		console.log(num1);
+		console.log(num2);
+		console.log(num3);
+		var hh = "2356.88";
+		console.log(Number(hh));
+
+		//从页面获取数据
+		var ss = prompt("请输入一个数据");
+		console.log(parseFloat(ss));
+
+	</script>
+	
+</body>
+</html>

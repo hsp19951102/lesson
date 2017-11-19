@@ -1,0 +1,194 @@
+<!-- 
+样式属性
+	1.尺寸单位
+	px像素，百分比，pt磅，in英寸，cm厘米，mm毫米，em(1em会参照其父元素的尺寸，2em等于其父元素尺寸的2倍)
+	2.颜色单位
+	颜色的单词
+	十六进制色值（#ff0000）
+	rgb(red,green,blue)
+	rgba(red,green,blue,alpha);alpha表示透明度,取值为0-1之间的小数
+	3.尺寸属性
+	尺寸属性用于给元素设置宽和高，单位一般为px或百分比
+	宽度属性：
+	width:宽度
+	min-width(当浏览器宽度小于该值时，不再折叠，一般取值为px)
+	max-width(最大宽度，当浏览器宽度超出该值时，元素宽度不再变大)
+	高度属性：
+	height:高度
+	min-height:最小高度
+	max-height:最大高度
+	4.溢出
+	使用尺寸属性控制元素大小时，如果内容所占的空间大于元素本身的空间，会造成内容溢出，会覆盖后面的元素内容
+	处理溢出
+	overflow:visible(可见，默认值),hidden(隐藏),scroll(滚动,无论是否溢出，都会出现滚动条)，auto(自动,当有溢出时，会出现滚条，没有溢出时，不会出现滚动条)
+	overflow-x(设置水平方向溢出）
+	overflow-y(设置垂直方向溢出)
+	哪些元素使用尺寸属性：div,p,h1-h6,img,ul,ol,li,table,tr,td,th,form表单
+	5.边框属性
+	所有的元素都可以添加边框
+	1)简写形式
+	border:尺寸 边框样式 边框颜色;
+	-尺寸一般取值为px
+	-边框样式取值：none(无边框)，solid(实线)，dotted(点状边框，部分浏览器显示为实线)，dashed(虚线)，double(双线)
+	-边框颜色：颜色单位
+	2）单边定义
+	border-left/border-right/border-top/border-bottom
+	3)其他
+	border-width(边框宽度)
+	border-style(边框样式)
+	border-color(边框颜色)
+	6.边框圆角
+	1）简写形式
+	border-radius:尺寸单位(一般取值px);设置四个角
+	border-radius:value1 value2;value1表示左上角和右下角，value2表示右上角和左下角
+	border-radius:value1 value2 value3;value1表示左上角，value2表示右上角和左下角，value3表示右下角
+	border-radius:value1 value2 value3 value4;从左上角开始，顺时针依次设置
+	注意：如果某元素为正方形，当圆角值大于或等于其宽或高的一半时，会显示为一个圆 
+	画椭圆：border-radius:宽/高;
+	7.边框阴影
+	box-shadow:水平阴影位置(px) 垂直阴影位置(px) 模糊距离(px) 阴影颜色;
+	-水平阴影位置：当值为正整数时，阴影向右偏移，当值为负整数时，阴影向左偏移
+	-垂直阴影位置：当值为正整数时，阴影向下偏移，当值为负整数时，阴影向上偏移
+	-模糊距离：阴影有模糊效果的尺寸
+	-阴影颜色：取值颜色单位
+	-内外阴影样式：inset
+	轮廓指的是绘制于元素外围的一条线，位于边框的外围，可以起到突出元素的作用
+	语法：
+	outline:颜色 样式 尺寸;
+	轮廓样式取值与边框样式取值一致
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			font-size: 16px;
+		}
+		p{
+			font-size: 2em;
+		}
+		.rgb{
+			/*color:rgb(0,0,255);*/
+			/*color:rgb(255,0,0);*/
+			color:rgb(20,233,50);
+		}
+		.div1{
+			width:200px;
+			height:200px;
+			/*background-color: rgb(255,0,0);*/
+			background-color: rgba(255,0,0,0.5);
+		}
+		.div2{
+			width:60%;
+			height:50px;
+			min-width: 400px;
+			background-color: orange;
+		}
+		.div3{
+			width:80%;
+			height:50px;
+			max-width: 600px;
+			background-color: blue;
+		}
+		.overflow{
+			width:200px;
+			height:200px;
+			border:1px solid black;
+			overflow: auto;
+		}
+		.of1{
+			width:200px;
+			height:200px;
+			border:1px solid black;
+			overflow-y:auto;
+		}
+		.of1 p{
+			width:300px;
+			height: 400px;
+			background-color: orange;
+		}
+		.bor{
+			width:200px;
+			height:200px;
+			border:5px dotted red;
+			border-bottom:none;
+			/*border-top:5px dotted red;
+			border-bottom: 5px dotted red;*/
+		}
+		.radius{
+			width:200px;
+			height:200px;
+			border:2px solid blue;
+			/*border-radius:10px;*/
+			/*border-radius:30px 10px;*/
+			/*border-radius:30px 10px 50px;*/
+			border-radius:10px 30px 50px 70px;
+		}
+		.circle{
+			width:200px;
+			height:200px;
+			border:2px solid red;
+			border-radius:100px;
+		}
+		.tuoyuan{
+			width:200px;
+			height:400px;
+			border:2px solid blue;
+			border-radius:200px/400px;
+		}
+		.shadow{
+			width:200px;
+			height:200px;
+			margin-left: 50px;
+			background-color: orange;
+			/*box-shadow: -10px -10px 20px green;*/
+			box-shadow: 0px 0px 40px red;
+		}
+		.outline{
+			width:200px;
+			height:200px;
+			/*border:5px solid red;*/
+			outline:blue dotted 10px;
+		}
+		input{
+			outline:none;
+			border:none;
+			border-bottom:1px solid #333;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		这是div
+		<p>这是p</p>
+	</div>
+	<p class="rgb">测试rgb</p>
+	<div class="div1"></div>
+	<div class="div2"></div>
+	<div class = "div3"></div>
+	<p class="overflow">adfjasdfj rflow:visible(可见，默认值),hidden(隐藏),scroll(滚动,无论是否溢出，都会出现滚动条adsf a;dfafafafad</p>
+	后面
+	<br>
+	<div class="of1">
+		<p></p>
+	</div>
+	<div class="bor"></div>
+	<br>
+	<div class="radius"></div>
+	<br>
+	<div class="circle"></div>
+	<br>
+	<div class="tuoyuan"></div>
+	<br>
+	<div class="shadow"></div>
+	<br>
+	<div class="outline"></div>
+	<br>
+	<input type="text">
+	<br>
+	<br>
+	<br>
+</body>
+</html>

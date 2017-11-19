@@ -1,0 +1,61 @@
+<!-- 
+一、字符串的常用操作
+	1.截取字符串
+	从原有的字符串中截取出一个新的字符串
+	-slice(start,end);返回start到end-1区域的子字符串，如果省略end，则直接截取到字符串的结尾
+	语法：字符串名.slice(start,end);
+	-substring(start,end);与slice()用法相同
+	2.分割字符串（分割成一个数组）
+	使用分隔符将字符串进行拆分
+	语法：字符串名.split(分隔符,count);
+	-分隔符：表示用于分隔的字符串
+	-count:表示取出分隔的数量（元素个数）
+	注意：该方法，是通过字符串中已有的符号进行分割，最后会返回一个分割结束的数组
+	3.连接字符串
+	将两个字符串连接到一起
+	-通过+号
+	-concat(str1,str2....);
+	4.替换字符串
+	将字符串中原有的字符串替换成别的字符串，只替换第一个符合条件的字符串
+	语法：字符串名.replace(原有字符串,别的字符串);
+	5.查找
+	检索字符串中指定的子字符串，返回其位置，如果找不到则返回-1
+	语法：字符串名.search(子字符串);
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//slice()
+		var str = "我爱我的学校，这是一个神奇的地方！";
+		var s = str.slice(2);
+		console.log(s);
+		var s1 = str.slice(3,20);//注意，如果end大于字符串总长，则截取到字符串结尾
+		console.log(s1);
+		var s2 = str.substring(4,10);
+		console.log(s2);
+		//split()
+		var str3 = "杨环宇&丁庆伟&王旭&王艺&谢泽民";
+		var arr = str3.split("&");
+		console.log(arr);
+		var arr1 = str3.split("&",3);
+		console.log(arr1);
+		//concat()
+		var str4 = "abc";
+		var str5 = str4.concat("nnn",str3);
+		console.log(str5);
+		//replace()
+		var str6 = "abcdefabcdefabcdef";
+		var str7 = str6.replace("abc","sss");
+		console.log(str7);
+		//search()
+		var str8 = "this is my school";
+		var str9 = str8.search("s");
+		console.log(str9);
+	</script>
+</body>
+</html>
